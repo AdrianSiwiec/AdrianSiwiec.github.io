@@ -1,0 +1,61 @@
+body {
+  background-color: rgb(247, 247, 247);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1em;
+}
+.main {
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.title {
+  font-size: 3em;
+  text-align: center;
+  margin: 25px;
+}
+.collapsibleButton {
+  border: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.collapsibleContent {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  background-color: rgb(228, 228, 228);
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: Computer-Modern-Serif;
+}
+a {
+  text-decoration: none;
+  color: #002288;
+}
+.logo {
+  vertical-align: middle;
+  height: 2.5em;
+  padding: 0 0.5em;
+}
+.photo{
+  float: right;
+  margin: 5px;
+  width: 30%;
+}
+.centered {
+  text-align: center;
+}
+small{
+  color: #707070;
+}
+li{
+  margin: 5px 0;
+}
+@font-face {
+  font-family: Computer-Modern-Serif;
+  src: url(fonts/cmunrm.ttf);
+}
+
