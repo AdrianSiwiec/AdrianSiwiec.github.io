@@ -5,12 +5,12 @@ var no_tab_mode = 1;
 var mermaid_enabled = 1;
 var toc_pane_div = "left_pane_content";
 var dir_index_pane_div = "";
-var html_url_prefix = "";
-var CONFIGURED_HTML_URL_PREFIX = "";
+var html_url_prefix = "Notatki";
+var CONFIGURED_HTML_URL_PREFIX = "Notatki";
 var RELATIVE_PATHS = 0;
 var documentation_mode = 1;
 var tab_mode = !no_tab_mode;
-var gzip_hash = '188823244868245286459141552973834601376'                       // used to check whether the localStorage data is stale
+var gzip_hash = '261443857698081283752196019021546822280'                       // used to check whether the localStorage data is stale
 
 // global cache
 var fn_cache_ls_available = null;
@@ -477,7 +477,7 @@ function get_graph_data(){
     return get_html_url_prefix()+'/obs.html/data/graph.json';
 }
 function get_html_url_prefix(){
-    return ''  // this value is replaced by the actual url prefix when compiled
+    return 'Notatki'  // this value is replaced by the actual url prefix when compiled
 }
 
 function signal_js_enabled(container){
