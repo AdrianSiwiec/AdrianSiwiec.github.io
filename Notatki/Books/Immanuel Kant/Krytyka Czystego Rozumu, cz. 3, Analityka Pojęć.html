@@ -194,10 +194,36 @@
 <ul></ul>
 </div>
 <blockquote>
-<p>Last updated on 2023-02-28 <br />
-<a class="inline-tag" href="/Notatki/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>    </p>
+<p>Last updated on 2023-02-28   </p>
 </blockquote>
-<p>This is a test!</p></div>
+<p><a class="inline-tag" href="/Notatki/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>    </p>
+<p>This is a test!   </p>
+<div class="mermaid">
+flowchart TD
+
+A[test] -->|test in the middle| B(test 2)
+
+B --> C{square}
+
+C --> D[1]
+
+C --> E[a much longer text than all of \nthe others. It's \neven multiline]
+
+C ---> F[lower]
+
+</div>
+
+<script>
+                    function initializeMermaid() {
+                        mermaid.initialize({startOnLoad:true})
+                    }
+
+                    if (document.readyState === "complete" || document.readyState === "interactive") {
+                        setTimeout(initializeMermaid, 1);
+                    } else {
+                        document.addEventListener("DOMContentLoaded", initializeMermaid);
+                    }
+            </script></div>
 <div class="note-footer">
 
 </div>
