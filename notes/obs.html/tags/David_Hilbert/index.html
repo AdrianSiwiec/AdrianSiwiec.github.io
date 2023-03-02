@@ -5,7 +5,7 @@
         <head>
                 <!-- Page information -->
                 <meta charset="UTF-8" />
-                <meta name="node_id" content="index">
+                <meta name="node_id" content="none">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href="/notes/favicon.ico" />
 
@@ -43,13 +43,13 @@
 <script src="/notes/obs.html/static/pako.js"></script>
 <script src="/notes/obs.html/static/search.js"></script>
 <script src="/notes/obs.html/static/dirtree.js"></script>
-
+<link rel="stylesheet" href="/notes/obs.html/static/taglist.css" />
 
                 <!-- Onload tweaks -->
                 <script>
-                        const CURRENT_NODE = 'index';
+                        const CURRENT_NODE = 'none';
                         const HTML_URL_PREFIX = '/notes';
-                        const PAGE_DEPTH = 0;
+                        const PAGE_DEPTH = {page_depth};
                 </script>
         </head>
 
@@ -192,23 +192,15 @@
 </div>
 </div>
                 <div class="flex_row">
-                        <div id="left_pane" class="left_pane active">
-    <div id="left_pane_fold_header" class="left_pane_fold_header fold_header">x</div>
-    <div id="left_pane_content" class="left_pane_content">
-            
-    </div>
-</div>
+                        
                         <div class="container">
-                                <embeddedtitle>index</embeddedtitle>
-<div class="content"><div class="toc">
-<ul></ul>
-</div>
-<p><a href="/notes/Books/Quine/O%20tym%2C%20co%20istnieje.html">Books/Quine/O tym, co istnieje</a> <br />
-<a href="/notes/Books/Immanuel%20Kant/Krytyka%20Czystego%20Rozumu%2C%20cz.%203%2C%20Analityka%20Poj%C4%99%C4%87.html">Books/Immanuel Kant/Krytyka Czystego Rozumu, cz. 3, Analityka Pojęć</a></p></div>
-<div class="note-footer">
-
-</div>
-
+                                <h1 id="notes">Notes</h1>
+<ul>
+<li><a href="/notes/Books/Quine/O tym, co istnieje.html">O tym, co istnieje</a></li>
+</ul>
+<blockquote>
+<p><a href="/notes/obs.html/tags/index.html">View all tags</a></p>
+</blockquote>
                                 <!-- end content -->
                         </div>
                         <div class="container_filler">
