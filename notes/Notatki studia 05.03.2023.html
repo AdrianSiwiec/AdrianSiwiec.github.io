@@ -211,7 +211,7 @@
 </ul>
 </div>
 <blockquote>
-<p>Last updated on 2023-03-09   </p>
+<p>Last updated on 2023-03-13   </p>
 </blockquote>
 <h2 id="hf">HF</h2>
 <h3 id="dialektyka-transcendentalna">Dialektyka Transcendentalna</h3>
@@ -272,9 +272,45 @@ Dlatego nie są poznawcze (poznawcze jest to, co (Transcendentalnie) konieczne d
 1 - Do idei psychologicznej stosujemy kategorie intelektu. (Krytyka <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>'a, który czemuś co nie jest fenomenalne przypisał ideę substancji) <br />
 "Myślę" jest przedstawieniem. Wszystkie inne przedstawienia mają za sobą dane empiryczne. "Myślę" nie ma za sobą nic (w szczególności nie ma tam idei podmiotu, ona jest dopiero postulowana przez rozum) <br />
 Kartezjusz robił błąd, bo mówił, że "Ego Cogito" jest substancją.   </p>
-<blockquote>
-<p>TODO: rysunek   </p>
-</blockquote>
+<div class="mermaid">
+flowchart BT
+
+
+
+A["pojęcie"]
+
+B --> A
+
+
+
+B{{"funkcja\njedności"}}
+
+
+
+subgraph ide1 ["przedstawienie: 'myślę'"]
+
+C("przedstawienie 1")
+
+D("przedstawienie 2")
+
+E("przedstawienie 3")
+
+end
+
+
+
+ide1 -.->|"('myślę' to też\nprzedstawienie)"| B
+
+
+
+C -..-> B
+
+D -.-> B
+
+E -..-> B
+</div>
+
+<p>("Myślę", moja apercepcja to też przedstawienie, ale nie mogę (Błąd 1) o tym co jest "za nim" wnioskować kategoriami)   </p>
 <p>2 - Antynomie - np. "Czy świat miał początek?" - ogólnie: do idei nie można stosować kategorii <br />
 3 - (nie zanotowałem) np. Traktowanie istnienia jako predykatu (Rozwalenie dowodów ontologicznych - z żadnego pojęcia nie może wynikać jego istnienie) (Tekst o 100 talarach)   </p>
 <h2 id="etyka">Etyka</h2>
@@ -318,7 +354,18 @@ Kant: nie musi mnie obchodzić. Oprócz moich celów, powinienem być tylko spó
 <p>Stwierdzenie, że człowiek ma być celem, a nie środkiem mówi jak <strong>nie</strong> należy traktować ludzi. Nie traktować jako środek, np. nie odbierać jej możliwości osądu.   </p>
 <p>Pewnych rzeczy się ludziom nie robi.   </p>
 <p>Przykład: Zdradziliśmy kogoś i nie powiedzieliśmy mu (jeden z możliwych, ciekawych testów systemu etycznego -- intuicyjnie czujemy że coś jest nie tak, ale skoro on o tym nie wie to niby go nie skrzywdziliśmy). Kant: potraktowaliśmy go jak środek, stworzyliśmy fałszywy świat dla niego etc. <br />
-Ból (fizyczny, emocjonalny) jest mało ważny u Kanta. Pogwałcenie godności drugiego to jest dopiero zło.</p></div>
+Ból (fizyczny, emocjonalny) jest mało ważny u Kanta. Pogwałcenie godności drugiego to jest dopiero zło.</p>
+<script>
+                    function initializeMermaid() {
+                        mermaid.initialize({startOnLoad:true})
+                    }
+
+                    if (document.readyState === "complete" || document.readyState === "interactive") {
+                        setTimeout(initializeMermaid, 1);
+                    } else {
+                        document.addEventListener("DOMContentLoaded", initializeMermaid);
+                    }
+            </script></div>
 <div class="note-footer">
 
 </div>
