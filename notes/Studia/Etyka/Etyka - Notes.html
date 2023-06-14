@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="etyka - notes">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/notes/favicon.ico" />
+
+                <!-- Set title -->
+                <title>Notatki</title>
+
+                <!-- Includes -->
+                
+<script src="/notes/obs.html/static/obsidian_core.js"></script>
+<script src="/notes/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/notes/obs.html/static/master.css" />
+<script src="/notes/obs.html/static/mermaid.9.0.1.min.js"></script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/notes/obs.html/static/flexsearch.bundle.js"></script>
+<script src="/notes/obs.html/static/pako.js"></script>
+<script src="/notes/obs.html/static/search.js"></script>
+<script src="/notes/obs.html/static/dirtree.js"></script>
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'etyka - notes';
+                        const HTML_URL_PREFIX = '/notes';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        <div id="search-master-div">
+    <div id="search-slab" king_ramses="return the slaaab">
+            <div id="search-controls">
+                    <input id="search_string" placeholder="Type to search notes" type="text" />
+                    <div class="tooltip" style="display: none;">
+                        <input type="checkbox" id="hard_search" name="hard" />
+                        <span class="tooltiptext">Hard search (require exact match)</span>
+                    </div>
+                    <div id="search-results-box">
+                        <div id="search-results"></div>
+                    </div>
+                    <div id="search-instructions">
+                        <div class="prompt-instruction">
+                                <b>esc</b> to dismiss
+                        </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("search-master-div").addEventListener('click', e => {
+            if(e.target !== e.currentTarget){
+                    return
+            }
+            toggle_id('search-master-div');
+    })
+    document.getElementById("search_string").addEventListener("input", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    }); 
+    document.getElementById("hard_search").addEventListener("click", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    });
+
+    window.addEventListener('keydown', e => {
+        if((e.key=='Escape'||e.key=='Esc'||e.keyCode==27)){
+            toggle_id('search-master-div');
+            return false;
+        } 
+    }, true);
+
+    function click_list_link(element){
+        element.parentElement.getElementsByTagName('a')[0].click()
+    }
+</script>
+
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header">
+    <div id="header_flex" class="flex_row">
+            <a href="/notes/index.html" id="homelink" title="Clear screen and go to homepage">Notatki</a>
+            <div id="menu_toggle_button" class="navbar-button requires_js" onclick="toggle_menu()">
+                    ≡
+            </div>
+            <div id="navbar" class="navbar requires_js">
+                    
+                    <div class="icon-tray">
+                            <div id="theme-button" class="theme-button requires_js" title="Change theme" onclick="toggle_theme_popup(this)">
+    T
+</div>
+<script>
+    function toggle_theme_popup(el){
+        // make theme button show that it's active by adding the .active class
+        toggle(el);
+
+        // show the theme selector
+        toggle_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            toggle(pu);
+        }
+    }
+
+    function disable_theme_popup(){
+        disable_id('theme-button');
+
+        // show the theme selector
+        disable_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            disable(pu);
+        }
+    }
+</script>
+                                    <div onclick="openSearch()" class="theme-button requires_js">
+            <img src = "/notes/obs.html/static/search.svg" alt="Search notes" title="Search notes" style="margin: 4px;"/>
+        </div>
+        <script>
+            function openSearch(){
+                // toggle search popup and continue with extra code if it is enabled this time
+                if (toggle_id('search-master-div')){
+                    // get input field and temporarily disable it
+                    let ss = document.getElementById('search_string');
+                    ss.value = 'Seach data initializing...';
+                    ss.readOnly = true; 
+
+                    // load search data if not yet done so
+                    setTimeout(function(){
+                        LoadSearchData()
+
+                        // clear input and put focus on it so that we can start typing immediately
+                        ss.value = '';
+                        ss.readOnly = false; 
+                        ss.focus()
+                        ss.select()
+                    }, 100);
+                }
+            }
+        </script>
+                            
+                            
+                            
+                            
+                    </div>
+                    <div style="display: flex; flex-direction:column">
+                        <div id="left_pane_toggle_nav" class="left_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                        <div id="right_pane_toggle_nav" class="right_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                    </div>
+            </div>
+    </div>
+    <div class="popup" id="theme-popup">
+    <label for="cars">Theme </label>
+
+    <select name="theme" id="theme" onchange="set_theme(this.value)">
+      <option value="light">light</option>
+      <option value="obs-light" selected="selected">obsidian-light</option>
+      <option value="obs-dark">obsidian-dark</option>
+    </select> 
+</div>
+</div>
+                <div class="flex_row">
+                        <div id="left_pane" class="left_pane active">
+    <div id="left_pane_fold_header" class="left_pane_fold_header fold_header">x</div>
+    <div id="left_pane_content" class="left_pane_content">
+            
+    </div>
+</div>
+                        <div class="container">
+                                <embeddedtitle>Etyka - Notes</embeddedtitle>
+<div class="content"><div class="toc">
+<ul>
+<li><a href="#08-09-10-2022" class="anchor-link">08-09.10.2022</a></li>
+<li><a href="#22-23-10-2022" class="anchor-link">22-23.10.2022</a><ul>
+<li><a href="#_obsidian_pattern_tag_mary_midgley" class="anchor-link">{_obsidian_pattern_tag_Mary_Midgley}</a></li>
+</ul>
+</li>
+<li><a href="#06-11-2022" class="anchor-link">06.11.2022</a><ul>
+<li><a href="#sokrates" class="anchor-link">Sokrates</a></li>
+<li><a href="#gorgiasz" class="anchor-link">Gorgiasz</a></li>
+</ul>
+</li>
+<li><a href="#20-11-2022" class="anchor-link">20.11.2022</a><ul>
+<li><a href="#_obsidian_pattern_tag_plato-teoria-polityki-a-teoria-moralnosci-panstwo" class="anchor-link">{_obsidian_pattern_tag_Plato} -- teoria polityki a teoria moralności (Państwo)</a></li>
+<li><a href="#_obsidian_pattern_tag_aristotle" class="anchor-link">{_obsidian_pattern_tag_Aristotle}</a></li>
+</ul>
+</li>
+<li><a href="#04-12-2022" class="anchor-link">04.12.2022</a><ul>
+<li><a href="#_obsidian_pattern_tag_marcus_aurelius" class="anchor-link">{_obsidian_pattern_tag_Marcus_Aurelius}</a></li>
+</ul>
+</li>
+<li><a href="#18-12-2022" class="anchor-link">18.12.2022</a><ul>
+<li><a href="#etyka-chrzescijanska" class="anchor-link">Etyka chrześcijańska</a></li>
+<li><a href="#normatywnosc-moralnosci" class="anchor-link">Normatywność moralności</a></li>
+<li><a href="#problem-z-etyka-chrzescijanska" class="anchor-link">Problem z etyką chrześcijańską</a></li>
+</ul>
+</li>
+<li><a href="#15-01-2023" class="anchor-link">15.01.2023</a><ul>
+<li><a href="#teoria-umowy-spoecznej" class="anchor-link">Teoria umowy społecznej</a><ul>
+<li><a href="#_obsidian_pattern_tag_thomas_hobbes" class="anchor-link">{_obsidian_pattern_tag_Thomas_Hobbes}:</a></li>
+<li><a href="#_obsidian_pattern_tag_john_locke" class="anchor-link">{_obsidian_pattern_tag_John_Locke} :</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#29-01-2023" class="anchor-link">29.01.2023</a></li>
+<li><a href="#05-02-2023" class="anchor-link">05.02.2023</a></li>
+<li><a href="#26-02-2023" class="anchor-link">26.02.2023</a></li>
+<li><a href="#05-03-2023" class="anchor-link">05.03.2023</a></li>
+<li><a href="#26-03-2023" class="anchor-link">26.03.2023</a></li>
+<li><a href="#02-04-2023" class="anchor-link">02.04.2023</a></li>
+<li><a href="#23-04-2023" class="anchor-link">23.04.2023</a></li>
+<li><a href="#07-05-2023" class="anchor-link">07.05.2023</a></li>
+</ul>
+</div>
+<blockquote>
+<p>Last updated on 2023-06-12   </p>
+</blockquote>
+<p>Agata Łukomska   </p>
+<h2 id="08-09-10-2022">08-09.10.2022</h2>
+<p>(Nie było mnie) <br />
+TODO: Pierwsze zajęcia online poświęcimy na sprawy organizacyjne i wprowadzenie w problematykę filozofii moralności, ale przygotowujmy się już do kolejnych. Proszę o czytanie Gorgiasza, w całości. <br />
+<a href="/notes/not_created.html" class="nonexistent-link">Gorgiasz.pdf</a> <br />
+<a href="/notes/not_created.html" class="nonexistent-link">Gorgiasz konspekt.pdf</a>   </p>
+<h2 id="22-23-10-2022">22-23.10.2022</h2>
+<p>TODO: Zanim zaczniemy rozmawiać o etyce starożytnej, przeczytajmy jeszcze (na 23.10) tekst Mary Midgley o pochodzeniu moralności. <br />
+[[M. Midgley, Pochodzenie etyki [w] Przewodnik po etyce.pdf]]   </p>
+<blockquote>
+<p>"Prymat dobra" <a class="inline-tag" href="/notes/obs.html/tags/Iris_Murdoch/index.html">Iris_Murdoch</a> -- bardzo oryginalna i ciekawa etyka   </p>
+</blockquote>
+<h3 id="_obsidian_pattern_tag_mary_midgley"><a class="inline-tag" href="/notes/obs.html/tags/Mary_Midgley/index.html">Mary_Midgley</a></h3>
+<p>Pytanie: Skąd się wzięła etyka. Dlaczego?   </p>
+<ul>
+<li>czyli tworzy ona genealogię. Jest ona konstruktywna (pozytywna)   <ul>
+<li>genealogia: historia (fikcyjna) "jak to się mogło stać"   </li>
+<li>Pozytywna w sensie: jak kupisz jej argument, to uwierzysz w tę etykę.   </li>
+<li>W przeciwieństwie jest negatywna, np. <a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>'go   <ul>
+<li>etyka Panów vs Niewolników   <ul>
+<li>ogólnie: podobne w pewnym sensie do psychoanalizy: zwykle wierzy się w stek bzdur, w fałszywe wartości. Jest to strategia radzenia sobie z problemami rzeczywistości (zamiast zmierzenia się z nią otwarcie)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Możliwe genealogie   </p>
+<ol>
+<li>dekret Boski   </li>
+<li>umowa społeczna   </li>
+<li>ewolucja   </li>
+</ol>
+</li>
+<li>
+<p>Dekret Boski - nieciekawe   </p>
+</li>
+<li>
+<p>Czy Bóg jest konieczny dla etyki? Jak można uzasadnić: "Jeśli Boga nie ma, to pozostaje tylko Nihilizm?"   </p>
+<ul>
+<li>(Polacy: ze względu na historię nie mają innych źródeł etyki)   </li>
+<li>Locke: ateiści nie dotrzymują umów   </li>
+<li>(najlepszy argument) Bóg daje obiektywność prawa moralnego.   <ul>
+<li>(fenomenologia moralności -- w życiu codziennym jedynie spotkanie z moralnością, to spotkanie ze ścianą, autorytetem: "tego nie wolno", z którym nie można dyskutować)   </li>
+<li>Co jest z tym argumentem nie tak?   <ul>
+<li>Platon (Eutyfron): Pobożne jest to, co podoba się Bogom. A Bogom podoba się to, co jest pobożne. (Bóg nie może nakazać czegoś złego)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Umowa społeczna   </p>
+</li>
+<li>
+<p>Jako coś, co się rozumie literalnie:   </p>
+<ul>
+<li>Nie ma sensu jest to niewiarygodne: język musiałby powstać przed społeczeństwem   </li>
+<li>Większość autorów nie rozumie tego literalnie   </li>
+</ul>
+</li>
+<li>(Nie rozważyliśmy dalej)   </li>
+<li>
+<p>Ewolucja   </p>
+</li>
+<li>
+<p>Są błędne rozumienia ewolucji:   </p>
+<ul>
+<li>Spenceryzm (socjobiologia)   <ul>
+<li>Skoro ewolucja, to trzeba promować to, co silne, eliminować słabych. Więc np. eugenika.   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/G_E_Moore/index.html">G_E_Moore</a> Jest to błąd naturalistyczny: z faktu (ewolucji) nie mogą wynikać żadne powinności   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nie należy antropomorfizować mechanizmów ewolucji: to nie jest "rywalizacja" w sensie wrogich uczuć, jest to opis z zewnątrz systemu   </li>
+</ul>
+</li>
+<li>Ewolucja jest dobrym wyjaśnieniem altruizmu jako zachowania (niekoniecznie jako "chęci") -- np. dylemat więźnia   </li>
+<li>Dlaczego ewolucja może nas czegoś nauczyć w etyce   <ul>
+<li>(błędnie) Bo myślimy, o ewolucji jako o postępie, dobru   </li>
+<li>A przecież ewolucja zrobiła co miała zrobić. A zrobiła tak: nad dobrem i złem się zastanawiamy; nie jesteśmy jak pszczoły, które mają tylko (altruistyczne) instynkty   </li>
+<li>wtedy: <strong>wszystko</strong> można wytłumaczyć ewolucją.   </li>
+<li>tłumaczy fenomenologię etyki: inaczej (gdyby to nie był jakiś "przymus", który czujemy) by nie działało   </li>
+<li>Przyjęcie ewolucji daje nam kontekst: ewolucja wykształciła się w sytuacji życia społecznego, więc zachowania etycznie dobre się w tym życiu opłacają. Więc modyfikacja sposobu życia (etycznego) (np. human enhancement) jest niebezpieczna.   </li>
+</ul>
+</li>
+</ul>
+<h2 id="06-11-2022">06.11.2022</h2>
+<p><a href="/notes/not_created.html" class="nonexistent-link">Platon_Gorgias_cały.pdf</a> <br />
+<a href="/notes/not_created.html" class="nonexistent-link">Gorgiasz konspekt.pdf</a> (bardzo fajne streszczenie!)   </p>
+<h3 id="sokrates">Sokrates</h3>
+<p>(469-399) <br />
+Nie pochodził z rodziny szlacheckiej, a z robotniczej. Ojciec był kamieniarzem, matka położną. Otrzymał lepsze niż standardowe wykształcenie. Brał czynny udział w życiu obywatelskim -- czasem jako urzędnik (bardzo tego nie lubił i sam mówił że był słabym urzędnikiem) i żołnierz (był świetnym żołnierzem, otrzymywał odznaczenia) (wtedy jedno i drugie to były obowiązki obywateli). Prawdopodobnie żonaty 2 razy.   </p>
+<p>Zajmował się chodzeniem po rynku i pytaniem ludzi o istotę rzeczy.   </p>
+<p>Zarzuty -- psucie młodzieży i bezbożność (dajmonion). Kontekst: konflikt Aten (demokracji) ze Spartą (arystokracja, nie-demokracja); wewnętrzny konflikt Aten: demokracja vs arystokracja.   </p>
+<p>Po przegranej wojnie w Atenach rządziła rada 30-stu. Po jej upadku zastosowano amnestię. Środowisko Sokratesa było postrzegane jako wrogowie demokracji. Np. Alcybiades (zdolny generał Ateński, który knuł na wszystkie strony) był kochankiem Sokratesa. Sokrates był więc bardzo podejrzany politycznie.   </p>
+<p>Źródła:   </p>
+<ul>
+<li>Ksenofont -- nie był filozofem. Ale wiarygodny jeśli chodzi o historię   <ul>
+<li>Panowanie nad sobą najwyższą cnotą   </li>
+<li>Dowód na istnienie Boga z "Intelligent Design"   </li>
+</ul>
+</li>
+<li>Arystofanes -- komedia "chmury". Sokrates jako sofista, wszystko przeinacza i mąci w głowie   </li>
+<li>Platon   </li>
+</ul>
+<p>Źródła, które zaginęły:   </p>
+<ul>
+<li>( <a class="inline-tag" href="/notes/obs.html/tags/Diogenes_Laertios/index.html">Diogenes_Laertios</a>) 10 lat po śmierci Sokratesa, <a class="inline-tag" href="/notes/obs.html/tags/Antisthenes/index.html">Antisthenes</a>  opublikował dużo dialogów   <ul>
+<li>Cnota wystarcza dla szczęścia   </li>
+<li>Człowiek mądry panuje nad sobą   </li>
+</ul>
+</li>
+<li>Inne   </li>
+</ul>
+<p>Poglądy:   </p>
+<ul>
+<li>Chciał się odróżnić od "presokratyków" -- filozofów kosmologii i metafizyki. Jego interesowała dusza i dobre życie   </li>
+<li>Spierał się z sofistami. "Człowiek jest miarą wszystkiego" = relatywizm   </li>
+<li>"Wiem, że nic nie wiem"   </li>
+<li>Podkreślał pierwszeństwo troski o duszę. Dusza jest wieczna   </li>
+<li>"Unexamined life is not worth living"   </li>
+<li>Intelektualizm etyczny. Wiedza -&gt; Dobro ( <a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a> : nie jest taki różny od Gorgiasza, jest to pewien relatywizm). Nikt nie robi źle celowo.   </li>
+</ul>
+<h3 id="gorgiasz">Gorgiasz</h3>
+<ul>
+<li>Dialog z okresu średniego   </li>
+<li>Moment kryzysu i wyboru w filozofii Platona   </li>
+<li>"Gorgiasz" to wybitne dzieło -- nic nie jest tu przypadkiem   </li>
+<li>Zaczyna się od rozmowy o retoryce i metodologii: rozmawiać chcemy bez upiększeń i chwytów retorycznych   </li>
+<li>Polos sam sobie szkodzi i jest bezczelny   </li>
+<li>Nie ma dużego respektu między uczestnikami rozmowy, jedynie Sokrates i Kalikles się szanują (mimo, że się nie lubią)   </li>
+<li>Gorgiasz odpowie na każde pytanie   <ul>
+<li>Sokrates: Kim Gorgiasz jest? G: Retorem. S: Czym jest retoryka?   </li>
+<li>S: To nie jest sztuka a raczej "smykałka"   </li>
+<li>G: Retoryka ma wielką moc, bo każdego można do wszystkiego przekonać, nawet gdy się o tym nic nie wie   </li>
+<li>G: Retoryka to sztuka przekonywania o tym co jest sprawiedliwe, a co niesprawiedliwe   </li>
+<li>wyuczyć się (prawda) vs uwierzyć (prawda lub fałsz)   </li>
+<li>G: Retor zna się na tym co jest sprawiedliwe i niesprawiedliwe. Nauczyciel retoryki jest więc nauczycielem cnoty   </li>
+<li>Czyli: jest to albo sztuka, więc ponosi odpowiedzialność za cnotę uczniów; albo jest to tylko sztuka mówienia.   <ul>
+<li>Gorgiasz jest w pułapce. Sokrates pozwala mu się wycofać.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Polos   <ul>
+<li>S: Retoryka to schlebianie. Tak jak pieczenie ciastek vs leczenie   </li>
+<li>P: Retor robi co chce (w państwie)   </li>
+<li>S: Nie robi tego co chce, tylko to co mu się zachciewa. Czy ten co nie ma rozumu robi co chce?   </li>
+<li>S: Wolałbym krzywdy znosić (mimo, że bolą), niż je wyrządzać (choć nie bolą). Krzywdzić to niszczyć własną duszę. (Jest to słaby argument, trzeba wierzyć w duszę i całą tą ontologię)   </li>
+<li>P: Przyznaje że krzywdzić jest nieładnie, z czego wynika że i źle   </li>
+</ul>
+</li>
+<li>Kalikles: Panowie, wy na serio?   <ul>
+<li>Przemowa Kaliklesa   <ul>
+<li>Trzeba wziąć życie w swoje ręce. Trzeba żyć na serio, z rozmachem   </li>
+<li>Moralność Sokratesa jest moralnością ludzi słabych. Człowiek dorosły powinien ją odrzucić   </li>
+<li>(Jasne jest, że Platon traktuje ten zarzut bardzo, bardzo poważnie)   <ul>
+<li>( <a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>: Sokrates jest kapłanem niewolników)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sokrates: Co to znaczy lepszy?   <ul>
+<li>Rżnie głupa, czepia się.    </li>
+<li>S: najszczęśliwsi byliby ci, których cały czas coś swędzi i się drapią   </li>
+<li>K: wtedy kamienie i trupy byłyby najszczęśliwsze   </li>
+</ul>
+</li>
+<li>Nie dogadują się. Mówią o dwóch różnych rzeczach, innymi językami   </li>
+<li>Klasycznie ten tekst czyta się tak, że Kalikles jest pokonany   </li>
+<li>Platon i tak jedną nogą musi się oprzeć w zaświatach (Witwicki)   </li>
+</ul>
+</li>
+<li>Jak <em>można by</em> przekonać Kaliklesa   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>: Co gdyby wszyscy tak robili?   <ul>
+<li>Kalikles: Co go to obchodzi? On sobie poradzi   </li>
+</ul>
+</li>
+<li>Platon: Jestem dobry, bo chcę być dobry. To jest mój wybór. Twoim wyborem Kaliklesie jest bycie silnym.   <ul>
+<li>(Co by było gdyby Platon wziął stronę Kaliklesa? Ta decyzja określiła prawie całą zachodnią filozofię moralności)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="20-11-2022">20.11.2022</h2>
+<h3 id="_obsidian_pattern_tag_plato-teoria-polityki-a-teoria-moralnosci-panstwo"><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a> -- teoria polityki a teoria moralności (Państwo)</h3>
+<p>(Obrazek jaskini Platona) <br />
+Pytanie: Czy/jak wyjść z jaskini? (Jaskinia naszych zmysłów (jeden z możliwych sensów))   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Hilary_Putnam/index.html">Hilary_Putnam</a>: nie możemy wiedzieć, że jesteśmy w jaskini   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>: nie możemy wyjść za pomocą zmysłów   <ul>
+<li>Nie możemy mieć żadnej wiedzy (gdy jesteśmy w jaskini), bo jaskinia nie jest prawdziwa. Jedyna wiedza to ta o ideach.   </li>
+<li>Jak więc można wyjść z jaskini Platona?   <ul>
+<li>Z opowieści: odwrócenie się, nawrócenie, metanoia.   </li>
+<li>Platon nie wyjaśnia procesu   </li>
+<li>Opowieść o wędrówce duszy   <ul>
+<li>Dusza może sobie przypomnieć o prawdach wiecznych   </li>
+<li>Matematyka pomaga   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Maszyna szczęścia <a class="inline-tag" href="/notes/obs.html/tags/Robert_Nozick/index.html">Robert_Nozick</a>'a    <ul>
+<li>Przywiązanie do prawdy (nie chcemy <em>wybierać</em> fałszu)   </li>
+</ul>
+</li>
+</ul>
+<p>Co z jaskini Platona wynika o Etyce?   </p>
+<ul>
+<li>Platon to filozof dramatu, konfliktu świat-dusza   <ul>
+<li>pragnienia ciała są problemem, tu nie jest nasz dom   </li>
+</ul>
+</li>
+<li>Aby odpowiedzieć na pytanie: Czym jest sprawiedliwość (w człowieku), odpowiadamy na pytanie: Czym jest sprawiedliwość (w państwie)   <ul>
+<li>(vs <a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a> w "Państwo Otwarte" potraktował Platona dosłownie -&gt; jego państwo to państwo totalitarne)   </li>
+</ul>
+</li>
+<li>Państwo   <ul>
+<li>(mało kto pamięta) Pierwsza propozycja: sielskie życie (w stanie natury, hipisowskie).   <ul>
+<li>Problem: To życie dostarczy jedynie minimum potrzebnych rzeczy, nikt nie chce żyć bez wygód   </li>
+</ul>
+</li>
+<li>3 warstwy społeczne:   <ul>
+<li>Ci, co zarabiają na życie. Platon w ich życie za bardzo się nie wtrąca   </li>
+<li>Strażnicy, wojsko   <ul>
+<li>wspólne wszystko, wspólne dzieci, eugenika, życie w koszarach   </li>
+<li>w muzyce tylko odpowiednie harmonie, wygnać poetów, bo oni kłamią o Bogach (telewizja tylko państwowa, taka jaka ma być)   </li>
+</ul>
+</li>
+<li>filozofowie królowie   <ul>
+<li>2 najważniejsze zadania:   <ul>
+<li>organizacja kultu   </li>
+<li>segregacja dzieci do klas   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Żeby to miało szansę zadziałać, trzeba wygnać wszystkich starszych niż 10 lat.   </p>
+<p>Weźmy taki problem: Pewni ludzie są lepsi, więc mają oni prawo decydować o moim życiu.   </p>
+<ul>
+<li>Cenimy sobie osobistą wolność, nie chcemy z niej rezygnować.   <ul>
+<li>Platon uważa, że życie powinno być całkowicie podporządkowane rozumowi. Dusza zwierzęca ma się jedynie słuchać.   </li>
+<li><strong>Dusza</strong> jest człowiekiem.   <ul>
+<li>(Czy tak myślimy o sobie -- współcześnie mało kto (lolz))   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="_obsidian_pattern_tag_aristotle"><a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a></h3>
+<p>Etyka Nikomachejska   </p>
+<ul>
+<li>(są to notatki z jego wykładów, bardzo gęste, ale napisane zwyczajnie i bez ozdobników)   </li>
+<li>Arystoteles programowo odrzuca teorię idei Platona   </li>
+<li>Etyka jest częścią nauki politycznej. Człowiek to zoon politikon (żywina społeczna)   </li>
+<li>Cel: praktyczny, czyli aby dobrze żyć   </li>
+<li>Wszyscy ludzie dążą do eudajmonii   <ul>
+<li>Nie do końca "szczęście", bardziej "dobrze żyć i dobrze się mieć"   </li>
+<li>W porównaniu do naszej definicji szczęścia jest więcej akcentów zewnętrznych, życie musi być również udane   <ul>
+<li>Nie nazwaliby dziecka szczęśliwym (w przeciwieństwie do nas, gdzie dziecko to w pewnym sensie wzór szczęśliwości)   </li>
+</ul>
+</li>
+<li>Czynniki zewnętrzne są konieczne   </li>
+<li>Cnota nie gwarantuje szczęścia, ale najbardziej zależy od nas i jest najtrwalsza. Więc właśnie nią warto się zajmować   </li>
+</ul>
+</li>
+<li>(Dla Homera np. doskonałość i szczęście człowieka zależy od rodzaju człowieka)   </li>
+<li>Spytajmy ludzi, czym jest życie szczęśliwe:   <ul>
+<li>Większość powie, że przyjemności i kasa   </li>
+<li>Bogactwa i zaszczyty   </li>
+<li>Kontemplacja   </li>
+</ul>
+</li>
+<li>Właściwym (gatunkowo) ludzkim szczęściem jest życie rozumne   <ul>
+<li><strong>Nie</strong> jest to trwanie w kontemplacji, a cnota, czyli dyspozycja do działania   </li>
+<li>Życie (w ogólności) to przejście z potencji do aktu   </li>
+<li>Nie przeciwstawia duszy ciału (przeciwnie jak Platon)   </li>
+<li>Arystoteles jest pozytywny (człowiek jest w swoim ciele w domu) tam gdzie Platon jest dramatyczny (Ciało vs rozum)   </li>
+</ul>
+</li>
+<li>Cnoty:   <ul>
+<li>Dwa typy:   <ul>
+<li>Dianoetyczne -- zdobywane dzięki nauce   </li>
+<li>Etyczne -- zdobywane dzięki przyzwyczajeniu   </li>
+</ul>
+</li>
+<li>Cnota nie jest dzięki/wbrew naturze. Nikt nie rodzi się gorszy lub lepszy   </li>
+<li>Z natury jesteśmy zdolni do moralności, uczy się tego przez ćwiczenie   </li>
+<li>Aby być cnotliwym trzeba żyć cnotliwie   </li>
+<li>Cnotę mam, gdy mam odpowiednią tendencję i robię to (coś dobrego) świadomie i daje mi to przyjemność   </li>
+<li>Cnoty są łączne, pociągają się jedna za drugą (nie ściśle) (człowiek jest raczej w ogólności bardziej lub mniej cnotliwy)   </li>
+</ul>
+</li>
+<li>No, ale jak działać? Teoria złotego środka   <ul>
+<li>Czy Arystoteles zaleca umiarkowanie i przeciętność?   <ul>
+<li>Nie, jest to rozumienie naiwne i mylące   </li>
+</ul>
+</li>
+<li>To nie zawsze działa, to bardziej wskazówka (Arystoteles sam to przyznaje)   </li>
+<li>Chodzi raczej o to, żeby żyć właściwie   </li>
+</ul>
+</li>
+<li>Definicja cnoty (1107A): Trwała dyspozycja do postanowień, średnia miara, właściwa, zgodna z rozumem, tak jaka byłaby u <em>człowieka rozsądnego</em>.   <ul>
+<li>Fronimos (człowiek rozsądny)   <ul>
+<li>Ktoś odpowiednio wychowany   </li>
+<li>Żyć tak, abym mógł człowiekowi rozsądnemu spojrzeć w oczy   </li>
+<li>"Co zrobiłby człowiek przyzwoity"?   <ul>
+<li>To nie jest takie głupie, wszyscy mamy jakiś w miarę podobny ideał przyzwoitego człowieka   <ul>
+<li>Etyka to byt społeczny, tylko wśród innych ludzi można się nauczyć cnoty   </li>
+<li>(Problem we współczesnym społeczeństwie -- <a class="inline-tag" href="/notes/obs.html/tags/Alasdair_MacIntyre/index.html">Alasdair_MacIntyre</a>)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Czy etyka Arystotelesa jest więc relatywistyczna?   <ul>
+<li>Na to wygląda   </li>
+<li>On mówi:    <ul>
+<li>Tylko Grecy wychowują dobrze   </li>
+<li>Natura jest teleologiczna, człowiek rozwija się w stronę swojego potencjału (jakby, staje się sobą)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Czy współcześnie w ogóle możemy mówić o <em>dobrym życiu</em> dla człowieka?   </p>
+<ul>
+<li>Wybór w próżni jest wyborem bezsensownym   </li>
+</ul>
+<h2 id="04-12-2022">04.12.2022</h2>
+<p>Dopowiedzenie Fronesis   </p>
+<ul>
+<li>(ks VI Etyki Nikomachejskiej) Fronesis to cnota rozeznania się w konkretnych celach   <ul>
+<li>trzeba postępować tak jak Fronimos -- człowiek rozsądny   </li>
+</ul>
+</li>
+<li>Wniosek: człowiek nie dochodzi do cnoty w wyniku intelektualnych dociekań, lecz przez wychowanie   <ul>
+<li>Normatywny relatywizm kulturowy. Jak powstrzymać relatywność?   <ul>
+<li>Arystoteles:   <ul>
+<li>Tylko Greckie wychowanie jest OK   </li>
+<li>Teleologizm: człowiek rozwija się do swojego potencjału   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Alasdair_MacIntyre/index.html">Alasdair_MacIntyre</a>  <br />
+(Na podstawie tekstu <a href="/notes/not_created.html" class="nonexistent-link">McIntyre_Dziedzistwo cnoty_rozdział14.pdf</a> (bardzo fajny tekst))   </p>
+<ul>
+<li>(Pojęcie) Praktyk jest konieczne do zrozumienia języka moralnego.   <ul>
+<li>Dobra wewnętrzne praktyk wymagają cnót. Te ogólne cnoty to:   <ul>
+<li>męstwo   </li>
+<li>prawdomówność   </li>
+<li>uczciwość   </li>
+<li>Są one konieczne, bo praktyki zajmują dłuższy czas i człowiek jest jednostką w społeczeństwie   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Współcześnie praktyki zanikają, bo jest tylko korporacja i samotność.   </li>
+</ul>
+<blockquote>
+<p>Łukomskabardzo poleca całe "Dziedzictwo Cnoty" <a class="inline-tag" href="/notes/obs.html/tags/Alasdair_MacIntyre/index.html">Alasdair_MacIntyre</a>: "Bardzo ciekawe i fajne"   </p>
+</blockquote>
+<p>Pytanie: Czy mogą istnieć złe praktyki? Czy na przykład złą praktyką jest myślistwo?   </p>
+<p>Narracyjna jedność życia: w życiu przechodzi się przez szereg różnych praktyk. Niektóre "złe" praktyki są potrzebne, aby z nich wyrosnąć (jako osoba indywidualna, jak i jako społeczeństwo)   </p>
+<h3 id="_obsidian_pattern_tag_marcus_aurelius"><a class="inline-tag" href="/notes/obs.html/tags/Marcus_Aurelius/index.html">Marcus_Aurelius</a></h3>
+<p>Dlaczego Marek aureliusz, a nie np. <a class="inline-tag" href="/notes/obs.html/tags/Epictetus/index.html">Epictetus</a> ?   </p>
+<div class="codehilite"><pre><span></span><code>- Bo jest bardzo pięknie napisane
+</code></pre></div>
+
+<p>Kontekts: Okres Hellenistyczny, wielki chaos (jak koniec PRLu w Polsce)   </p>
+<ul>
+<li>kompletny dziki zachód   </li>
+<li>doświadczenie starszego pokolenia są już nieistotne   </li>
+<li>np. zakwitło czarodziejstwo -- poprzednie rozumienie świata nie działało   </li>
+<li>Filozofia: zwrot ku filozofii praktycznej (jednocześnie duże uproszczenie filozofii)   <ul>
+<li>Eudajmonia w tym okresie jest rozumiana jako ataraxia, spokój, ukojenie, indywidualny ideał szczęścia   </li>
+</ul>
+</li>
+<li>Powroty do pre-Sokratyków   <ul>
+<li>Epikurejczycy: powrót do materializmu i <a class="inline-tag" href="/notes/obs.html/tags/Democritus/index.html">Democritus</a> i atomizmu. Unikać cierpienia, pokonać strach (np. przed śmiercią)   </li>
+<li>Stoicy   </li>
+</ul>
+</li>
+</ul>
+<p>Stoicyzm:   </p>
+<ul>
+<li>logika, teoria języka, metafizyka to materializm.   </li>
+<li>świat jest zbudowany przez Boga, jest doskonały   </li>
+<li>czas jest cykliczny: wszystko powtórzyło się już dokładnie tak samo tysiące razy   </li>
+<li>Determinizm: jedyne co możemy zmienić to nasza postawa.   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Epictetus/index.html">Epictetus</a>: Człowiek to jak pies uwiązany za wozem   </li>
+</ul>
+</li>
+<li>człowiek powinien:   <ul>
+<li>robić to, co do niego należy   </li>
+<li>nie przejmować się, nie odczuwać   </li>
+</ul>
+</li>
+<li>braterstwo i pokora: jesteśmy sobie potrzebni jak zęby górne i dolne (nowy element w filozofii Greckiej)   </li>
+<li>dystans i małość człowieka   </li>
+</ul>
+<h2 id="18-12-2022">18.12.2022</h2>
+<h3 id="etyka-chrzescijanska">Etyka chrześcijańska</h3>
+<p>Przykładowy problem charakterystyczny dla filozofii Chrześcijańskiej: jeden osobowy, kochający Bóg, który stworzył świat.   </p>
+<ul>
+<li>Człowiek został stworzony w miłości przez Boga, po to aby się zbawił   </li>
+<li>Przez grzech pierworodny pojawia się fundamentalny problem w poznaniu/robieniu dobra.   </li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Tomasz_z_Akwinu/index.html">Tomasz_z_Akwinu</a>: doktryna prawa naturalnego   </p>
+<ul>
+<li>świat (i człowiek) został stworzony według <em>prawa wiecznego</em>.   </li>
+<li>człowiek jest w szczególnej relacji z prawem wiecznym   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>: wszystko w świecie po prostu zachodzi, a człowiek coś powinien.   </li>
+<li>dla człowieka istnieje więc też prawo naturalne. Jest ono dostępne rozumowi.   </li>
+</ul>
+</li>
+<li>jest też prawo ludzkie (ustanawiane przez ludzi), nie powinno ono być sprzeczne z naturalnym   </li>
+<li>jest jeszcze prawo Boskie: o relacji z Bogiem   <ul>
+<li>o tym co jest potrzebne do zbawienia etc. Wykracza poza prawo naturalne, jest niepoznawalne rozumem, dane przez objawienie.   </li>
+</ul>
+</li>
+<li>każdy ma potrzebną łaskę m.in. do tego, by <strong>rozpoznać</strong> (nie: wybrać) co powinien robić.   <ul>
+<li>Np <a class="inline-tag" href="/notes/obs.html/tags/Karol_Wojtyła/index.html">Karol_Wojtyła</a> jako JPII w encyklice "Veritatis splendor" -- o obiektywnym prawie moralnym   </li>
+</ul>
+</li>
+</ul>
+<h3 id="normatywnosc-moralnosci">Normatywność moralności</h3>
+<p>Problem normatywności moralności -- dlaczego z uznania prawdziwości zdania: "powinienem zrobić <span class="arithmatex">\(X\)</span>" wynika chęć, pragnienie zrobienia <span class="arithmatex">\(X\)</span>?   </p>
+<p>Prawo naturalne Chrześcijańskie daje bardzo dobre wyjaśnienie tego problemu. Otóż jest tak dlatego, że odkrywanie powinności jest odkrywaniem obiektywnego prawa naturalnego, które jest we mnie zapisane. <br />
+Koniecznie tu jest, aby Bóg zapisał we mnie prawo naturalne, którego odkrycie i w konsekwencji podążanie za nim jest dla mnie dobre (bo Bóg mnie kocha i jest dobry).   </p>
+<h3 id="problem-z-etyka-chrzescijanska">Problem z etyką chrześcijańską</h3>
+<p>Problemem etyki chrześcijańskiej jest to, że jest ona bardzo wysokim ideałem i częściowe tylko podążanie za nim często (jak widać w świecie) nie działa. (przykład: zrzucanie prezerwatyw do Afryki aby walczyć z HIV).   </p>
+<h2 id="15-01-2023">15.01.2023</h2>
+<h3 id="teoria-umowy-spoecznej">Teoria umowy społecznej</h3>
+<p>( <a class="inline-tag" href="/notes/obs.html/tags/Thomas_Hobbes/index.html">Thomas_Hobbes</a>'a i <a class="inline-tag" href="/notes/obs.html/tags/John_Locke/index.html">John_Locke</a>'a)   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a> w Kritonie i Państwie mówi o umowie społecznej   </p>
+<ul>
+<li>Kriton: jest to powód dla którego Sokrates nie może uciec z Aten (uczestniczy on w pewnej umowie społecznej)   </li>
+<li>Państwo: Prawa moralne to kwestia konwencji   </li>
+</ul>
+<p>Zarówno <a class="inline-tag" href="/notes/obs.html/tags/Thomas_Hobbes/index.html">Thomas_Hobbes</a> jak i <a class="inline-tag" href="/notes/obs.html/tags/John_Locke/index.html">John_Locke</a> odnoszą się do (polemizują) "Patriarchy" <a class="inline-tag" href="/notes/obs.html/tags/Robert_Filmer/index.html">Robert_Filmer</a>'a (królowie mają władzę poprzez dziedzictwo władzy Adama)   </p>
+<p>Celem na pewno jest uzasadnienie skąd się bierze władza.   </p>
+<p>Czy oni swoje opowieści o stanie natury traktują jako historię?   </p>
+<ul>
+<li>Jest to pewien eksperyment myślowy. Jest on taki: załóżmy, że urządzamy życie społeczne według rozumu (według tego, co wydaje nam się być racjonalne)   </li>
+<li>a więc nie jest to: "jak to się stało", lecz "dlaczego" i "jak powinniśmy życie ułożyć w przyszłości".   <ul>
+<li>(Coś podobnego robią konstruktywiści w meta-etyce. Próbują z cech człowieka (racjonalizm, śmiertelność, etc) wyprowadzić racjonalną etykę)   </li>
+</ul>
+</li>
+</ul>
+<h4 id="_obsidian_pattern_tag_thomas_hobbes"><a class="inline-tag" href="/notes/obs.html/tags/Thomas_Hobbes/index.html">Thomas_Hobbes</a>:</h4>
+<p>W stanie natury znane są prawa natury, np. dotrzymywać umów, nie zabijać bez potrzeby, nie zabierać więcej niż potrzebuję (wynika to z tego, że ludzie potrafią przewidywać przyszłość, wiedzą więc że będą w przyszłości potrzebować więcej, więc biorą ile tylko mogą) etc. Jednak w stanie natury nie jesteśmy w stanie się tego trzymać, jest to zbyt niebezpieczne. Prawo natury jest martwe, człowiek jest amoralny.   </p>
+<p>Wyjściem z tego impasu jest natychmiastowe zaistnienie suwerena. (Być może on sobie władzę sam weźmie, to nie istotne). <br />
+Władza suwerena bierze się ze strachu i z jego siły. Jednocześnie suweren jest we wszystkich racjonalnym interesie. <br />
+Wykorzystujemy zaistnienie suwerena do zawarcia umowy społecznej. Nie zawarliśmy <em>z nim</em> umowy. Tak samo obalenie suwerena (np. gdy zagraża on naszemu życiu) jest aktem spoza prawa, który w pewnych realiach po prostu zachodzi. <br />
+Moralność (w praktyce) powstaje na skutek strachu przed suwerenem.   </p>
+<h4 id="_obsidian_pattern_tag_john_locke"><a class="inline-tag" href="/notes/obs.html/tags/John_Locke/index.html">John_Locke</a> :</h4>
+<p>Stan natury nie jest stanem wojny, bo prawo naturalne w stanie nature nie jest martwe. <em>Człowiek jest moralny zanim jest społeczny</em>.   </p>
+<ol>
+<li>Konflikt pojawia się gdy jest za mało surowców.   </li>
+<li>W prawie naturalnym każdy ma prawo ukarać każdego <br />
+<em>Ergo</em>, gdy karzemy zbyt mocno możemy popaść w stan wojny. Umowa społeczne oddaje państwu (tylko) prawo do karania przestępców. Jest tylko egzekutorem praw, na które się umówiliśmy (a które nie powinny być sprzeczne z prawem natury)   </li>
+</ol>
+<p>Skąd bierze się święte prawo własności? Z pracy i z prawa do przetrwania. <br />
+Więc z jednej strony nie jest takie święte: czy pracą jest e.g. czerpanie zysków z inwestycji? (argument dość niestandardowy, ale w zasadzie zgodny z Lockiem) <br />
+Jeśli ktoś marnotrawi, to nie ma prawa do tego co ma. Co to jest dokładnie marnotrawienie?   </p>
+<p>Locke jest sympatyczniejszy, więc łatwiej mu uwierzyć. <br />
+Locke jest głęboko konserwatywny: człowiek ma naturę dobrą, raz ustaloną i samowystarczalną. Społeczeństwo nie jest mu do wielu rzeczy potrzebne.   </p>
+<p>Hobbes: aby ludzie byli ludźmi, potrzebują społeczeństwa.   </p>
+<h2 id="29-01-2023">29.01.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Jean-Jacques_Rousseau/index.html">Jean-Jacques_Rousseau</a> -- faktyczna (historyczna) umowa społeczna jest zawarta na nierównych warunkach (lub w ogóle nie była to "umowa"). Możnaby wprowadzić nową, sprawiedliwą.   </p>
+<p>Współczesnym kontynuatorem myśli teorii umowy społecznej jest <a class="inline-tag" href="/notes/obs.html/tags/John_Rawls/index.html">John_Rawls</a> "Teoria sprawiedliwości" (bardzo wpływowa i kontrowersyjna. Wydana w latach 60tych w USA)   </p>
+<ul>
+<li>Amerykański konsensus się rozpada. "Nie dogadamy się". Jak w obliczu różnych wartości można żyć w społeczeństwie, aby wszyscy zaakceptowali to co jest jako sprawiedliwe?   </li>
+</ul>
+<p>Kontekst: prawo pozytywistyczne (prawo wyznacza moralność, nie ma jakiejś wyższej moralności) vs Trybunał w Norymberdze   </p>
+<ul>
+<li>są rzeczy, których się nie robi. Istnieje prawo naturalne   </li>
+<li>Ale jak je uzasadnić (Bez Boga)?   <ul>
+<li>Problem, ale nie tragiczny. Np <a class="inline-tag" href="/notes/obs.html/tags/Ronald_Dworkin/index.html">Ronald_Dworkin</a>   </li>
+</ul>
+</li>
+</ul>
+<p>Rawls odrzuca utylitaryzm, bo twierdzi, że istnieje w człowieku poczucie sprawiedliwości. I bardzo jej szuka i do niej dąży. Utylitaryzm nie daje sprawiedliwości.   </p>
+<p>Rawls mówi o sprawiedliwości (fairness) <em>politycznej</em> (tylko).   </p>
+<p>Jak się za to zabrać? Koncepcja umowy społecznej: na co by się ludzie zgodzili, gdyby się zastanowili? Otóż jest problem: nigdy by się nie zgodzili, tylko by się kłucili   </p>
+<ul>
+<li>bo ludzie mają inne wartości   <ul>
+<li>case in point: tzw. "Kompromis aborcyjny" był uważany za niesprawiedliwy przez obie strony. Więc był niestabilny.   </li>
+</ul>
+</li>
+</ul>
+<p>Jak to naprawić? <br />
+"Veil of ignorance", położenie pierwotne. <br />
+Trzeba wyobrazić sobie sytuację, gdy nie wiemy nic o sobie (płeć, kolor, etc), jedynie, że będziemy członkami społeczeństwa i jak mniej-więcej ono działa. Wiemy też, że są dobra podstawowe: wolność, ekonomiczne szanse etc.   </p>
+<ul>
+<li>(tak na prawdę to stary dobry imperatyw kategoryczny <a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>'a)   </li>
+</ul>
+<p>2 podstawowe zasady (pierwsza jest ważniejsza, priorytetowa, druga tak długo jak nie łamie pierwszej): <br />
+1. "Każda osoba winna mieć równe prawo do jak najszerszego całościowego systemu równych podstawowych wolności, dającego się pogodzić z podobnym systemem dla wszystkich" <br />
+2. Nierówności społeczne i ekonomiczne mają być tak ułożone, by a) były z największą korzyścią dla najbardziej upośledzonych, pozostając w zgodzie z zasadą sprawiedliwego oszczędzania oraz b) by były związane z dostępnością urzędów i stanowisk dla wszystkich, na warunkach autentycznej równości szans.   </p>
+<p>(Przeciw zasadzie 1 jest np. fajne opowiadanie <a class="inline-tag" href="/notes/obs.html/tags/Phillip_K_Dick/index.html">Phillip_K_Dick</a>)   </p>
+<p>ad 2a. bierzemy maximum_po_ustrojach(minimum_po_sytuacjach(ludzie)). Żeby najgorsza sytuacja była jak najlepsza.   </p>
+<ul>
+<li>np. "American dream" jest ok -- dopuszcza milionerów, ale i najgorzej położony człowiek może sobie poradzić   </li>
+<li>współczesna Ameryka słabiej: najgorsi mają przechlapane   </li>
+</ul>
+<p>ad 2b. To jest super radykalne (nikt tego nigdy nie wprowadził (np. trzeba zakazać szkół prywatnych))   </p>
+<p>Rawls twierdzi, że istnieje coś takiego jak naturalna niesprawiedliwość. Tzn. np. nie zawsze mam prawo do tego co sobie wypracowałem.   </p>
+<p>Argumenty przeciw:   </p>
+<ul>
+<li>to jest niemożliwy eksperyment myślowy. Ciężko z niego wyciągać wnioski   </li>
+<li>(feministki i post-kolonialiści) Rawls nie zdaje sobie sprawy ze swojego przywileju   <ul>
+<li>Feministki: wiele kobiet nie myśli o sobie jako o indywiduach, tylko jako o członkach społeczeństwa   </li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a>    </p>
+<p>Traktat Hume'a jest dużo świeższy i przyjemniejszy. Ale późne jego pisma są całkiem dobrym oddaniem jego idei (te 2 książeczki, pierwsza była na HF)   </p>
+<p>Na wstępie trzeba stwierdzić, że istnieje dobro i zło. Kto twierdzi inaczej, nie warto z nim dyskutować, bo chce się kłócić dla kłótni.   </p>
+<p>Skąd się to bierze? Rozum czy uczucie? <br />
+Hume twierdzi, że moralność pochodzi z uczuć.   </p>
+<p>Dlaczego by rozum?   </p>
+<ul>
+<li>bo możemy zmienić swoją pozycję po przemyśleniu   </li>
+<li>bo się kłócimy w kwestiach moralnych   </li>
+<li>wnioski moralne jawią się jako <em>prawdziwe</em>, jako fakty   </li>
+</ul>
+<blockquote>
+<p>Czy są "złe" dzieła sztuki? <br />
+Np. film "Seven"?   </p>
+</blockquote>
+<p>To jest kwestia uczuć, bo: <strong>rozum nie motywuje do działania</strong>.   </p>
+<ul>
+<li>bo rozum zajmuje się tylko asocjacjami (metafizyka Hume'a)   </li>
+<li><strong>z faktów nie wynikają powinności</strong>   <ul>
+<li>gdy myśli się inaczej, to tzw. błąd naturalistyczny <a class="inline-tag" href="/notes/obs.html/tags/G_E_Moore/index.html">G_E_Moore</a> to mocno sformułuje   </li>
+<li>internalizm vs eksternalizm (eksternalizm: pewne rzeczy po prostu trzeba zrobić)   <ul>
+<li>(ciekawe)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Dlaczego coś aprobujemy, a coś nie?   </p>
+<ul>
+<li>aprobacja to uczucie   </li>
+<li>skąd to uczucie   </li>
+<li>aprobujemy to, co jest społecznie użyteczne   </li>
+<li>Wynika to z epistemologii Hume'a: sympatia, która jest z podobieństw moich uczuć do  uczuć innego człowieka   <ul>
+<li>Inne wyjaśnienie: ewolucja   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a> powie: nawet gdyby wszyscy się zgadzali, i tak nie byłaby to moralność. To co Hume mówi (w sensie, uczucia moralne które przedstawia) można lubić lub nie, ale nie można tego szanować. A moralność to musi być taka, aby ją szanować. <br />
+To wszystko jest przygodne (np. relatywistyczne co do kultury, faktów) a nie jest to Prawda przez duże 'P'.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a>: np. nie byłoby sprawiedliwości, gdyby było tak dużo dóbr, że nikomu by niczego nie brakowało, lub gdyby był MAD MAX (wszyscy walczą o wszystko ze wszystkimi). Wykształciła się, bo w tych okolicznościach w jakich jesteśmy jest użyteczna. <br />
+Można wpływać na swoje odczucia moralne poprzez wpływanie na swoje okoliczności (społeczne). Np: powiedzenie komuś "Powinieneś być miły dla swojej żony" ma sense w sensie dodania nowego faktu, który wpłynie na kontekst z którego wypływają czyjeś uczucia.   </p>
+<p>Współczesny zarzut do Hume'a: zakłada on, że rozum jest bierny, co niekoniecznie jest prawdą.   </p>
+<h2 id="05-02-2023">05.02.2023</h2>
+<p>Krytyka praktycznego rozumu: to co w tym co czytaliśmy, tylko luźniej wyłożone i obszerniejsze.   </p>
+<blockquote>
+<p>"Co to jest oświecenie" -- koniecznie przeczytać (już kiedyś czytałem), króciutkie. Oświecenie to dorosłość, samodzielność.   </p>
+</blockquote>
+<p>Źródła zwrotu krytycznego u <a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>'a   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a> go wybudził z dogmatycznej drzemki   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Leibniz/index.html">Leibniz</a> -- czysty racjonalizm jako metoda poznania świata   <ul>
+<li>Kant: czysty racjonalizm to zdania analityczne a priori. Są one jałowe   </li>
+</ul>
+</li>
+</ul>
+<p>Radykalne zwątpienie w Scholastykę zrodziło podział:   </p>
+<ul>
+<li>Racjonalizm   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>    </li>
+<li>...   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Leibniz/index.html">Leibniz</a>    </li>
+<li>zajmują się zdaniami analitycznymi a priori. Nie dają one jednak nowej wiedzy   </li>
+</ul>
+</li>
+<li>Empiryzm   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/George_Berkeley/index.html">George_Berkeley</a>    </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/John_Locke/index.html">John_Locke</a>    </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a>    <ul>
+<li>Nie ma wiedzy, nie ma indukcji, tylko przyzwyczajenie. Jak wnioski wyciągnięte z mojego psychicznego mechanizmu przyzwyczajania mogą odnosić się do świata?   </li>
+</ul>
+</li>
+<li>zajmują się zdaniami syntetycznymi a posteriori, które nie dają wiedzy (bo Hume)   </li>
+</ul>
+</li>
+</ul>
+<p>A więc dwa wielkie projekty doszły do ślepych zaułków. Nauka jest więc niemożliwością. <br />
+Kant: Nauka jest. Na podstawie ustrukturyzowanych doświadczeń możemy przewidywać nowe rzeczy. Jak to możliwe?   </p>
+<ul>
+<li>Trzeba odwrócić pytanie (Jak <a class="inline-tag" href="/notes/obs.html/tags/Mikołaj_Kopernik/index.html">Mikołaj_Kopernik</a>). Czasowość i przestrzenność świata to formy zmysłowości. Wszystkie nasze doświadczenia są czasowe lub przestrzenne <strong>bo</strong> taki jest nasz umysł.   </li>
+<li>Kategorie intelektu to nasze narzędzia ujmowania świata   </li>
+<li>Idee Rozumu: jakość, całość itd. Scalają doświadczenie.   </li>
+<li>Ekstrapolacja działa na podstawie korzystania z narzędzi.   </li>
+<li>To /|\ wszystko jest świat fenomenalny, to co się jawi. Za nim jest świat nomenalny, rzeczy same w sobie. One są niepoznawalne rozumowo.   <ul>
+<li>Np. Przyczynowość jest słusznie wnioskowana w ramach doświadczenia. Ale nie można jej przenosić na nomeny, to błąd.   </li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>Pytanie: "czy wolność istnieje?"   </p>
+<p>Pytanie o nomenalne "ja" jest ważne. Bo fenomenalne "ja" nie może być wolne (co Kant pokazuje). Jedyna nadzieja w nomenalnym "ja".   </p>
+<p>Możliwość moralności jest jedynym możliwym dowodem na wolność (nomenalnego "ja")   </p>
+<p>(W ogóle nomenalne rzeczy są założone na zasadzie analizy transcendentalnej, nic o nich nie możemy powiedzieć)   </p>
+<p>Prawa moralne nie mogą być powiązane z doświadczeniem.   </p>
+<p>Nic nie jest dobre same w sobie oprócz dobrej woli. <br />
+Co to jest dobra wola? <br />
+To jest kwestia odpowiedniego kierowania się rozumem w jego użyciu praktycznym. <br />
+Trzeba przyjrzeć się obowiązkowi. Ciekawy przypadek jest gdy postępuje się zgodnie z z obowiązkiem. <br />
+Obowiązek nam dyktuje rozum. <br />
+Wyrazem dobrej woli jest działanie <em>z obowiązku</em>, a nie tylko zgodnie z obowiązkiem (jako jedno ze źródeł działania, to wystarcza)   </p>
+<p>Do działania tak czy inaczej jesteśmy motywowani jakimś uczuciem (za Humem). W przypadku prawa moralnego tym uczuciem jest szacunek to prawa.   </p>
+<p>Czym jest obowiązek? To coś, co rozpoznaje rozum, każdy sam rozpoznaje swój obowiązek. W moralności <strong>nie ma</strong> naśladowania, musimy być samodzielni.   </p>
+<p>Celem życia nie jest szczęśliwość. Jest nim bycie człowiekiem -- życie moralne. To trochę aksjomat (podkreślić sobie na czerwono)   </p>
+<p>Mamy obowiązek dbać o swoją szczęśliwość, bo inaczej ma się wielką pokusę do uchybienia obowiązkom. Dlatego czasami można iść na lody.   </p>
+<p>To co decyduje o wartości moralnej czynu to intencja (a nie skutek).    </p>
+<p>Jak ustalić co jest obowiązkiem? Imperatyw Kategoryczny.   </p>
+<h2 id="26-02-2023">26.02.2023</h2>
+<blockquote>
+<p>Wybór Zofii -- film o wyborze między dwoma dziećmi w obozie koncentracyjnym   </p>
+</blockquote>
+<p>Czasami trzeba zrobić coś, co jest moralnie złe.   </p>
+<blockquote>
+<p>Ok, ale Kant by się z tym nie zgodził (?)   </p>
+</blockquote>
+<p>Kant: Człowiek musi się postrzegać jako wolnego i wyjętego ze świata. Musi zastanawiać się nad tym, jak powinno być, nie nad tym jak będzie (w sensie skutków) (myślenie o tym jak będzie w sensie skutków, to jest myślenie w kategoriach imperatywu hipotetycznego)   </p>
+<p>Moralność jest zupełnie niepowiązana z empirią. Jedyne co nam mówi, że moralność jest możliwa to nasz własny rozum, w moralności jesteśmy zupełnie samotni.   </p>
+<p>Kant: rozum sam w sobie jest praktyczny, czyli sam z siebie wytwarza moralność. <br />
+Anty-Kantyści: do rozumu konieczny jest input w postaci kultury, przeżyć, tożsamości etc.   </p>
+<p>Pytanie transcendentalne: jak możliwa jest moralność? Wolność podmiotu ludzkiego jest tu możliwym wyjaśnieniem. To jest postulat czystego praktycznego rozumu (rozumu!).   </p>
+<hr />
+<p>Przedstawienie zasady skłaniającej wolę jest imperatywem.   </p>
+<p>Imperatywy mogą być hipotetyczne i kategoryczne. <br />
+Hipotetyczne zakładają jakiś cel. Dlatego więc nie mogą być przedmiotem moralności. <br />
+Istnieje jeden cel, którzy mają wszyscy ludzie: szczęśliwość. Imperatywy dążące do szczęścia są nadal tylko hipotetyczne (bo mają cel), więc są poza-moralne.   </p>
+<blockquote>
+<p>Zastanowić się nad fragmentem || ze strony 60.   </p>
+</blockquote>
+<h2 id="05-03-2023">05.03.2023</h2>
+<blockquote>
+<p>Str. 60 tekstu który wysłała   </p>
+</blockquote>
+<p>Imperatyw hipotetyczny (I.H.) vs Imperatyw kategoryczny (I.K)   </p>
+<p>Człowiek działa na podstawie przedstawienia prawa (czyli formułuje imperatywy kategoryczne)   </p>
+<p>I.H można podzielić na:   </p>
+<ul>
+<li>zręczności (sztuki) - są one przygodne. Mam jakiś cel i formułuję środki do tego celu. Kwestia doświadczenia i wiedzy   </li>
+<li>mądrości - cel nie jest przygodny, bo jest nim szczęście, do którego każdy dąży. Wszyscy chcą być szczęśliwi, ale nie jest to konieczne (w sensie T.), nie jest to więc I.K. Imperatyw mądrości jest mętny, bo nie wiadomo co dokładnie powinno się robić, a więc to tak na prawdę nie imperatyw (nie nakaz), tylko rada. Odrzucenie długiej tradycji od <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>, ale i np. Chrześcijańskiej   </li>
+</ul>
+<p>I.H. nie mają nic wspólnego z moralnością.   </p>
+<p>Jedynie I.K. to prawo moralne, bo jest kategoryczny. I.K. jest tylko jeden (Kant podaje kilka sformułowań)   </p>
+<ul>
+<li>Sformułowanie pierwsze: maksyma, która może być powszechna i mogę chcieć by była powszechna   </li>
+</ul>
+<p>Pytanie: jak I.K. może istnieć? Jak możemy mieć powinność coś zrobić tylko dla tego samego?   </p>
+<ul>
+<li>I.K. nie jest hipotetyczny   </li>
+<li>forma I.K.: "I.K. jest prawem". Z tej formy wynika jego treść   </li>
+</ul>
+<p>Kantowi zależy na uzasadnieniu wolności (noumenalnej) człowieka. Wszystkie zwierzęta działają na zasadzie bodźców. Człowiek musi móc działać nie powodowany bodźcami. Musimy robić coś z siebie. "Coś powinienem z samej rozumności" -- to jest istota wolności (czyli: sam stanowię prawo, któremu jestem posłuszny (sam, a mimo to jest ono powszechne, taki sprytny ten I.K.)).   </p>
+<p>Drugie sformułowanie I.K.: maksyma, która mogłaby być prawem przyrody (w sensie, jest niesprzeczna). Przykłady   </p>
+<ul>
+<li>przykład z samobójcą -- dyskusja: tutaj sprzeczność jest w zasadzie nieoczywista.   </li>
+<li>oddawanie pożyczek -- ładnie widać sprzeczność   </li>
+</ul>
+<p>Zarzut: dlaczego w ogóle jakiś I.K. miałby mnie obchodzić? <br />
+Kant: nie musi mnie obchodzić. Oprócz moich celów, powinienem być tylko spójny w swoim myśleniu jako człowieka (a aby być spójny, muszę wymyślić I.K.)   </p>
+<blockquote>
+<p>Arthur Rimbaud -- pojechał do Paryża i "robił tam wszystko", jego dziennik podobno całkiem ciekawy   </p>
+<p>Pomysł (mój): Kłamanie (od strony 65 ||): <br />
+  1° kłamanie nie jest sprzeczne - pokazać <br />
+  2° nie mogę chcieć powiedzieć prawdy   </p>
+</blockquote>
+<p>Kant nie jest na nas zły, on jest po prostu rozczarowany. (Kiedy postępujemy niezgodnie z I.K. to jesteśmy słabi, jesteśmy jak zwierzęta a nie jak ludzie)   </p>
+<hr />
+<p>Cel sam w sobie (strona 73. kolejne sformułowanie I.K.)   </p>
+<p>Stwierdzenie, że człowiek ma być celem, a nie środkiem mówi jak <strong>nie</strong> należy traktować ludzi. Nie traktować jako środek, np. nie odbierać jej możliwości osądu.   </p>
+<p>Pewnych rzeczy się ludziom nie robi.   </p>
+<p>Przykład: Zdradziliśmy kogoś i nie powiedzieliśmy mu (jeden z możliwych, ciekawych testów systemu etycznego -- intuicyjnie czujemy że coś jest nie tak, ale skoro on o tym nie wie to niby go nie skrzywdziliśmy). Kant: potraktowaliśmy go jak środek, stworzyliśmy fałszywy świat dla niego etc. <br />
+Ból (fizyczny, emocjonalny) jest mało ważny u Kanta. Pogwałcenie godności drugiego to jest dopiero zło.   </p>
+<h2 id="26-03-2023">26.03.2023</h2>
+<p>Parę słów o <a class="inline-tag" href="/notes/obs.html/tags/John_Stuart_Mill/index.html">John_Stuart_Mill</a>: syn filozofa, przyjaciel <a class="inline-tag" href="/notes/obs.html/tags/Jeremy_Bentham/index.html">Jeremy_Bentham</a>'a.   </p>
+<p>Mill będzie mówił, że wszyscy byli utylitarystami: Platon i Kant etc. Nie przyznają się, bo uważają za wstydliwe, przyznać się do utylitaryzmu.   </p>
+<p>Bentham jako pierwszy zaproponował teorię etyczną, którą później będzie miała nazwę utylitaryzmu. Jako pierwszy w nowożytnych czasach powiedział, że jedynym kryterium moralnym jest użyteczność: czy przynosi więcej cierpienia czy przyjemności. To wszystko -- podkreślał, że nie ma przyjemności lepszych i gorszych, mogą być intensywniejsze lub mniej, ale wszystko opiera się na rachunku przyjemności.   </p>
+<p>Krytyka: utylitaryzm to dokryna upadlająca, dobra dla świń a nie dla porządnych ludzi. "Utylitaryzm" Milla to jest obrona, pokazuje, że te zarzuty są niepoprawne.   </p>
+<p>Mill zaczyna standardowo: nie mamy jednej dobrej zasady, przez co nie rozumiemy etyki. Ja zrozumiałem tę zasadę i teraz już wszystko będzie jasne. Tą zasadą jest zasada urzyteczności.   </p>
+<p>Współcześnie utylitaryzm jest jedną z odłam tzw. konsekwencjonalizmu, czyli zainteresowanie skutkami (w odróżnieniu od Kanta, gdzie jest zainteresowanie intencjami).   </p>
+<p>Mill twierdzi, że istnieją przyjemności wyższe i niższe (w odniesieniu do argumentu ze świniami)   </p>
+<p>// Nie notowałem dalej, bo byłem chory i było online   </p>
+<p>// Jest fajna książka: "Utilitarism for and against"   </p>
+<p>Casus Jima z Dżungli: może i Jim powinien zabić jednego Indianina, ale problem z utylitaryzmem jest taki, że Utylitaryzm twierdzi, że to jest normalne zachowanie, tymczasem jest to zachowanie heroiczne, zachowanie które zaprzecza temu kim Jim jest, temu co konstytuuje Jima jako podmiot.   </p>
+<p>// Schizofrenia współczesnych teorii etycznych (1976) -- fajny artykuł Michaela Stockera    </p>
+<h2 id="02-04-2023">02.04.2023</h2>
+<p>Utylitaryzm <span class="arithmatex">\(\subset\)</span> Konsekwencjalizm   </p>
+<p>Określenie "konsekwencjalizm" powstało jako określenie pejoratywne -- porzucenie wartości, realizmu etycznego.   </p>
+<p>Utylitaryzm za dobro uznaje szczęście: przyjemność i brak bólu.   </p>
+<p>Można inaczej, np. <a class="inline-tag" href="/notes/obs.html/tags/G_E_Moore/index.html">G_E_Moore</a>: dobre skutki to dobro (niedefiniowalne "z definicji"). Można nawet Chrześcijaństwo potraktować jako konsekwencjalizm: celem, skutkiem jest zbawienie.   </p>
+<p>Generalnie w konsekwencjonalizmie dobro jest wcześniejsze logicznie niż słuszność. Słuszne jest to, co jest dobre.   </p>
+<p>Deontologiczne systemy (np. <a class="inline-tag" href="/notes/obs.html/tags/Kant/index.html">Kant</a>) rozumują odwrotnie: dobre jest to, co jest słuszne.   </p>
+<p>Fundamentalna trudność: nasza władza nad konsekwencjami jest mała. <br />
+<a class="inline-tag" href="/notes/obs.html/tags/John_Stuart_Mill/index.html">John_Stuart_Mill</a> np. bronił to mówiąc, że wartość czynu to co innego niż wartość człowieka (cnota), czyli to jakie skutki człowiek generalnie sprawia.   </p>
+<p>Z czasem utylitaryzm zaczął od tego odchodzić i wartością czynów są (racjonalnie) przewidywalne skutki.   </p>
+<p>Zakładając, że celem jest szczęście, nieoczywistym jest, że chodzi tu o przyjemność. <br />
+Problem jest w tym jak tu rozumieć przyjemność. Jeśli tylko jako sen, jedzenie i sex to szczęście to nie przyjemność (bo są inne rzeczy, które uszczęśliwiają). <br />
+Utylitaryści to bronią tak, że przyjemne jest to, do czego ludzie dążą (nieciekawa tautologia)   </p>
+<p>Współcześnie mówi się o zrealizowaniu preferencji. Czy chcemy liczyć wszystkie preferencje, czy tylko te racjonalne? (Przykład ultra-sadysty, któremu zadawanie cierpienia daje ogromną satysfakcję).   </p>
+<p>Można liczyć nie preferencje, a interesy, bo żeby mieć preferencje trzeba być świadomym (Chodzi tu o to, żeby objąć rośliny i ludzi w śpiączce). Można mieć preferencje, które nie są w moim interesie.   </p>
+<p>Problem ze sprawiedliwością: liczenie po wszystkim pewnie będzie skutkować niesprawiedliwością.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/John_Stuart_Mill/index.html">John_Stuart_Mill</a>: "Sprawiedliwość się opłaca" -- to pobożne życzenie   </p>
+<ul>
+<li>mamy więc 2 możliwości: wziąć ją pod uwagę, lub zmienić nasze oczekiwania.   </li>
+<li>Np. <a class="inline-tag" href="/notes/obs.html/tags/John_Rawls/index.html">John_Rawls</a>: sprawiedliwość to wartość pierwotna.   </li>
+<li>można np. odejść od maksymalizacji na rzecz maksymalizacji minimum (jak jest u Rawlsa)   </li>
+</ul>
+<hr />
+<p>Utylitaryzm bezpośredni vs pośredni   </p>
+<ul>
+<li>bezpośredni: każdy czyn trzeba obliczać. Problem: nie da się   </li>
+<li>pośredni: generalnie według reguł (takich, jakie są w społeczeństwie), obliczanie tylko w szczególnych przypadkach.   </li>
+</ul>
+<p>Problem: dlaczego istniejące reguły mają być słuszne? Skok w konserwatyzm.   </p>
+<p>Próba rozwiązania: utylitaryzm pośredni cnót. Generalnie kultywujmy cnoty. <br />
+Ten sam problem: konserwatyzm, albo nie da się policzyć.   </p>
+<p>Trzeba by mówić o utylitaryzmie na 2 poziomach:   </p>
+<ul>
+<li>normatywny -- bezpośredni   </li>
+<li>fundacyjny -- żyj według systemu/religii, a one będą uzasadnione utylitarystycznie (wybrane przez elitę (?) -- problem)   </li>
+</ul>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Peter_Singer/index.html">Peter_Singer</a> m.in angażuje się w "Effective Altruism"   </p>
+</blockquote>
+<h2 id="23-04-2023">23.04.2023</h2>
+<blockquote>
+<p>Philosophy overload na YT. M.in Singer   </p>
+</blockquote>
+<p>Jaka jest wartość wartości, "dobra" i "zła"?   </p>
+<p>Dla <a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>'go <a class="inline-tag" href="/notes/obs.html/tags/Kant/index.html">Kant</a> ucieka przed odpowiedzialnością za swoje życie w "rozum".   </p>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Lew_Szestow/index.html">Lew_Szestow</a>: prawdziwe Chrześcijaństwo jest Nietzcheańskie.   </p>
+</blockquote>
+<h2 id="07-05-2023">07.05.2023</h2>
+<p>Dlaczego metaetyka? <br />
+Cały czas myślimy o problemach i normach moralnych i nie umiemy ich rozwiązać. Zdrowy rozsądek podpowiada, że istotą problemu jest niezrozumienie (wzajemne) słów i pojęć. <br />
+A więc, np.: "Co to znaczy, że trzeba coś zrobić?", czyli meta-etyka. Jeśli nie ustalimy pojęć, nie zrozumiemy się. Musimy wyeksplikować nasze ukryte założenia i nasze definicje.   </p>
+<p>Istnieje problem w samym systemie (języku) moralności. <br />
+Sądy moralne:   </p>
+<ul>
+<li>wydają się odnosić do faktów ("coś się powinno zrobić", "coś jest dobre") (w sensie gramatycznym)   </li>
+<li>mają one pretensje do uniwersalności   </li>
+<li>wydają się być związane z motywacją do działania (jak mówię "nie należy robić <span class="arithmatex">\(X\)</span>" jednocześnie robiąc <span class="arithmatex">\(X\)</span> to czujemy, że coś jest nie tak (ten związek nie jest jasny (są różne możliwości), ale jakiś jest))   </li>
+<li>bywają przedmiotem nierozwiązywalnych sporów (widzimy to patrząc na świat)   </li>
+</ul>
+<p>Ten zestaw cech jest niekompatybilny. Skoro wygłaszamy uniwersalne sądy o świecie, dlaczego się z nimi nie zgadzamy? Jednocześnie, poważny relatywizm jest wewnętrznie sprzeczny ("nikt nie może mi niczego mówić" (i.e. nie ma sądów uniwersalnych) jest sądem uniwersalnym). (Relatywizm mylony jest tu z liberalizmem: "<em>tak długo</em>, jak nie jest ktoś zagrożeniem, niech robi co chce")   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>: każdy człowiek musi stanąć na swoich etycznych nogach. Zobacz, że nic nie ma sensu. Rozpaczaj! A teraz dokonaj wysiłku i oprzyj na czymś nogę.   </p>
+<p>Problem związku z motywacją: zwykle zdania o faktach nie pociągają za sobą motywacji ( <a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a> )   </p>
+<p>Metaetyka wytworzyła szereg różnych teorii i podziałów   </p>
+<div class="mermaid">
+flowchart TB
+    S["Systemy etyki\n(podział ze względu na to, jakie są sądy moralne)"]
+    S -- "mają wartość logiczną\n(są prawdziwe/fałszywe)" --> K
+    S --> NK
+    K[Kognitywizm] -- odnoszą się do pewnych faktów --> R[Realizm]
+    K --> AR[Antyrealizm]
+    R -- to fakty w świecie --> N[Naturalizm]
+    R --> NN[Nonnaturalizm]
+    NN -.-> sNN
+    N -.-> sN
+    AR -.-> sAR
+
+
+    subgraph sNN["przykłady Nonnaturalizmu"]
+    Platon[Platon]
+    Chrześcijaństwo[Chrześcijaństwo]
+    Moore[G.E.Moore]
+    end
+
+    subgraph sN[przykłady Naturalizmu]
+    Utylitaryzm[Utylitaryzm]
+    Arystoteles[Arystoteles]
+    end
+
+    subgraph sAR[przykłady Antyrealizmu]
+    Mackie[Teoria błędu]
+    Nonobiektywizm[Nonobiektywizm]
+    end
+
+
+    NK[Nonkognitywizm]
+    NK --> E[Emotywizm]
+    NK --> P[Preskryptywizm]
+</div>
+
+<p>Omówienie:   </p>
+<ul>
+<li>Nonnaturalizm: język wskazuje an nonnaturalne, uniwersalne fakty. Związek z motywacją: tajemnica (oprócz Chrześcijaństwa). Problem z niezgodą pozostaje.   <ul>
+<li>Platon: fakty nonnaturalne o ideach   </li>
+<li>Chrześcijaństwo: Bóg tak chce, prawo naturalne   </li>
+<li>G.E. Moore (w "Principia Ethica"): możemy mieć bezpośredni wgląd w wartości   </li>
+</ul>
+</li>
+<li>Naturalizm: fakty moralne są naturalne. Np. Utylitaryzm. <a class="inline-tag" href="/notes/obs.html/tags/G_E_Moore/index.html">G_E_Moore</a> by powiedział, że to błąd naturalistyczny (dobre to pożyteczne). Motywacja działa, ale reszta problemów pozostaje.   <ul>
+<li>Arystoteles: dobre jest to, co jest dobre dla człowieka, a człowiek jest skomplikowany i trzeba go badać   </li>
+</ul>
+</li>
+<li>Teoria błędu <a class="inline-tag" href="/notes/obs.html/tags/J_L_Mackie/index.html">J_L_Mackie</a>: queerness of moral facts. Język moralności mówi o faktach, ale takich faktów nie ma. Wszystkie zdania o moralności są fałszywe. Potrzebujemy zrozumieć dlaczego tak jest -- to jest klej społeczny, dzięki temu działa społeczeństwo. Odpowiedzi na pytania etyczne trzeba szukać w socjologii, antropologii, psychologii etc.   </li>
+<li>Nonobiektywizm: prawdziwość i fałszywość sądów moralnych opiera się nie na faktach, lecz to kwestia subiektywna. Np. to kwestia umowy społecznej.   </li>
+<li>Emotywizm: np. <a class="inline-tag" href="/notes/obs.html/tags/Alfred_Ayer/index.html">Alfred_Ayer</a>: Jak mówię, że kradzież jest zła, <em>wyrażam</em> tylko mój wstręt do kradzieży. To nie jest prawda/fałsz. Wyrażam, a nie opisuję moje emocje (opis może być prawdziwy/fałszywy). Jak mówię o etyce to nie mówię o świecie, lecz emotuję.   <ul>
+<li>Nie ma już emotywistów. <a class="inline-tag" href="/notes/obs.html/tags/Peter_Geach/index.html">Peter_Geach</a> ich załatwił problemem Fregego-Geacha.   <ul>
+<li>Zdania etyczne rzadko występują pojedynczo. Zwykle występują w szerszym kontekście. Jaka jest ich relacja z kontekstem? (kontekst ma wartość logiczną). Przykład:    <ul>
+<li>1) "Jeżeli kłamstwo jest moralnie złe, to nakłanianie do kłamstwa jest złe" (kontekst, zdanie prawdziwe)   </li>
+<li>2) "Kłamstwo jest złe" (wyraz wstrętu)   </li>
+<li><em>ergo</em> 3. "Nakłanianie do kłamstwa jest złe".   </li>
+</ul>
+</li>
+<li>Emotywiści mówią, że zdanie 2. nie ma wartości logicznej. Ale w takim razie <em>ergo</em> nie działa, bo zdanie 1. mówi "jeśli 2., to ...". Czyli zdań etycznych nie można stosować w dyskursie. Koniec emotywizmu.   </li>
+<li>(teraz jest np. ekspresywizm)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Preskryptywizm: <a class="inline-tag" href="/notes/obs.html/tags/R_M_Hare/index.html">R_M_Hare</a>:    <ul>
+<li>Nakazy (np. "Otwórz okno") nie są prawdą/fałszem. Tak samo zdania etycznie nie są prawdą/fałszem.   </li>
+<li>Są 2 płaszczyzny: Intuicyjna i krytyczna.   </li>
+<li>Prawdziwych konfliktów moralnych nie ma. Są one na poziomie intuicyjnym. Tam wszystkie zasady moralne są z grubsza, są kulturowe etc. Np. dwie sprzeczne obietnice. Żeby przekonać się na prawdę, trzeba wznieść się na poziom krytyczny (np. Jim w dżungli powinien zabić jednego, a cierpi bo jest normalny, trudno mu się przebić na poziom krytyczny). Co się właściwie dzieje na poziomie krytycznym?   </li>
+<li>Refleksja krytyczna powinna być <em>wyłącznie</em> językowa.   </li>
+<li>Zdania moralne mają takie cechy formalne, które ograniczają ich możliwe treści:    <ul>
+<li>uniwersalność: a raczej uniwersalizowalność. Mogę twierdzić tylko to, co można uniwersalizować. Czy mogę bezsprzecznie to przyjąć uniwersalnie ( <a class="inline-tag" href="/notes/obs.html/tags/Kant/index.html">Kant</a> ) (Czy mogą się pod tym podpisać wszyscy)?   </li>
+<li>preskryptywność: jeżeli mówię, że coś jest słuszne i jest to poprawna wypowiedź moralna, to muszę być <em>commited</em>, być gotów za tym iść (nie mogę mówić głupstw)   </li>
+</ul>
+</li>
+<li>Jak się nad tym zastanawiać? Trzeba założyć, że wszyscy są jakoś do siebie podobni. Zastanawiam się więc, czy moja zasada jest taka, by wszyscy ludzie mogli się na nią zgodzić (commit)   </li>
+<li>Jest mnóstwo zasad, które tego nie przechodzą (jest wiele teorii eksplikujących np. to, że sam język zakłada równość wszystkich ludzi). Mamy zasadę selekcji zasad moralnych.   </li>
+<li>Potem wprowadza figurę "Superkrytycznego Archanioła" (idealny obserwator)   </li>
+<li>Pytanie: czy rzeczywiście mamy narzędzia formalne by wiedzieć, co nam radzi idealny obserwator? I czy rzeczywiście mamy go słuchać?</li>
+</ul>
+</li>
+</ul>
+<script>
+                    function initializeMermaid() {
+                        mermaid.initialize({startOnLoad:true})
+                    }
+
+                    if (document.readyState === "complete" || document.readyState === "interactive") {
+                        setTimeout(initializeMermaid, 1);
+                    } else {
+                        document.addEventListener("DOMContentLoaded", initializeMermaid);
+                    }
+            </script></div>
+<div class="note-footer">
+
+</div>
+
+                                <!-- end content -->
+                        </div>
+                        <div class="container_filler">
+                        </div>
+                        
+                </div>
+        </div>
+
+        <script>
+                function handle_toggle_side_bar(e){
+                        let header;
+                        let pane; 
+                        let target = e.target
+
+                        // switch out the navbar button click for a header click
+                        if (target.id == 'left_pane_toggle_nav'){
+                                target = document.getElementById('left_pane_fold_header')
+                        }
+                        else if (target.id == 'right_pane_toggle_nav'){
+                                target = document.getElementById('right_pane_fold_header')
+                        }
+
+                        // get header and pane
+                        if (target.classList.contains('fold_header')) {
+                                header = target;
+                                pane = target.parentElement;
+                        }
+                        else {
+                                pane = target;
+                                header = target.getElementsByClassName('fold_header')[0];
+                        }
+                        toggle_side_bar(pane, header, true)
+                        e.stopPropagation();
+                }
+                function handle_toggle_side_bar_button(e){
+                        document.getElementById('menu_toggle_button').click()
+                        handle_toggle_side_bar(e);
+                }
+
+                function toggle_side_bar(pane, header, save) {
+                        let active = (pane.classList.contains('active'))
+                        if (active){
+                                disable_side_bar(pane, header, save);
+                        }
+                        else {
+                                enable_side_bar(pane, header, save);
+                        }
+                }
+                function enable_side_bar(pane, header, save){
+                        pane.classList.add('active');
+                        pane.removeEventListener('click', handle_toggle_side_bar);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, true) }
+                }
+                function disable_side_bar(pane, header, save){
+                        pane.classList.remove('active');
+                        pane.addEventListener('click', handle_toggle_side_bar);
+                        header.removeEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, false) }
+                }
+                function set_correct_header_symbol(header){
+                        let pane = header.parentElement;
+                        let symbol = [['>', '<'],['<', '>']]
+                        symbol = symbol[Number(header.classList.contains('right_pane_fold_header'))][Number(pane.classList.contains('active'))];
+                        console.log(symbol);
+                        header.innerHTML = symbol
+                        return header;
+                }
+                function panel_folding_get_panel_name(header){
+                        return ['left', 'right'][Number(header.classList.contains('right_pane_fold_header'))]
+                }
+                function save_panel_folding_state(header, active){
+                        ls_set('pane_folding_state_'+panel_folding_get_panel_name(header), Number(active));
+                }
+                function load_panel_folding_state(panel_name){
+                        val = ls_get('pane_folding_state_'+panel_name)
+                        if (!val){ return {'exists': false, 'value': null}}
+                        return {'exists': true, 'value': Boolean(Number(val))}
+                }
+                function set_pane_folding_start(left_header, right_header){
+                        // small screen = closed
+                        let right_pane_enabled = true;
+                        let left_pane_enabled = true;
+                        let w = window.visualViewport.width
+                        if (w < 1000){
+                                left_pane_enabled = false
+                        }
+                        if (w < 800){
+                                right_pane_enabled = false
+                        }
+
+                        // get saved values if present
+                        let rval = load_panel_folding_state('right')
+                        if (rval['exists']){
+                                right_pane_enabled = rval['value']
+                        }
+                        let lval = load_panel_folding_state('left')
+                        if (lval['exists']){
+                                left_pane_enabled = lval['value']
+                        }
+
+                        // default = enabled, so we only need to disable
+                        if (!left_pane_enabled){
+                                disable_side_bar(document.getElementById('left_pane'), document.getElementById('left_pane_fold_header'))
+                        }
+                        if (!right_pane_enabled){
+                                disable_side_bar(document.getElementById('right_pane'), document.getElementById('right_pane_fold_header'))
+                        }
+                }
+
+                function init_pane_folding(header){
+                        set_correct_header_symbol(header);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                }
+                
+                
+                set_pane_folding_start()
+                init_pane_folding(document.getElementById('left_pane_fold_header'));
+                init_pane_folding(document.getElementById('right_pane_fold_header'));
+
+                document.getElementById('left_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+                document.getElementById('right_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+        </script>
+
+        <script src="/notes/obs.html/static/load_dirtree_footer.js" type="text/javascript"></script>
+
+        
+
+
+
+
+</body>
+</html>
