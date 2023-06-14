@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="mistyka - notes">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/notes/favicon.ico" />
+
+                <!-- Set title -->
+                <title>Notatki</title>
+
+                <!-- Includes -->
+                
+<script src="/notes/obs.html/static/obsidian_core.js"></script>
+<script src="/notes/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/notes/obs.html/static/master.css" />
+<script src="/notes/obs.html/static/mermaid.9.0.1.min.js"></script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/notes/obs.html/static/flexsearch.bundle.js"></script>
+<script src="/notes/obs.html/static/pako.js"></script>
+<script src="/notes/obs.html/static/search.js"></script>
+<script src="/notes/obs.html/static/dirtree.js"></script>
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'mistyka - notes';
+                        const HTML_URL_PREFIX = '/notes';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        <div id="search-master-div">
+    <div id="search-slab" king_ramses="return the slaaab">
+            <div id="search-controls">
+                    <input id="search_string" placeholder="Type to search notes" type="text" />
+                    <div class="tooltip" style="display: none;">
+                        <input type="checkbox" id="hard_search" name="hard" />
+                        <span class="tooltiptext">Hard search (require exact match)</span>
+                    </div>
+                    <div id="search-results-box">
+                        <div id="search-results"></div>
+                    </div>
+                    <div id="search-instructions">
+                        <div class="prompt-instruction">
+                                <b>esc</b> to dismiss
+                        </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("search-master-div").addEventListener('click', e => {
+            if(e.target !== e.currentTarget){
+                    return
+            }
+            toggle_id('search-master-div');
+    })
+    document.getElementById("search_string").addEventListener("input", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    }); 
+    document.getElementById("hard_search").addEventListener("click", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    });
+
+    window.addEventListener('keydown', e => {
+        if((e.key=='Escape'||e.key=='Esc'||e.keyCode==27)){
+            toggle_id('search-master-div');
+            return false;
+        } 
+    }, true);
+
+    function click_list_link(element){
+        element.parentElement.getElementsByTagName('a')[0].click()
+    }
+</script>
+
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header">
+    <div id="header_flex" class="flex_row">
+            <a href="/notes/index.html" id="homelink" title="Clear screen and go to homepage">Notatki</a>
+            <div id="menu_toggle_button" class="navbar-button requires_js" onclick="toggle_menu()">
+                    ≡
+            </div>
+            <div id="navbar" class="navbar requires_js">
+                    
+                    <div class="icon-tray">
+                            <div id="theme-button" class="theme-button requires_js" title="Change theme" onclick="toggle_theme_popup(this)">
+    T
+</div>
+<script>
+    function toggle_theme_popup(el){
+        // make theme button show that it's active by adding the .active class
+        toggle(el);
+
+        // show the theme selector
+        toggle_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            toggle(pu);
+        }
+    }
+
+    function disable_theme_popup(){
+        disable_id('theme-button');
+
+        // show the theme selector
+        disable_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            disable(pu);
+        }
+    }
+</script>
+                                    <div onclick="openSearch()" class="theme-button requires_js">
+            <img src = "/notes/obs.html/static/search.svg" alt="Search notes" title="Search notes" style="margin: 4px;"/>
+        </div>
+        <script>
+            function openSearch(){
+                // toggle search popup and continue with extra code if it is enabled this time
+                if (toggle_id('search-master-div')){
+                    // get input field and temporarily disable it
+                    let ss = document.getElementById('search_string');
+                    ss.value = 'Seach data initializing...';
+                    ss.readOnly = true; 
+
+                    // load search data if not yet done so
+                    setTimeout(function(){
+                        LoadSearchData()
+
+                        // clear input and put focus on it so that we can start typing immediately
+                        ss.value = '';
+                        ss.readOnly = false; 
+                        ss.focus()
+                        ss.select()
+                    }, 100);
+                }
+            }
+        </script>
+                            
+                            
+                            
+                            
+                    </div>
+                    <div style="display: flex; flex-direction:column">
+                        <div id="left_pane_toggle_nav" class="left_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                        <div id="right_pane_toggle_nav" class="right_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                    </div>
+            </div>
+    </div>
+    <div class="popup" id="theme-popup">
+    <label for="cars">Theme </label>
+
+    <select name="theme" id="theme" onchange="set_theme(this.value)">
+      <option value="light">light</option>
+      <option value="obs-light" selected="selected">obsidian-light</option>
+      <option value="obs-dark">obsidian-dark</option>
+    </select> 
+</div>
+</div>
+                <div class="flex_row">
+                        <div id="left_pane" class="left_pane active">
+    <div id="left_pane_fold_header" class="left_pane_fold_header fold_header">x</div>
+    <div id="left_pane_content" class="left_pane_content">
+            
+    </div>
+</div>
+                        <div class="container">
+                                <embeddedtitle>Mistyka - Notes</embeddedtitle>
+<div class="content"><div class="toc">
+<ul>
+<li><a href="#22-10-2022" class="anchor-link">22.10.2022</a><ul>
+<li><a href="#platon" class="anchor-link">Platon</a><ul>
+<li><a href="#fedon" class="anchor-link">Fedon</a></li>
+<li><a href="#uczta" class="anchor-link">Uczta</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#05-11-2022" class="anchor-link">05.11.2022</a><ul>
+<li><a href="#uczta-dalej" class="anchor-link">Uczta - dalej</a></li>
+<li><a href="#judaizm" class="anchor-link">Judaizm</a></li>
+<li><a href="#tradycja-apokaliptyki-zydowskiej-i-chrzescijanskiej" class="anchor-link">Tradycja apokaliptyki Żydowskiej (i Chrześcijańskiej)</a></li>
+</ul>
+</li>
+<li><a href="#19-11-2022" class="anchor-link">19.11.2022</a></li>
+<li><a href="#03-12-2022" class="anchor-link">03.12.2022</a><ul>
+<li><a href="#klemens-dokonczenie" class="anchor-link">Klemens -- dokończenie</a></li>
+<li><a href="#_obsidian_pattern_tag_pseudo_dionizy" class="anchor-link">{_obsidian_pattern_tag_Pseudo_Dionizy}</a></li>
+</ul>
+</li>
+<li><a href="#14-01-2022" class="anchor-link">14.01.2022</a></li>
+<li><a href="#28-01-2023" class="anchor-link">28.01.2023</a></li>
+<li><a href="#04-02-2022" class="anchor-link">04.02.2022</a></li>
+<li><a href="#25-02-2023" class="anchor-link">25.02.2023</a></li>
+<li><a href="#18-03-2023" class="anchor-link">18.03.2023</a><ul>
+<li><a href="#2-kazanie" class="anchor-link">2 kazanie</a></li>
+<li><a href="#3-kazanie" class="anchor-link">3 kazanie</a></li>
+<li><a href="#7-kazanie" class="anchor-link">7 kazanie (?)</a></li>
+<li><a href="#4-stopnie-miosci-do-boga" class="anchor-link">4 stopnie miłości do Boga</a></li>
+</ul>
+</li>
+<li><a href="#01-04-2023" class="anchor-link">01.04.2023</a><ul>
+<li><a href="#4-stopnie-miosci-do-boga_1" class="anchor-link">4 stopnie miłości do Boga</a></li>
+<li><a href="#kazanie-7" class="anchor-link">Kazanie 7</a></li>
+</ul>
+</li>
+<li><a href="#22-04-2023" class="anchor-link">22.04.2023</a></li>
+<li><a href="#06-05-2023" class="anchor-link">06.05.2023</a></li>
+<li><a href="#20-05-2023" class="anchor-link">20.05.2023</a></li>
+</ul>
+</div>
+<blockquote>
+<p>Last updated on 2023-06-13   </p>
+</blockquote>
+<p>(Filozoficzne aspekty mistyki średniowiecznej) <br />
+Rafał Tichy   </p>
+<h2 id="22-10-2022">22.10.2022</h2>
+<p>Źródła (zwane przez <a class="inline-tag" href="/notes/obs.html/tags/Colin_McGinn/index.html">Colin_McGinn</a> matrycami) mistyki  chrześcijańskiej   </p>
+<ul>
+<li>greckie   </li>
+<li>
+<p>żydowskie <br />
+Między nimi jest nieustanne napięcie.   </p>
+</li>
+<li>
+<p>Matryca Grecka (głównie filozofia)   </p>
+<ul>
+<li>grunt: filozofia platońska   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>    </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>    </li>
+</ul>
+</li>
+</ul>
+<h3 id="platon">Platon</h3>
+</li>
+<li>
+<p>Religijny wymiar filozofii Platońskiej  <br />
+    ( <a class="inline-tag" href="/notes/obs.html/tags/Giovanni_Reale/index.html">Giovanni_Reale</a> : Platon nie jest tylko metafizykiem, filozofia daje także nawrócenie )   </p>
+</li>
+<li>
+<p>Nie należy Platona rozumieć tylko po post-Kantowsku: jako filozofa idei w sensie form umysłu. Jego język jest językiem religijnym   </p>
+</li>
+<li>Misteria (2 typy religijności: codzienna i misteryjna) jako przykłady; język mistyczny.    </li>
+</ul>
+<h4 id="fedon">Fedon</h4>
+<ul>
+<li>Filozof ćwiczy się w umieraniu (odrywanie się od zmysłów)   </li>
+<li>Dusza musi się za życia oczyścić (robi to filozofia jak i misteria -- aspekt eschatologiczny, zbawczy, boski) (są więc te same cele, filozofia różni się metodą -- rozumową)   </li>
+<li>
+<p>(na koniec Fedona) wiara zgadza się z rozumem, ale mówi więcej (bo opowiada o życiu pośmiertnym, etc.)   </p>
+<blockquote>
+<p>Tichy pisze książkę o tytule jak kurs: "Filozoficzne aspekty mistyki średniowiecznej"   </p>
+</blockquote>
+</li>
+<li>
+<p>Cel filozofii Platona jest mistyczny -- metafora wyjścia z jaskini (Państwo) (Patrz fragmenty w "Materiały")   </p>
+<ul>
+<li>Fragment 3 <a href="/notes/not_created.html" class="nonexistent-link">22.10.2022 (1).jpg</a>   </li>
+<li>Metafora wyjścia   </li>
+<li>Jaskinia to kino, matrix   </li>
+<li>Problem: nie wiedzą, że siedzą w kinie   <ul>
+<li>Niby: jest im dobrze, oni tego chcą, co w tym złego?   <ul>
+<li>Otóż: oni nie wiedzą czego chcą, bo nie znają rzeczywistości   </li>
+<li>Oni nie są bytami ontologicznie przeznaczonymi do jaskini (są ludźmi, którzy powinni żyć na powierzchni, a nie jaszczurkami jaskiniowymi)   </li>
+</ul>
+</li>
+<li>Neo: czuje, że coś jest nie tak:   <ul>
+<li>Nasze oczy się nadają do poznania słońca (prawdy)   </li>
+</ul>
+</li>
+<li>Po poznaniu prawdy (Sokratejskie przebudzenie), okazuje się, że nic się nie wie -- upadek własnego obrazu siebie (bo nie jestem panem życia, tylko baterią gwałconą przez roboty)   </li>
+<li>Co ciągnie (niektórych) do szukania prawdy?   <ul>
+<li>Chęć poznania własnej natury (oraz obcość ontyczna jaskini)   </li>
+<li>Prawda jest łączona z dobrem (wszędzie u Platona)   </li>
+</ul>
+</li>
+<li>(Prorokini w Matrixie: Neo-Sokrates. Przed wejściem do niej jest napisane: Temet Nosce (Know Thyself) (Jak w Delfickiej wyroczni))   </li>
+</ul>
+</li>
+<li>Wyjście:   <ul>
+<li>Pierwsze co widzę: źródło ułudy   <ul>
+<li>Ale: film kieruje ku prawdziwemu światłu (słońce (świata) jest symbolem prawdziwego światła (dobra))   </li>
+</ul>
+</li>
+<li>Muszę przyzwyczaić zwrok   </li>
+<li>Cel: kontemplacja światła (choć (wpierw) przez odbicie, np. jako matematyka), wreszczie poznanie prawdziwego źródła (ontycznego) życia i poznania.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Dusza jest podobna do świata Boskiego (fragment 5 i 7)   </p>
+<h4 id="uczta">Uczta</h4>
+<ul>
+<li>Eros. Jego matka to niedosyt, dążenie ku Boskości   <ul>
+<li>Inny aspekt dobra: dobro -- piękno (pociągające, ale z drugiej strony pozostawia w niedosycie).   <ul>
+<li>Oczywiście prawdziwsze piękno to piękno inteligibilne   </li>
+<li>A dalej (fragment 8) piękno samo w sobie   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Powstaje pytanie: Czy można prawdziwie, za życia, wyjść z jaskini?   <ul>
+<li>Fragment 8: napięcie mistyczne -- pragnienie absolutu   <ul>
+<li>możliwy jest nagły moment ekstatyczny   </li>
+<li>ale: Piękno nie jest: "ani ..., ani ..., ani ..." -- Nie jest możliwe podanie drogi. Możliwe jest stwierdzenie co nią nie jest. Filozofia jest jedynie wskazówką.   </li>
+<li>jest to ostateczna, <strong>właściwa</strong> wartość życia   <ul>
+<li>List VII (fragment 9.): Platon to przede wszystkim mistyk   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="05-11-2022">05.11.2022</h2>
+<h4 id="uczta-dalej">Uczta - dalej</h4>
+<ul>
+<li>Doświadczenie mistyczne dobrze widać w uczcie -- opis erotycznego dążenia do piękna (zmysłowe, idealne), nagłe doświadczenie piękna samego w sobie.   <ul>
+<li>Takie życie według Platona jest coś warte   </li>
+</ul>
+</li>
+<li>Czym jest <em>prawdziwa</em> filozofia? To nie tylko wiadomości ale i przemiana życia (na przykład nie zrobił tego tyran Syrakuz, który traktował filozofię jako jedno z narzędzi do swoich celów). Najważniejszego w filozofii nie można (nie możliwe i nie powinno się) powiedzieć.   </li>
+</ul>
+<p>Aspekt mistyczny jest widoczny w całym Platonizmie. Średni i późny Platonizm (neoplatonizm, <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>) będą kładły jeszcze mocniejszy akcent na mistykę. U Plotyna istotna jest niepoznawalność jedni, jej poza-pojęciowość, poza-bytowość. Stosuje więc Apofatykę (tzw. teologia negatywna, pisze jedynie czym jednia nie jest).   </p>
+<blockquote>
+<p>Do Plotyna jeszcze wrócimy   </p>
+</blockquote>
+<h3 id="judaizm">Judaizm</h3>
+<p>Wielu badaczy twierdzi, że Judaizm tego okresu jest niemistyczny, a mistyka jest wpływem Greków.   </p>
+<p>Jeszcze mocniej podkreślają to bibliści protestanccy. Ojcowie kościoła zanieczyścili Chrześcijaństwo Grekami. Podkreślają, że tradycja inności, transcendencja Boga jest tu najważniejsza. Mistyka to powrót do politeizmu, idolatrii.   </p>
+<p>Prorocy szczególnie doświadczali Boga, ale nie jest to doświadczenie mistyczne, zawsze jest zapośredniczane: wizją, głosem, aniołem etc.   </p>
+<p>Mistyczne spotkanie (tekst 3.):   </p>
+<ul>
+<li>"Spraw, abym ujrzał Twoją chwałę" -- pragnienie mistyczne.   <ul>
+<li>A więc tekst 2. to nie jest spotkanie mistyczne.   </li>
+</ul>
+</li>
+<li>Tekst ten można też oczywiście traktować antymistycznie   </li>
+</ul>
+<p>Dialog <a class="inline-tag" href="/notes/obs.html/tags/Justyn_Męczennik/index.html">Justyn_Męczennik</a>  z Żydem Tryfonem (tekst 4.)   </p>
+<ul>
+<li>Justyn: Platonizm jako droga do bezpośredniego oglądu Boga.   </li>
+<li>Tryfon -- mędrzec Judeo-Chrześcijański   <ul>
+<li>Podważa on pewność filozofii Platońskiej -- poznanie Boga   <ul>
+<li>co filozofowie mogą wiedzieć o Bogu, nikt go nie widział (jedynie Chrystus)   </li>
+</ul>
+</li>
+<li>Justyn: ludzie są pokrewni Bogu (Platon: nie są szczurami jaskiniowymi), mogą więc poznać świat Boży   </li>
+<li>Tryfon: wykpiwa Justyna w stylu Sokratejskim   <ul>
+<li>głęboki Judaizm: dusza wręcz nie może istnieć bez interwencji Boga.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Justyn będzie potem głosił ewangelię w płaszczu filozofa (więc jako najlepszą filozofię)   </li>
+</ul>
+<p>Tekst 5. -- Podejście bardziej mistyckie ( <a class="inline-tag" href="/notes/obs.html/tags/Colin_McGinn/index.html">Colin_McGinn</a> -- proto-mistyckie)   </p>
+<ul>
+<li>Twarz Mojżesza: zasłonięcie oblicza, tak jak jest zasłonięte oblicze Boga.   </li>
+<li>Można to interpretować tak, ze dokonało się szczególne obcowanie z Bogiem.   </li>
+</ul>
+<p>Tekst 6.   </p>
+<ul>
+<li>Pan mówi do Mojżesza twarzą w twarz (nie jest on po prostu prorokiem)   </li>
+<li>W Psalmach podkreślane jest, że sprawiedliwi będą "oglądać oblicze Pana"   </li>
+</ul>
+<h3 id="tradycja-apokaliptyki-zydowskiej-i-chrzescijanskiej">Tradycja apokaliptyki Żydowskiej (i Chrześcijańskiej)</h3>
+<p>Czym jest apokaliptyka?   </p>
+<ul>
+<li>typ literatury wyrażający teologię i duchowość   </li>
+<li>nazwa od Apokalipsy Św Jana (ale było dzieł apokaliptycznych dziesiątki, setki)   </li>
+<li>Apokalipsa != pogrom   <ul>
+<li>zła konotacja.   </li>
+<li>chodzi tu raczej o objawienie (w sensie odsłonięcia tajemnicy, rzeczy ukrytych)   </li>
+</ul>
+</li>
+<li>czerpała z Zoroastyzmu   </li>
+<li>księgi Apokaliptyczne opowiadają o porwaniu (wymiar wertykalny) proroka do niebios (różne sfery niebiańskie)   <ul>
+<li>widzi on różne istoty, zjawiska, zbawionych, artefakty. Na końcu jest zapieczętowana niebiańska księga.   </li>
+<li>towarzyszy mu Anioł, który mu tłumaczy: eschatologię, początek człowieka etc.   </li>
+</ul>
+</li>
+<li>Z niebios widzi też tajemnice historii (następcy proroków) -- widzi jej cel, jej spełnienie (wymiar horyzontalny)   </li>
+<li>Żydzi czekają na apokalipsę jako na wyzwolenie spod okupacji   </li>
+<li>Były dziesiątki takich dzieł, akurat Daniela i Jana weszły do kanonu pisma Św.   </li>
+<li>Chrześcijanie byli sektą apokaliptyczną   </li>
+<li>(było wiele innych tradycji, np. Sadyceusze)   </li>
+</ul>
+<p>Tekst 7., 8. - Księga Henocha, przez pewien czas była kanoniczna.   </p>
+<p>Tekst 9.   </p>
+<ul>
+<li>W nowym testamencie Św. Paweł jest archetypem mistyka   </li>
+<li>"Teraz widzimy jakby w zwierciadle" (1 Kor)   <ul>
+<li>eschatologicznie: wtedy poznamy w pełni, bezpośrednio   </li>
+</ul>
+</li>
+<li>Fragment 9 jest najsłynniejszym tekstem mistycznym Nowego Testamentu, cytowany setki razy   <ul>
+<li>"Porwanie do trzeciego nieba" - oznacza w późniejszej tradycji ten właśnie fragment mistyczny   </li>
+<li>pisze w 3. osobie. Robi dystans, ekstatyczność, utracił swoją osobę   </li>
+</ul>
+</li>
+<li>"Nie wypada", ale trzeba. Dlaczego?   <ul>
+<li>Korynt to jego ulubiona wspólnota, zrodzona na miejscu rozpusty   </li>
+<li>Przyszli tam Gnostycy, którzy głosili widzenia, podważali autorytet Pawła.   <ul>
+<li>musi więc utwierdzić swój autorytet   </li>
+</ul>
+</li>
+<li>Przed 14 laty -- św. Paweł miał mnóstwo innych wizji później. Ale w ogóle o nich nie będzie tu mówił   </li>
+<li><strong>Powie więc o czymś na prawdę istotnym</strong>   </li>
+</ul>
+</li>
+<li>trzecie niebo -- przed samego Boga   </li>
+<li>mistyka Chrześcijańska jest uobecnieniem stanu eschatologicznego   </li>
+<li>Pytanie: czy zaświadczenie Pawła jest wystarczające do tworzenia tradycji mistyki? Nie, to jedynie jedno ze źródeł   <ul>
+<li>Potrzebni są: Mojżesz i Grecy   </li>
+</ul>
+</li>
+</ul>
+<h2 id="19-11-2022">19.11.2022</h2>
+<p>Tradycja Judaizmu (transcendencja Boga) w Chrześcijaństwie zostanie uzupełniona immanencją (Chrystus to Bogo-człowiek -- coś nie do przyjęcia w Judaizmie)   </p>
+<ul>
+<li>Ewangelia: Boga nikt nigdy nie widział, jedynie ten, który pochodzi od Niego (otwarcie furtki)   </li>
+<li>Św. Paweł: Jedność z Chrystusem: "Nie ja żyję, tylko Chrystus we mnie". Poznanie Boga twarzą w twarz (eschatologicznie)   </li>
+<li>Otworzenie Judaizmu na Greków   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Klemens_Aleksandryjski/index.html">Klemens_Aleksandryjski</a> (o nim później)   </li>
+<li>Ojcowie kościoła traktowali Greków z dużą dozą ostrożności, a nawet negatywnie -- wyższość objawienia nad filozofią.   </li>
+<li>Ale z perspektywy wieków widać wpływ Grecki   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Włodzimierz_Łosski/index.html">Włodzimierz_Łosski</a> w "O Stworzeniu człowieka na obraz i podobieństwo" ("По образу и подобию") <br />
+Kategoria obrazu i podobieństwa Bożego:   </p>
+<ul>
+<li>niezwykła pozycja człowieka   </li>
+<li>Chrystus   </li>
+<li>Na wschodzie: Ikona jest przedłożeniem wcielenia (podobieństwem)   </li>
+<li>Ważna myśl w mistyce   </li>
+<li>Łosski pyta jak ta kategoria jest osadzona w Piśmie Świętym:   <ul>
+<li>W starym testamencie w zasadzie nie istnieje (tylko księga rodzaju). Dlaczego?    <ul>
+<li>Fragment o stworzeniu na obraz i podobieństwo w Księdze Rodzaju nie ma znaczenia mocnego, ontycznego. Chodzi tu raczej o pokazanie, że człowiek jest u szczytu stworzenia. Człowiek rządzi stworzeniem (jak Bóg rządzi wszystkim)   </li>
+<li>Poczucie transcendencji Boga, oraz silne odrzucenie idolatrii, ubóstwiania (powiedzenie, że człowiek jest podobny do Boga prowadzi do idolatrii)    </li>
+<li>W księdze Mądrości: "Mądrość jest obrazem Boga".   <ul>
+<li>Księga w końcu odrzucona przez Żydów, przyjęta przez Chrześcijan   </li>
+<li>Sam koniec objawienia Żydowskiego, powstała już pod wpływem Greckim   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Święty Paweł powraca do tej kategorii   </li>
+<li>Nie przez przypadek dopiero kontekst Grecki wprowadził tę kategorię   <ul>
+<li>(Protestanci powiedzą, że jest to negatywny wtręt Grecki)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Łosski: nie przez przypadek kategoria ta przyszła tuż przed Chrystusem. Przygotowuje ona grunt do ostatecznego objawienia -- Chrystusa.   <ul>
+<li>Matryca Grecka pozwoliła wydobyć potencjał ukryty w teologii Żydowskiej   <ul>
+<li>(Dzięki temu mogła się rozwinąć mistyka)   </li>
+</ul>
+</li>
+<li>Tylko tak można zrozumieć ojców Greckich, oni mówią językiem Platona.   </li>
+</ul>
+</li>
+</ul>
+<p>Napięcie: Grecy (spotkanie z Bogiem) &lt;---&gt; Żydzi (transcendencja Boga)   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Klemens_Aleksandryjski/index.html">Klemens_Aleksandryjski</a>  <br />
+Kontekst:    </p>
+<ul>
+<li>Chrześcijanie nadal odrzucają wszelkiego rodzaju politeizm i Greckie religie. Przyjęli jedynie filozofię (Była ona krytyczna religijności antropomorficznej Greków -- Filozofowie traktowali ją (mity) jako alegorie)   </li>
+<li>Greckie pojęcie absolutu było bardzo wysublimowane. Greków zainteresował więc Żydowski absolut   </li>
+<li>Filozofia była też drogą duchową, drogą doskonałości duchowej (w kontraście do religijności rytualnej Grecji)   <ul>
+<li>To samo mówił Chrystus -- tym co zbliża do Boga jest przemiana wewnętrzna   </li>
+</ul>
+</li>
+<li>Chrześcijanie traktowali filozofię jako:   <ul>
+<li>sposób nauczania, mówienia   </li>
+<li>Chrześcijaństwo jako wypełnienie filozofii, szukanie prawdy. Objawienie pomaga filozofii znaleźć prawdę.   </li>
+</ul>
+</li>
+<li>Ale: dużo wykształconych Chrześcijan odrzuciło filozofię. Np <a class="inline-tag" href="/notes/obs.html/tags/Tertulian/index.html">Tertulian</a>   <ul>
+<li>Objawienie nie śniło się filozofom, nie do pogodzenia z filozofią   </li>
+<li>Przez to, że filozofia jest podobna do objawienia, zostają one obdarte z wyjątkowości. Filozofia to idolatria   <ul>
+<li>Filozofia tworzy herezje   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Klemens, "Kobierce" (fragmenty w "Materiały/")   </p>
+<ul>
+<li>(fragment, którego nie ma): Filozofia w jakiejś mierze dziełem Boskiej opatrzności   </li>
+<li>Chrześcijaństwo jako ostateczne słowo Logosu   <ul>
+<li>"Tym czym było prawo dla Żydów, była filozofia dla Greków" -- przygotowaniem do objawienia, do poznania Prawdy   </li>
+</ul>
+</li>
+<li>Koncepcja kradzieży: <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a> i inni znali księgi objawione, lub opatrzność otwarła ich na pewne prawdy   </li>
+<li>("Historia" z czasów oświecenie: Chrześcijaństwo jest anty-rozumowe. Jest to nieprawda, w Chrześcijaństwie umysł jest dość istotnie wywyższany (chociażby moralnie))   </li>
+<li>Fragment #1   <ul>
+<li>Doświadczenie biblijne zgadza się z filozoficznym w tym, że Bóg transcenduje świat naturalny. (Odkrycie tego to drugie żeglowanie (porzucenie zmysłów))   </li>
+</ul>
+</li>
+<li>Fragment #3   <ul>
+<li>Zestawienie podobieństw: doświadczenie ekstatyczne, nie dające się ubrać w słowa   </li>
+</ul>
+</li>
+<li>Fragment #4   <ul>
+<li>Ezoteryczność doświadczenia Chrześcijańskiego. Jest ono objawione przez misteria, do których trzeba się przygotować. (Podobnie jak już Chrystus niektóre prawdy mówił tylko apostołom)   <ul>
+<li>Tak jak liturgia Chrześcijańska: picie krwi, jedzenie ciała Boga, oddawanie czci krzyżowi -- narzędziu tortur   </li>
+</ul>
+</li>
+<li>Ezoteryzm u <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>  -- list VII (też Fajdros (?))   </li>
+<li>Misteria -&gt; mistyka. Bóg ukryty.   </li>
+</ul>
+</li>
+<li>Fragment #5   <ul>
+<li>Metafory biblijne tłumaczone językiem filozoficznym   </li>
+</ul>
+</li>
+</ul>
+<h2 id="03-12-2022">03.12.2022</h2>
+<h3 id="klemens-dokonczenie">Klemens -- dokończenie</h3>
+<ul>
+<li>Fragment #6    <ul>
+<li>Celem wiary jest upodobnienie się do Boga poprzez rozwijanie cnót.   </li>
+</ul>
+</li>
+</ul>
+<p>(Ciekawostka) Kategoria gnozy u Klemensa   </p>
+<ul>
+<li>Współcześnie zwykle gnostycyzm przeciwstawia się ortodoksji   <ul>
+<li>(np. nauka jako "współczesna gnoza")   </li>
+</ul>
+</li>
+<li>A Klemens mówi o gnostycyzmie jako o najwyższym poziomie Chrześcijaństwa.   <ul>
+<li>Gnoza to pewnego rodzaju misterium. Za misterium uważało się początkowo Chrześcijaństwo. Chrześcijaństwo to "prawdziwa gnoza".   </li>
+</ul>
+</li>
+<li>
+<p>Ruchy gnostyckie ("fałszywa gnoza", zbawcza wiedza) uważały, że wiedza jest konieczna i wystarczająca do zbawienia. Tu jest różnica z Chrześcijaństwem (pokora i miłość)   </p>
+</li>
+<li>
+<p>Fragment #7   </p>
+<ul>
+<li>Część Grecka: apofatyka (oczywiście za <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>'em)   <ul>
+<li>Ale w Biblii również są źródła apofatyki:   <ul>
+<li>odrzucenie obrazów Boga (idolatrii) -- Boga nie można "pokazać"   </li>
+<li>nikt nigdy Boga nie widział   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Transcendencja Boga wymaga samo-objawienia się Boga   <ul>
+<li>Mesjasz nie jest tylko osobą, ale i wydarzeniem historycznym, zwieńczeniem historii zbawienia   </li>
+<li>Mesjasz jest ostatecznym objawieniem się logosu   </li>
+<li>Nie ma więc sprzeczności między gnozą i wiarą (fragment #9)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="_obsidian_pattern_tag_pseudo_dionizy"><a class="inline-tag" href="/notes/obs.html/tags/Pseudo_Dionizy/index.html">Pseudo_Dionizy</a></h3>
+<p>Zwieńczeniem mistycyzmu wschodniego i Platońskich ( <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>, <a class="inline-tag" href="/notes/obs.html/tags/Proklos/index.html">Proklos</a>) Ojców Kościoła jest "Teologia Mistyczna" (Pseudo)-Dionizego Areopagity. (W kościele zachodnim dopiero <a class="inline-tag" href="/notes/obs.html/tags/Św_Augustyn/index.html">Św_Augustyn</a> przepracuje Platona. Dionizy zostanie odkryty w XIIw)   </p>
+<p><a href="/notes/not_created.html" class="nonexistent-link">Pseudo-Dionizy_Teologia-mistyczna_mod.pdf</a>   </p>
+<ul>
+<li>Język neoplatoński: Bóg wyemanował z siebie świat. Ma ten świat do niego powrócić, poprzez coraz lepsze upodobnienie się do niego.   <ul>
+<li>Ta emanacja to zarazem teofania (objawienie)   </li>
+</ul>
+</li>
+<li>Dionizy rozwijał teologię światła (jest to tradycja Platońska (światło -- brak w jaskini, dobro))   </li>
+<li>Hierarchia jest Boskim porządkiem, w którym odbija się Bóg. Jest to świat intelektów, który odbija i przyjmuje światło Boskie i przekazuje je dalej.   <ul>
+<li>Byty odbijając przekazują światło niższym od siebie bytom. Dzięki temu im łatwiej je przyjąć, niż światło pochodzące od absolutu   </li>
+<li>hier-archia vs the-archia (święty porządek &lt;-- Boska zwierzchność, Boski porządek)   </li>
+</ul>
+</li>
+<li>Odbiciem porządku niebieskiego jest porządek społeczny   <ul>
+<li>Przekaz doktryny, tak jak przekaz światła   </li>
+<li>Każdy poziom intelektu przyjmuje Boskie światło i przekazuje je dalej   </li>
+</ul>
+</li>
+<li>Powrót:   <ul>
+<li>Poznawanie, nazywanie i uwielbienie Boga   <ul>
+<li>"Imiona Boskie" (inne dzieło)   <ul>
+<li>Napięcie -- będziemy nazywać i poznawać nienazywalnego i niepoznawalnego   </li>
+</ul>
+</li>
+<li>Transcendencja Boska -&gt; musimy się oprzeć na objawieniu, jak na linie, którą Bóg nam rzuca   </li>
+<li>Bóg to zarazem polynomos (ma wiele imion) i anonimos (bez-imienny)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Tichy poleca przeczytać Teologię Mistyczną (zwłaszcza na następne zajęcia)   </p>
+</blockquote>
+<h2 id="14-01-2022">14.01.2022</h2>
+<p>Tekst na dzisiaj: Wyznania <a class="inline-tag" href="/notes/obs.html/tags/Św_Augustyn/index.html">Św_Augustyn</a>, księgi 7, 8, 9.   </p>
+<ul>
+<li>(księgi 1-9 są "autobiograficzne", czyli opisują opis nawrócenia, choć nie koniecznie są ścisłe historycznie. Korzystają z alegorii i symboli do opowiedzenia myśli teologicznych i filozoficznych)   </li>
+</ul>
+<p>W czasach <a class="inline-tag" href="/notes/obs.html/tags/Św_Augustyn/index.html">Św_Augustyn</a>'a Chrześcijaństwo nie było już młodym i radykalnym Chrześcijaństwem. Była to w miarę normalna, popularna religia. Św Augustyn mówił nawet, że to religia "starych bab".   </p>
+<p>2 fundamenty życia Augustyna w młodości: kariera retora i sfera seksualna. <br />
+Z poczucia nienasycenia i braku spełnienia rozpoczął się jego proces nawrócenia. Momentem wstrząsu było dla niego śmierć przyjaciela. Jego życie (Augustyna) było do tego niewspółmierne, nie mógł sobie z tym poradzić, ani tego wytłumaczyć.   </p>
+<p>Później spotkał żebraka, który był uszczęśliwiony drobnym datkiem. Było to w dużym kontraście do kariery Augustyna, która nie dawała mu szczęścia.   </p>
+<p>Kolejnym wstrząsem (tym bardziej pozytywnym, nie negatywnym) była filozofia (księga III, rozdz 4 wyznań).   </p>
+<p>Natrafił na "Hortensjusza" <a class="inline-tag" href="/notes/obs.html/tags/Cicero/index.html">Cicero</a>'na. Uświadomił sobie, że istnieje <strong>prawdziwa mądrość</strong>. Jest to najważniejsza wiedza o tym kim jest, o życiu. O samym sobie.   </p>
+<p>To co go ostudziło to brak istnienia Chrystusa w Cyceronie (Chrystus i apostołowie byli wtedy wzorami filozofów, mędrców). Zaczął czytać pismo święte od początku i tragedia: "Co to jest?! Filozofii tam za grosz, głupoty same jakieś".   </p>
+<p>Natrafił na Manicheizm. Odrzucał on m.in. stary testament (z którym miał taki problem Augustyn), skupiał się na naukach etycznych Jezusa. Jednocześnie był mocno oparty na gnozie, czyli ówczesnej "nauce", coś jak New Age. <br />
+Tu również doświadczył nienasycenia i rozczarowania.   </p>
+<p>Po odejściu od Manicheizmu był chwilowo sceptykiem: nie ma żadnej mądrości.   </p>
+<p>Zaczęła go dręczyć Monika, jego matka. Było to w Mediolanie, gdzie był <a class="inline-tag" href="/notes/obs.html/tags/Ambroży_z_Mediolanu/index.html">Ambroży_z_Mediolanu</a>, bardzo dobrze wykształcony neoplatońsko. Rozpoczęło się jego drugie żeglowanie, nawrócenie. Natrafił m.in. na egzegezę pisma Św. poprzez alegorie (jak np. przypowieści).   </p>
+<p>(7, 8 księga) <br />
+Centralne momenty nawrócenia:   </p>
+<ul>
+<li>filozoficzne, intelektualne (ks.7 fragm 9)   </li>
+<li>religijne (ks.8)   </li>
+</ul>
+<p>Pod wpływem "człowieka pełnego pychy" ( Moniliusz Teodor(?) ) przeczytał książki <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>'a    </p>
+<ul>
+<li>czytał o Jednym, o emanacji dobra etc.   </li>
+<li>Przeczytał tam, "nie w takich słowach", że: "Na początku było słowo i słowo było u Boga..."   <ul>
+<li>Metafizyka Plotyna jest komplementarna z przekazem biblijnym   </li>
+</ul>
+</li>
+<li>Ale <strong>nie</strong> przeczytał tam historii zbawienia, uniżenia Boskości   <ul>
+<li>u Plotyna to człowiek musi powrócić do Absolutu   </li>
+<li>Bóg Greków nas nie kocha, on jest doskonały   </li>
+</ul>
+</li>
+<li>(to wszystko powyżej to jego przemyślenia po latach, wtedy nie był tego tak świadomy)   </li>
+</ul>
+<p>(Fragm. 10)   </p>
+<ul>
+<li>(Enneady Plotyna to filozofia doświadczenia duchowego, wchodzenia w siebie. To filozofia mistyki)   </li>
+<li>Zobaczył światłość nadrzędną, wszedł w siebie   <ul>
+<li><strong>Drugie żeglowanie -- wyjście poza stan materialny</strong>, odkrył świat idei. Źródło światła.   <ul>
+<li>niezwykle rzadkie przeżycie w tamtym "materialnym" czasie (np. Dla stoików wszystko było materialne)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Było to jego pierwsze doświadczenie mistyczne.   </li>
+</ul>
+<h2 id="28-01-2023">28.01.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Św_Augustyn/index.html">Św_Augustyn</a> miał problem z istnieniem zła. Skoro ono istnieje, jak Bóg mógł je stworzyć/do tego dopuścić? <br />
+Drugie żeglowanie, odkrycie świata niefizycznego pozwoliło mu rozwiązać ten problem. Wtedy przyjął, że zło to ontyczny brak dobra.   </p>
+<p>Nie były to tylko przemyślenia, tylko czytanie <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a>'a. Augustyn w pewien bardziej bezpośredni sposób doświadczył absolutu.   </p>
+<p>Pod koniec księgi 7 wyznań (fragm 17, 2 akapit) jest drugi opis doświadczenia mistycznego. Jest to opis Neoplatońskiej (np. nawiązuje do "traktatu o Pięknie" Plotyna) interioryzacji, opisuje jak "wchodzi w siebie".   </p>
+<p>Zastanawia się nad sądami prawdziwościowymi, które są niezmienne i wieczne. Zastanawia się skąd biorą się kategorie. Widzi, że nie mogą się brać ze zmiennego świata, myszą być więc w umyśle. Ale umysł nie może być autorem tych kategorii, bo one są intersubiektywne (w sensie wglądu w nie, są weryfikowalne bez doświadczenia, tak jak prawdy matematyczne), narzucają się, sam mój umysł nie ma tych cech, czyli są ponad umysłem.   </p>
+<p>Zaraz później następuje doświadczenie mistyczne, doświadcza absolutu.   </p>
+<p>Zaraz po nim zauważa, że coś go trzyma, że nadal pozostał grzesznym człowiekiem. Gdyby nie to, byłby jak neoplatonicy, którzy byli oświeceni, ale pełni pychy. <br />
+Dysproporcja: doświadczenia mistycznego i jego życia, które jest grzeszne. Nadal żyje tak samo (pożądanie i kariera). <br />
+To doświadczenie nie dało mu wejścia na drogę zbawienia, był to ważny przełom, ale nie ostateczny. <br />
+(Nie przeczytał u Plotyna historii zbawienia: że Logos stał się człowiekiem (a więc pośrednikiem), aby go wyprowadzić, aby go prowadzić do zbawienia).   </p>
+<p>U Platoników jest wizja, ale nie ma łez wyznania.   </p>
+<p>Księga 8. (Nawrócenie właściwe) <br />
+Gdy Augustyn opowiedział to <a class="inline-tag" href="/notes/obs.html/tags/Symplicjan/index.html">Symplicjan</a>'owi, ten opowiedział mu o historii <a class="inline-tag" href="/notes/obs.html/tags/Mariusz_Wiktoryn/index.html">Mariusz_Wiktoryn</a>'a, znanego neoplatonika, który pewnego razu "w sekrecie" stał się Chrześcijaninem (i powiedział o tym Symplicjanowi). Miał on problem z pychą, bo był intelektualistą i nie chciał tego ogłosić (obciach i wyrzuciliby go z uczelni). <br />
+Tak więc i Augustyn musi przestać żyć starym życiem, nawrócić się radykalnie. <br />
+Ale Augustyn jest spętany, jak łańcuchem. Brakuje mu <strong>woli</strong> -- niby chce, niby nie chce zmienić swojego życia. <br />
+(U Greków wola raczej podążała za poznaniem umysłowym. Augustyn zaczyna to odwracać.)   </p>
+<p>Koncepcja grzechu i spętania woli jako uzależnienia, przyzwyczajenia, nałogu. To łańcuch przyzwyczajenia staje się dziwnym przymusem ("szatan spętał wolę"). Analogiczny proces działa w procesach duchowych (cytat: "Diabeł władał moją wolą, on z niej wykuł łańcuch, którym mnie oplótł. Z przewrotnej woli rodzi się złe pożądanie, a kiedy się jemu służy, wytwarza się przyzwyczajenie; przyzwyczajenie, któremu się nie przeciwstawiamy, staje się niezwalczonym przymusem.")   </p>
+<p><strong>"Walczyły we mnie dwie wole: dawna i nowa, cielesna i duchowa."</strong>   </p>
+<p>(Trzy konteksty rozumienia dusza vs ciało:   </p>
+<ul>
+<li>
+<ol>
+<li>Człowiek stworzony. Dusza jest nad ciałem (hierarchia)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Człowiek upadły (po przeżyciach, uzależniony etc.) Ciało nad duszą, walka.   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Człowiek zbawiony. Powrót do 1.)   </li>
+</ol>
+</li>
+</ul>
+<p>Jak Augustyn został wyzwolony z więzów zmysłowego pożądania? (w tamtych czasach zmysłowe pożądanie było mocno rozpowszechnione, ludzie byli w tym sensie bardzo "nowocześni") <br />
+Metafora trzech ogrodów:   </p>
+<ul>
+<li>
+<ol>
+<li>Ogród w Trewirze   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Ogród w Mediolanie   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Ogród w Ostii   </li>
+</ol>
+</li>
+</ul>
+<p>Metafora -- chodzi o ogród rajski.   </p>
+<p>Augustynowi pewien żołnierz  opowiada historię św. Antoniego Wielkiego, założyciela monastycyzmu (w którym w ogóle nie chodzi o życie samotne)   </p>
+<h2 id="04-02-2022">04.02.2022</h2>
+<p><em>Pierwszy ogród</em>. Przyszli tam żołnierze, aby odpocząć. Natrafiają tam na księgę, żywot św. Antoniego Pustelnika. Zadają sobie fundamentalne pytania: (te same co Augustyn gdy czytał Hortensjusza). Gdzie idę, po co ja to robię etc. Na miejscu w jednej chwili podęli decyzję o zrezygnowaniu z kariery i zmianie swojego życia. Co ich zainspirowało? Moment powołania św. Antoniego do życia monastycznego:   </p>
+<ul>
+<li>Jako bogaty, poprawny chrześcijanin wszedł losowo do kościoła. Usłyszał czytanie o bogatym młodzieńcu. "Sprzedaj <em>wszystko</em> co masz" i chodź za mną. Antoni to słyszy i dokładnie tak robi i nie ma nic. Idzie na pustynię.    <ul>
+<li>Monos-mnich-sam, jeden. Ale też "sam naprzeciw jednego", ten, który wszystko, oprócz jednego porzucił.   </li>
+</ul>
+</li>
+</ul>
+<p>Pustynia:   </p>
+<ul>
+<li>miejsce podróży Izraela, gdy nie mieli nic prócz nadziei i ufności Bogu   </li>
+<li>miejsce gdzie mieszkały demony   </li>
+<li>miejsce odejścia od wygodnego życia, radykalne.   <ul>
+<li>Pustelnicy będą się czuli następcami męczenników (a więc i apostołów). Wybrali: wszystko albo nic.   </li>
+</ul>
+</li>
+</ul>
+<p>Monastycyzm nie był jednym z możliwych (w miarę normalnych) wyborów życia. Był to wybór absolutnie radykalny. Regułą była tylko ewangelia, w pełni. Bo gdyby chrześcijaństwo odrzeć z całych narośli kulturowych, jest ono radykalnym wyzwaniem, szalonym.   </p>
+<p>Dlatego ci żołnierze nie pytają: "A może będę zakonnikiem?". Zadają absolutnie podstawowe pytania o swoje życie.   </p>
+<p>Augustyn, gdy usłyszał o tej historii znów myśli o "gnothi seauton", zorientował się, że dotychczas jakby miał samego siebie za plecami, by na siebie nie patrzeć.   </p>
+<p>Następnie opisuje proces nawrócenia. Wpierw pisze, że jest chory, upadły. Bo zdrowy nie potrzebuje lekarza, nieupadły nie potrzebuje zbawiciela. <br />
+Przypomina sobie "Hortensjusza". <br />
+"Ciągłe pragnienie czystego życia, ale jeszcze nie w tej chwili" (a'la alkoholik)   </p>
+<p><strong>Każdy ma swoje wszystko</strong>.   </p>
+<p>W tym wstydzie Augustyn wpada do <em>drugiego ogrodu</em>, gdzie się ogromnie miota. <br />
+"Umysł rozkazuje ciału i jest ono posłuszne. Umysł rozkazuje sam sobie i nie wypełnia rozkazu."   </p>
+<p>Odrzuca np. Manichejski podział na wolę dobrą i złą (zewnętrzną). Nie. To ja chcę i nie chcę. <br />
+Bóg pozwala, Bóg (twórca) rozwiązuje tę spętaną wolę (którą stworzył).   </p>
+<blockquote>
+<p>Jest komedia o seryjnym mordercy (gangsterze?) alkoholiku, w Londynie, który musi uwierzyć w absolut (nie znalazłem w Googlu)   </p>
+</blockquote>
+<p>Augustyn siada pod drzewem figowym (ważny symbol w ewangelii) i płacze krzycząc: "Panie, czemu zwlekasz?" - przyznanie do kompletnej bezsilności. <br />
+Wtedy słyszy głos dziecka, które śpiewa: "Tolle lege", "weź i czytaj" i losowo zaczął czytać: "Nie w ucztach i pijaństwie, nie w rozpuście i rozwiązłości, nie w zwadzie i zazdrości. Ale obleczcie się w Pana Jezusa Chrystusa i nie ulegajcie staraniom o ciało i jego pożądliwości" (Rz 13:13b-14). Przypomniał sobie, że tak samo było z Antonim.   </p>
+<p>I w tym momencie radykalnie wybrał życie Chrześcijańskie. Założył wspólnie z kolegami jakby monastycyzm intelektualny, później (trochę z przymusu kościoła) zostanie księdzem i tak dalej.   </p>
+<p>Trzeba rozróżnić w rozmyślaniach o wolnej woli dwie rzeczy:   </p>
+<ul>
+<li>wolny wybór (liberum arbitrium)   <ul>
+<li>warunek konieczny wolności. Tego chcę, świadomość i namysł. To nie jest warunek wystarczający do bycia wolnym.   </li>
+</ul>
+</li>
+<li>wolność (libertas)   <ul>
+<li>Wolność to dużo więcej, np. wiedza.   <ul>
+<li>Masz wybór: niebieska lub czerwona pigułka. Ale nie wiadomo co w nich jest. Do wolności trzeba wiedzieć.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Później postanawia z Moniką (matką) wrócić do Afryki. Przybyli do Ostii (Monika tam umrze).   </p>
+<p>Słynna <em>wizja w Ostii, trzeci ogród</em>. Jedno z najważniejszych doświadczeń mistycznych w Chrześcijaństwie.   </p>
+<p>Rozmawiał z Moniką o życiu wiecznym, eschatologicznym.   </p>
+<p>Jest to podobne doświadczenie mistyczne co w księdze 7. Kontemplacja świata, wejście w siebie, skierowanie ku Bogu. Tam brakowało adekwatności życia do tego doświadczenia mistycznego. Tu nie ma już braku harmonii między stanem wewnętrznym i ogrodem. <br />
+Jest tu smutek powrotu do świadomości, tęsknota, ale tam było taplanie się w błocie, dotknięcie absolutu i spadek.   </p>
+<p>Absolut zawsze poznajemy "poprzez" coś. Poznajemy poprzez rzeczy, uczucia etc. W doświadczeniu mistycznym znika to "poprzez". Wszystko ucicha. Zgiełk ucicha, wyjście spoza świata w bezpośrednią relację z absolutem.   </p>
+<p>"Gdzież nie wędrowałaś ze mną, Prawdo, ucząc, czego się mam wystrzegać, a do czego mam dążyć, gdy wobec Ciebie zgłębiałem to, co w sobie potrafiłem dostrzec, i Ciebie prosiłem o radę. Całą zdolnością moich zmysłów badałem świat wokół mnie, a pochylałem się też uważnie nad życiem, jakie moje ciało ma ode mnie i nad samymi zmysłami. Potem wszedłem w głębiny mojej pamięci, w jej rozliczne i rozległe korytarze, przedziwnie napełnione nieprzeliczonymi bogactwami. Zastanawiałem się nad tym wszystkim, oniemiały ze zdziwienia. Żadnego z owych bogactw nie mógłbym dostrzec bez Ciebie, a zarazem stwierdziłem, że Ty nie jesteś żadną z tych rzeczy. Ani nie byłem Tobą ja, ich odkrywca, który je wszystkie przebiegałem i usiłowałem wyróżnić każdą z nich i ocenić jej wartość. Niektóre, abym mógł je poddać badaniu, były mi przekazywane świadectwem zmysłów. Inne, jak wyraźnie odczuwałem, bezpośrednio mnie dotyczyły. Rozpoznawałem je i wyliczałem różne sposoby, jakimi różne treści do mnie docierały. W skarbcu zaś pamięci znajdowałem inne rzeczy czekające na zbadanie, z których jedne na powrót w nim składałem, inne wydobywałem.   </p>
+<p>Ani ja sam, gdy to czyniłem, ani siła moja, dzięki której to czyniłem, nie były Tobą, bo Ty światłością jesteś trwałą, tą właśnie, którą zapytywałem o te wszystkie rzeczy: czy one są? czym są? jaką należy im przypisać wartość? W odpowiedzi słyszałem Twoje pouczenia i nakazy. Często przeprowadzam takie badanie. Zachwyca mnie ono, więc ilekroć mogę się na pewien czas oderwać od koniecznych zajęć, oddaję się tej rozkoszy. Wśród wszystkich jednak dziedzin, jakie przebiegam w badaniu, szukając Twojej rady, tylko w Tobie znajduję dla mojej duszy bezpieczną przystań - w niej się mogą skupić rozproszone części tego, czym jestem, gdyż już żadna z nich nie odrywa się od Ciebie. I czasem pozwalasz mi zaznać bardzo niezwykłego stanu duszy, jakiejś przedziwnej słodyczy, która gdyby we mnie osiągnęła pełnię, nie wiem, czym by była - bo tym tu życiem już by nie była. Lecz brzemię trosk znowu mnie stamtąd ściąga, znowu mnie wchłaniają zwykłe sprawy i mocno mnie trzymają. Łzy mi z oczu płyną, ale one mnie nie puszczają. Taką ma nad nami moc brzemię przyzwyczajenia. Tu mogę być - a nie chcę. Tam chcę być - a nie mogę. I tu, i tam - nieszczęsny."   </p>
+<p>Świat. Wejście w siebie ( <a class="inline-tag" href="/notes/obs.html/tags/Socrates/index.html">Socrates</a>). Wyjście do Absolutu.   </p>
+<p>W zetknięciu z Absolutem następuje wewnętrzna integracja (z rozproszenia). <br />
+Augustyn wskazuje, że nieraz podczas głębokich medytacji doświadcza podobnych doświadczeń jak w Ostii, choć wciąż jest przywoływany do życia. <br />
+Ostateczne rozdarcie.   </p>
+<p>"Do kogo miałem się zwrócić, aby zasypać to rozdarcie?" <br />
+Wielu ludzi poszukuje tych wizji, a znajduje pychę i diabła.   </p>
+<ul>
+<li>"Człowiek pełen pychy" Moniliusz Teodor (?) podarował mu w ks. 7 księgi Neoplatońskie   </li>
+<li>Jest to przemyślenie (neoplatonizm - pycha) z perspektywy czasu, gdy pisze Wyznania. Bo Monijusz Teodor wrócił do czystego Neoplatonizmu, nie poszedł tam gdzie Chrystus.   <ul>
+<li>Chrześcijaństwo jest wypełnieniem Neoplatonizmu, ale potrzebuje woli. Teodor pozostał na wizjach intelektualnych, brakowało mu wyznania (grzech, choroba woli, <strong>potrzeba</strong> lekarza i w końcu <strong>pokora</strong>)   </li>
+</ul>
+</li>
+</ul>
+<p>Będzie: <a class="inline-tag" href="/notes/obs.html/tags/Św_Benedykt/index.html">Św_Benedykt</a> i <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a>.   </p>
+<blockquote>
+<p>"Siedmiopiętrowa góra" <a class="inline-tag" href="/notes/obs.html/tags/Thomas_Merton/index.html">Thomas_Merton</a> -- współczesne, trochę podobne do "Wyznań" (?) <br />
+Adrian: ta jest popularna, późniejsze jego książki są mocniej intelektualno-mistyczne.   </p>
+</blockquote>
+<h2 id="25-02-2023">25.02.2023</h2>
+<p>Kazania do Pieśni nad Pieśniami (PnP) <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a>.   </p>
+<p>Kontekst: XII w. zwany jest średniowiecznym renesansem. Wcześniej: reformy pod przewodnictwem ruchów monastycznych. W XII w. reforma samych ruchów monastycznych, powstanie Cystersów, którzy mieli być powrotem do źródeł życia Benedyktyńskiego.   </p>
+<p>Legenda: Mnisi z Cîteaux żyli na tyle ascetycznie, że wszyscy wiedzieli, że idzie się do tego zakonu po to, żeby umrzeć. Samo istnienie zakonu w Cîteaux jest z tego powodu zagrożone (wymiera). Gdy jeden z mnichów jest na łożu śmierci, widzi wizję: zaraz przyjdzie ktoś kto przyprowadzi wielu uczniów. Przybywa <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a>.   </p>
+<p>Bernard był z początku trubadurem. Gdy zmarła jego matka, postanowił zmienić swoje życie. Jak tylko usłyszał, że do Cîteaux idzie się po to, aby umrzeć przekonał kilkudziesięciu członków swojej rodziny (miał wielki talent przekonywania i przemawiania) i powędrowali wszyscy do Cîteaux. Tak rozpoczęła się odnowa Cysterska.   </p>
+<p>Głównym tematem mistyki Cysterskiej jest miłość, w oparciu na PnP. Jest to tzw. mistyka nuptalna, mistyka oblubieńcza.   </p>
+<p>Tradycja komentarzy do PnP:   </p>
+<ul>
+<li>Już w tradycji Hebrajskiej pojawia się interpretacja: jest to pieśń o miłości między Bogiem (oblubieńcem) i Izraelem. Wymiar społeczno-eklezjonalny.   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Orygenes/index.html">Orygenes</a>: nie tylko Izrael, lecz Kościół i Bóg objawiony w Chrystusie. Orygenes dodaje wymiar indywidualny. Relacja człowiek-Bóg.   </li>
+<li>Później większość komentarzy pomijało wymiar indywidualny   </li>
+<li>Dopiero Cystersi z komentarza do PnP utworzyli ważny element duchowy, mistyczny, z punktu widzenia indywidualnego   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a> (86 kazań) i jego uczniowie. Szkoła mistyki Cysterskiej.   </li>
+</ul>
+</li>
+</ul>
+<p>Najważniejsze tematy Mistyki Cysterskiej:   </p>
+<ul>
+<li>Sokratyzm Chrześcijański (γνῶθι σεαυτόν)   </li>
+<li>Stworzenie człowieka na obraz i podobieństwo Boże   </li>
+<li>Wolna wola   </li>
+<li>Miłość   </li>
+<li>Jedność między Bogiem i człowiekiem   </li>
+</ul>
+<blockquote>
+<p>Jest jedno, niedoskonałe tłumaczenie (tylko kilku z 86) kazań do PnP Bernarda na polski. Jest dobre tłumaczenie na angielski. <br />
+Będziemy korzystać z roboczego tłumaczenia Tichego (i kogoś innego)   </p>
+</blockquote>
+<hr />
+<p>"Nie daje się chleba tym, których karmi się mlekiem". Kazania Bernarda są przeznaczone dla mnichów zaawansowanych w studiach duchowych.   </p>
+<p>Kontekst: napięcie między szkołą scholastyczną (ścisłość, dialektyka, rygor naukowy, Arystoteles) i szkołą monastyczną (Bernard) (przeciwnie: widzą w naukowości i dialektyczności niebezpieczeństwo. Teologia ma być służebnicą ducha, ćwiczeń duchowych)   </p>
+<p>Czy teologia ma prowadzić do sciendum (wiedzy)? Czy do experiendum (doświadczenia)? <br />
+Inaczej: "Poznaj człowieka" (wiedza) vs "Poznaj samego siebie" (wezwanie duchowe).   </p>
+<blockquote>
+<p>Mnisi Conversi LOL   </p>
+</blockquote>
+<p>Co to znaczy być przygotowywanym przez studia duchowe?   </p>
+<ul>
+<li>wykorzenić nieograniczoną miłość ciała i źle ukierunkowaną miłość świata   </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>droga</th>
+<th>księga</th>
+<th>droga (dział) filozofii</th>
+<th>czego uczy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oczyszczenia</td>
+<td>ks. Przysłów</td>
+<td>Etyka</td>
+<td>dyscyplina wewnętrzna, otwarcie się na duchową rzeczywistość</td>
+</tr>
+<tr>
+<td>oświecenia</td>
+<td>ks. Eklezjastesa</td>
+<td>Fizyka</td>
+<td>prawdziwa natura świata (poznaliście świat, więc poszliście do klasztoru)</td>
+</tr>
+<tr>
+<td>zjednoczenia</td>
+<td>PnP</td>
+<td>Teologia</td>
+<td>(po dwóch poprzednich krokach można zacząć analizę PnP)</td>
+</tr>
+<tr>
+<td>(logika, to też dział filozofii ale jako narzędzie)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>"Działy filozofii" to były różne drogi mądrości.   </p>
+<p>Czy przeszedłeś przez Morze Czerwone? Czy miałeś swojego Faraona? <br />
+Czy przeszedłeś formację i śpiewałeś inne pieśni? (Pieśni stopni)   </p>
+<h2 id="18-03-2023">18.03.2023</h2>
+<p>Dalej <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a>    </p>
+<p>Tytuł: dlaczego Pieśni nad Pieśniami? <br />
+Po wyjściu z Egiptu, przejściu przez Morze Czerwone Izrael śpiewał pieśni pochwalne. Pieśni zawsze wyrażają pewną emocję, pewien stan. Są to pieśni "stopni", np. żałobne, etc. <br />
+Aby autentycznie śpiewać te pieśni, trzeba wejść w te stany emocjonalne. <br />
+Bernard mówi do mnichów: "Mam nadzieję, że już śpiewaliście te pieśni, przeszliście przez te stopnie". <br />
+"Niech wszyscy raczej pragną dostąpić tego doświadczenia, niż się o nim dowiedzieć."   </p>
+<h3 id="2-kazanie">2 kazanie</h3>
+<p>Werset: "Niech mnie całuje pocałunkami swoich ust."   </p>
+<p>2 pytania:   </p>
+<ul>
+<li>Dlaczego tak bez wstępu?   </li>
+<li>Pragnienie pocałunku -- Bóg ma całować człowieka?   </li>
+</ul>
+<p>Bóg zbliża się do człowieka (historia zbawienia), a pocałunek to wcielenie Boga w człowieka (Jezus). Bóg zbliża się do człowieka tak bardzo, jak tylko się da.  <br />
+Pragnienie bezpośredniości w relacji z Bogiem. Nie chce już proroków ani wizji.   </p>
+<h3 id="3-kazanie">3 kazanie</h3>
+<p>"Dziś tekstem, który będziemy studiować jest księga naszego własnego doświadczenia".   </p>
+<p>Tradycja średniowieczna:   </p>
+<ul>
+<li>księga natury: filozofia, nauka, kosmos. (księga, czyli system znaków, analiza stworzenia wymaga też pewnej hermeneutyki)   </li>
+<li>księga objawienia: księga historii zbawienia   </li>
+</ul>
+<p>Bernard: jest jeszcze trzecia księga: księga własnego doświadczenia. Jak tamte dwie księgi mają się do <em>mnie</em>? Co to znaczy studiować księgę własnego doświadczenia? Oczywiście chodzi też o poznanie siebie.   </p>
+<p>Jak mogę pragnąć pocałunku ust Boga? Ja, człowiek grzeszny?   </p>
+<p>Mówi o pocałunkach:   </p>
+<ul>
+<li>stóp: pokora lub ukorzenie. Pan - niewolnik. Ale też zdrajca, który chce przebaczenia   </li>
+<li>rąk: całuje się ojca w rękę   </li>
+<li>ust   </li>
+</ul>
+<p>(Generalnie jest to znany symbol w średniowieczu)   </p>
+<p>Poznanie siebie to:   </p>
+<ul>
+<li>poznanie swojej nędzy - niewolnicy w jaskini Platona   </li>
+<li>poznanie swojej godności - dla jaszczurki nie ma nic złego w siedzeniu w jaskini. Dla mnie jest.   </li>
+</ul>
+<p>Takie poznanie siebie jest konieczne do zbawienia. <br />
+Nie przyjmą zbawienia ci, którzy nie poznali siebie.   </p>
+<p>Więc: pocałunek stóp -- pokora -- to punkt wyjścia.   </p>
+<p>Pocałunek rąk to już droga zbawienia. Bóg jest dobroczyńcą. Syn marnotrawny całuje ojca w ręce.   </p>
+<h3 id="7-kazanie">7 kazanie (?)</h3>
+<p>Ale kim jest ona? Jest oblubienicą, duszą pragnącą Boga. <br />
+Czym charakteryzuje się miłość oblubieńcza?   </p>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/C_S_Lewis/index.html">C_S_Lewis</a> "4 miłości" -- o tym   </p>
+</blockquote>
+<p>Ale wpierw: dlaczego w ogóle mielibyśmy kochać Boga? <br />
+Bo nie tylko nas stworzył, ale i zbawił (początek drogi miłości)   </p>
+<p>Jaką miarą mam go kochać? Miarą bez miary. Bezmiernie. <br />
+Co to znaczy?   </p>
+<ul>
+<li>Po pierwsze: człowiek ma kochać Boga całym sobą   </li>
+<li>ale i jest wezwany do ciągłego przekraczania własnej miary   </li>
+<li>Bóg jest miłością. Co to znaczy?   <ul>
+<li>miłość jest "prawem" (zakonem, законем) Boga, w sensie: sposobem życia, regułą   <ul>
+<li>(Bóg w trójcy jest wspólnotą, miłość Boga nie jest autoerotyczna. Bóg nie jest samotny.)   </li>
+<li>(U Plotyna dobro emanowało. Ojcowie Kościoła to przejęli i poprawili: Bóg jest doskonały i jego dobro emanuje w sposób doskonały (w trójcy) (tak jak dwoje ludzi przekazuje sobie nawzajem dobro))   </li>
+</ul>
+</li>
+<li>Bóg kochający człowieka chce mu oddać <em>całe</em> dobro, całego siebie. To jest prawo, zakon Boga.   </li>
+</ul>
+</li>
+</ul>
+<p>Bóg stwarza stworzenie w miłości. Co to znaczy? Jak to się przejawia? <br />
+Stworzenie jest ukierunkowane na miłość:   </p>
+<ul>
+<li>zwierzęta - zwierzęco   </li>
+<li>człowiek - zdolność do miłości, ukierunkowanie do Boga, do swojego źródła. Bóg jest nie tylko celem, ale i źródłem miłości.   </li>
+</ul>
+<h3 id="4-stopnie-miosci-do-boga">4 stopnie miłości do Boga</h3>
+<ul>
+<li>
+<ol>
+<li>Kochamy samych siebie. Pożądliwość cielesna, konsumpcja   </li>
+<li>Dlaczego jest to stopień miłości <strong>do Boga?</strong> Bo źródłem miłości jest Bóg, nawet zdeprawowanej   </li>
+<li>miłość siebie nie jest całkowicie do odrzucenia (będzie uzdrowiona na ostatnim stopniu)   </li>
+<li>jest to punkt wyjścia naszej miłości.   </li>
+</ol>
+</li>
+</ul>
+<h2 id="01-04-2023">01.04.2023</h2>
+<h3 id="4-stopnie-miosci-do-boga_1">4 stopnie miłości do Boga</h3>
+<ul>
+<li>
+<ol>
+<li>Kochanie Boga ze względu na siebie   </li>
+<li>Zauważenie Absolutu jako godnego miłości, ale jest to miłowanie interesowne, jest mi on do czegoś potrzebny.   </li>
+<li>(Oprócz tego Bernard wskazuje na miłość wspólnoty jako pomoc w wyjściu z miłości egoistycznej)    </li>
+<li>(Wypływa ze współczucia)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Kochanie Boga ze względu na Boga, na to kim On jest.   </li>
+<li>(Najwyższy ze stopni ziemskich)   </li>
+<li>Jest napięcie między miłością Grecką (Eros, syn dostatku i braku, oraz silnego pragnienia zaspokojenia) (moja potrzeba), a Ewangeliczną (Agape) (kogoś kocham, więc pragnę jego dobra)   </li>
+<li>Czy te dwie miłości należy przeciwstawiać?   <ul>
+<li>Np <a class="inline-tag" href="/notes/obs.html/tags/Orygenes/index.html">Orygenes</a> : Nie, Bóg też pragnie człowieka, człowiek pragnie Boga (Eros)   </li>
+<li>Bernard to odróżnia ze względu na intencję. Prawdziwa miłość jest bezinteresowna (kto kocha ten po prostu kocha) i zasługuje na nagrodę (sama miłość jest nagrodą)   </li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Kocham Boga, i siebie, i wszystko inne ze względu na Boga.   </li>
+<li>Bernard uważa, że możliwy w zasadzie tylko w życiu eschatologicznym. Możliwe jest doświadczenie jej w stanie mistycznym.   </li>
+<li>Bernard mówi o "przebóstwieniu" (deificatio), które zasypuje przepaść ontyczną między Bogiem i stworzeniem. Zwykle jest to pojęcie, którego Zachód się wystrzegał.   </li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Traktaty Bernarda (niektóre) są wydane po polsku w "O miłowaniu Boga i inne traktaty"   </p>
+</blockquote>
+<h3 id="kazanie-7">Kazanie 7</h3>
+<p>Powrót do PnP.   </p>
+<p>Inny podział miłości, zaczerpnięty z ludzkiego życia. <br />
+PnP to pieśń ślubna, miłość oblubieńcza.   </p>
+<p>Stopnie miłości:   </p>
+<ul>
+<li>strach -- niewolnik   </li>
+<li>zysk -- najemnik   </li>
+<li>posłuch -- uczeń (uczeń też spodziewa się zysku, wiedzy)   </li>
+<li>szacunek -- syn (syn też spodziewa się dobra, chociażby spadku)   </li>
+<li>miłość oblubieńcza -- oblubienica   <ul>
+<li><strong>Równość</strong>. Wszystko dzielone jest równo, nie ma egoizmu, jedność (nie o względy, zysk, wiedzę czy dziedzictwo)   </li>
+</ul>
+</li>
+</ul>
+<p>Oblubienica prosi o pocałunek, wprost, aż do zuchwałości. Jest wolna, lęk został wygnany przez doskonałą miłość.   </p>
+<p>Transgresywny wymóg miłości ( <a class="inline-tag" href="/notes/obs.html/tags/Tichy/index.html">Tichy</a> napisał o tym <a href="http://www.edukacja-filozoficzna.uw.edu.pl/index_pliki/ef72/ef-72-22.pdf" class="external-link">artykuł</a>), przekroczenie norm.   </p>
+<p>(Kazanie 9) Prosi o pocałunek ust, o równość, ma świadomość, że wykracza to poza normy, ale miłość upoważnia ją do tego pragnienia, miłość znosi lęk. <br />
+Jest to też transgresja metafizyczna, stworzenie nie jest upoważnione do równości ze stwórcą, tylko miłość na to pozwala (droga do przebóstwienia).   </p>
+<p>W Kazaniu 3, 8 <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a> odróżnia pocałunek "całuj mnie" i "całuj mnie pocałunkami swoich ust". Dlaczego <em>pocałunkami</em>? <br />
+Ten "pocałunek" to oddanie całym sobą, co może dokonać się tylko w Trójcy Świętej. Ojciec oddaje się całkowicie Synowi, swej hipostazie, pocałunek to Duch Święty. <br />
+Co nas uprawnia do tej miłości? To Bóg dokonał pierwszej transcendencji schodząc do ludzi w imię miłości. Miłość kruszy wszelkie bariery, także ontyczne.   </p>
+<p>"Przechodzimy do antropologii" -- ja chcę tej transgresji. Pytanie: czy to jest kompletne szaleństwo, czy może ta miłość jest w jakiś sposób możliwa? Kim jest człowiek, czy jest powołany do takiego przejścia?   </p>
+<p>Kazania 80-84 są o antropologii:   </p>
+<ul>
+<li>(chyba)   </li>
+<li>80 -- stworzenie człowieka na obraz i ...   </li>
+<li>81 -- ... podobieństwo   </li>
+<li>82 -- niepodobieństwo   </li>
+<li>83 -- o miłości, obrazie i podobieństwie w miłości   </li>
+</ul>
+<p>Dusza a Logos -- logos jest obrazem, a dusza jest stworzona na obraz. <br />
+Czym jest człowiek stworzony "na obraz i podobieństwo" logosu? Logos jest obrazem Boga z Boga. Człowiek nie jest boski, ale jest zdolny, capax dei, zdolny do transcendowania, więc nic innego nie może nas nasycić.   </p>
+<h2 id="22-04-2023">22.04.2023</h2>
+<p>Kazanie 81 <br />
+Obraz i podobieństwo -- omówiliśmy poprzednio "obraz".   </p>
+<p>Podobieństwo. Ma ono 3 cechy:   </p>
+<ul>
+<li>Prostota. 3 stopnie egzystencjalne: być, żyć, żyć szczęśliwie   <ul>
+<li>dla duszy być <span class="arithmatex">\(\iff\)</span> żyć   </li>
+<li>dla Boga być <span class="arithmatex">\(\iff\)</span> żyć <span class="arithmatex">\(\iff\)</span> żyć szczęśliwie   </li>
+<li>dlatego dusza jest (jedynie) podobna do Boga   </li>
+<li>upodobnienie się do Boga to więc żyć tak, aby życie było szczęśliwe, integralne   </li>
+</ul>
+</li>
+<li>Nieśmiertelność. Nieśmiertelność Boga nie dopuszcza żadnej zmiany. Jak dusza jest jedynie podobna? Jest śmiertelna za pomocą swoich uczuć, może umierać duchowo przez nieszczęście, przez oddalenie od Boga.   </li>
+<li>Wolna wola. Człowiek ma podobieństwo wolności. Arbitri libertes, wolność <em>decyzji</em>. Nie oznacza, że ma pełną wolność woli. Wolność decyzji nie daje pełnej wolności.   </li>
+</ul>
+<p>Na czym polega niedoskonałość? Za przyczyną swej woli, przez grzech, ulega zniewoleniu. Kiedy ulegam pożądaniu, wynika ono z ciała, a nie z woli, ale to wola je wybiera, wiąże się z nim. A co gdy powstaje przywiązanie, nałóg, któremu nie umiemy się oprzeć? Jest to nie poza-wolą, ale zniewolenie woli. Nie jestem w stanie się temu oprzeć. Ale nie jestem zupełnie bezwolny. Konflikt pragnień pierwszego i drugiego rzędu: Nie chcę, ale cielesną namiętnością bardzo chcę. Mam wolność decyzji, ale nie mam mocy, aby tego przeprowadzić (konflikt wewnątrz duszy). <br />
+"Boże spraw, abym na prawdę nie chciał". <br />
+Jarzmo konieczności jest w pewnym sensie dobrowolne, niczym mile widziana przemoc. Nie chciałem, ale chcę. Panie, prowadź! Jednak jest świadoma, że to własna wola jest powodem, nie może winić Boga.   </p>
+<blockquote>
+<p>Dahmer, serial na Netflixie. Tichy poleca.   </p>
+</blockquote>
+<p>To nie jest takie czyste: uzależnienie popycha ku nałogowi, psychologia, społeczeństwo etc. Słowem: grzech pierworodny (trudna sprawa). Zawsze jesteśmy jednak dobrowolnie zniewoleni. <br />
+Jak się uwolnić? Dać się zbawić. Przyjąć wyciągniętą rękę i dać się z tego wyciągnąć.   </p>
+<p>Wolność: od grzechu i nędzy bytu. Aby ją mieć trzeba mieć zdolność do osądzenia co jest dobre i moc, by na prawdę chcieć tego, co zobaczyliśmy, że jest dobre.   </p>
+<p>83 (?) kazanie. Niepodobieństwo, dynamizm niepodobieństwa.   </p>
+<ul>
+<li>złożoność życia. Komplikacja, dodawanie sobie rzeczy.   </li>
+<li>zniewolenie   <ul>
+<li>to było wcześniej.   </li>
+</ul>
+</li>
+</ul>
+<p>Mechanizm niepodobieństwa:   </p>
+<ul>
+<li>zakrywamy podobieństwo. Dusza nie porzuciła swej formy, lecz przyodziała obcą. Na prostotę dusza przyodziała dwulicowość.   </li>
+<li>Obca forma deformuje, oddziałuje na duszę. Człowiek jako <em>capax dei</em> jest plastyczny w swej naturze. Ale jego zdolność do naśladowania może spełnić się nie w Bogu, lecz w innej formie.   <ul>
+<li>Nie pozostajesz wolnym anarchistą (Girard (?)), zawsze się do czegoś upodabniasz.     </li>
+<li>Pozbycie się obcej formy wiąże się ze strachem utraty własnej tożsamości.   </li>
+<li>Dusza stając się niepodobna do Boga, staje się niepodobna do siebie.   </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Będzie wykład "Człowiek nieukończony. Patrystyczne i średniowieczne korzenie transhumanizmu" w przyszłym roku.   </p>
+</blockquote>
+<hr />
+<p>Widzenie Boga. <br />
+Warunkiem widzenia Boga jest przemiana wewnętrzna.   </p>
+<p>Są 3 rzeczy:   </p>
+<ul>
+<li>podobieństwo,   </li>
+<li>widzenie,   </li>
+<li>miłość.   </li>
+</ul>
+<p>Jak może dokonać się zjednoczenie?   </p>
+<ul>
+<li>poprzez upodobnienie kochania do tego, jak kocha Bóg. Wtedy człowiek pozna tak, jak został poznany, pokocha tak, jak został pokochany.   </li>
+</ul>
+<p>"Caritas il la visio, il la similitudo est"   </p>
+<p>Kazanie 83 <br />
+Bernard opowiada o niepodobieństwach po to, by pokazać ile w niej pozostaje z podobieństwa. Dowolnie upadła dusza może zwrócić się do Boga i rozpocząć drogę ponownego upodabniania się do Niego.   </p>
+<p>"Unitatem Spiritualis"  -- jedność duchowa. <br />
+Często patrzy się na to jak na jedynie wolność woli. I jest w tym wiele racji, ale: Nie jest to wolność substancjalna, ale jedność duchowa prowadzi do jakiejś jedności ontycznej. Dokonuje się przemiana natury. "Za mało powiedzieć związek. Przylgnięcie. Całkowite (...) Czyni dwóch jednym duchem." (staną się jednym ciałem)   </p>
+<p>Tylko miłość może wprowadzić równość między różnymi ontycznie osobami. To, co kocha po prostu kocha i nie uznaje niczego więcej. I on (Bóg) woli być kochanym i na to pozwala. Jest on samą miłością. <br />
+Nie jest on czcią. Trzeba go czcić, ale jako oblubieńca trzeba go kochać. Miłość sama sobie wystarcza.   </p>
+<blockquote>
+<p>Przeczytać (przynajmniej początek) "Droga duszy do Boga" <a class="inline-tag" href="/notes/obs.html/tags/Bonawentura/index.html">Bonawentura</a>'y.   </p>
+</blockquote>
+<h2 id="06-05-2023">06.05.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Bonawentura/index.html">Bonawentura</a> -- "Droga duszy do Boga".   </p>
+<p>2 ważne konteksty:   </p>
+<ul>
+<li>scholastyka -- charakter szkolny, naukowy, ścisły aparat pojęciowy, disputatio, sciendum (vs experiendum) (monastycyzm przeżywa kryzys, schyłek rozwoju) (monastycyzm jako radykalne wezwanie ewangelii, odejście ze świata przestał odpowiadać wyzwaniom czasów)   </li>
+<li>średniowiecze zaczęło silnie się rozwijać (kulturowo, ekonomicznie etc), powstają miasta, ludzie potrzebują edukacji do życia. Za edukacją zaczęły powstawać herezje -- ludzie pytają i próbują na pytania odpowiadać (np. Katarzy (Albigensi)). Pojawiły się 2 nowe zakony (Franciszkanie i Dominikanie) z 2 nowymi filarami:   <ul>
+<li>głoszenie ewangelii (łączyć życie kontemplacyjne z życiem czynnym, u ludzi) (Dominikanie zwłaszcza głoszenie ewangelii słowem, Franciszkanie zwłaszcza głoszenie przez przykład)   </li>
+<li>żebractwo, ubóstwo (zwłaszcza radykalnie Franciszkanie)   </li>
+</ul>
+</li>
+</ul>
+<p>Traktat Bonawentury:   </p>
+<ul>
+<li>ma zaplecze scholastyczne, ale to w gruncie rzeczy synteza scholastyki i teologii monastycznej (sciendum służy tu doświadczeniu)   <ul>
+<li>nie wystarczy wiedzieć, trzeba wejść w perspektywę doświadczenia   </li>
+<li>(Bonawentura robił to programowo, gdzie indziej mówi wprost, że do scholastyki trzeba dołączać monastycyzm)   </li>
+</ul>
+</li>
+<li>
+<p>doświadczenie specyficznie franciszkańskie   </p>
+<ul>
+<li>Bonawentura został wybrany generałem zakonu franciszkańskiego, który przeżywa burzę związaną z ruchem Spirytuałów, którzy byli posądzani o herezję (np. o historiozofię) (np. oni są w Imieniu Róży <a class="inline-tag" href="/notes/obs.html/tags/Umberto_Eco/index.html">Umberto_Eco</a> (trzeba przeczytać (film to karykatura)))   </li>
+<li>Rzeczywiście zrobił czystkę Spirytuałów, później się opamiętał i zaczął ich godzić.   </li>
+<li>Tu go spotykamy na świętej górze franciszkanów, aby wejść głębiej w duch franciszkański. Franciszek tam doświadczył wizję, doświadczenie mistyczne.   </li>
+</ul>
+</li>
+<li>
+<p>Serafin o 6 skrzydłach, w którego wpisany jest Chrystus ukrzyżowany (mnóstwo obrazów powstało na ten temat)   </p>
+</li>
+<li>Doświadczenie jedności z Chrystusem <em>ukrzyżowanym</em>. Franciszek po tym doświadczeniu mistycznym miał stygmaty. Wtedy to był kompletny szok, nie miał stygmatów przed nim nikt inny.   <ul>
+<li>Franciszek był uważany za absolutnie wyjątkowego świętego. Zakon franciszkanów bardzo mocno wpłynął na społeczeństwo, powstawały ruchy społeczne, zreformował się kościół. Przez współbraci Franciszek był uważany za Alter-Christus, prawdziwego naśladowcę Chrystusa. Jak dostał stygmaty to oszaleli.   </li>
+<li>Co ma wspólnego ubóstwo z ukrzyżowaniem? Głębokie zrozumienie doświadczenia kenozy, ogołocenia, które przeszedł Bóg i dał ludziom. Bóg rozpoczął to we wcieleniu, osiągnął dno w ukrzyżowaniu. Ideał ubóstwa jest konsekwencją podążania za kenozą Chrystusa. Franciszek jak nikt zrozumiał, że to jest ideał Chrześcijaństwa. Nie był on uśmiechniętym hipisem. Biczował się, aby powstrzymać swoje żądze, tarzał się w cierniach etc ("Siódma pieczęć" Bergmana)   </li>
+</ul>
+</li>
+<li>6 stopni iluminacji (str 20, pkt 2)   <ul>
+<li>Droga jest drabiną. Wszechświat jest drabiną (w sensie całego stworzenia)   </li>
+<li>Trzy główne etapy drabiny stworzenia:   <ul>
+<li>poza nami (świat naturalny)   </li>
+<li>w nas (świat duszy)   </li>
+<li>ponad nami (świat ducha, idealny) (to nie jest Bóg, to sposób kontemplowania Boga, ale nadal w moim umyśle, przez moje pojęcia)   </li>
+</ul>
+</li>
+<li>Trzy sposoby bytowania rzeczy:   <ul>
+<li>w naturze   </li>
+<li>w duszy   </li>
+<li>w wiecznej sztuce   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(Ustalone na zewnątrz zwierciadło nie pomoże...) (głos sumienia -- polerowanie go warunkiem sine qua non)   </li>
+<li>Co pozwala nam iść tą drogą, tą drabiną?   <ul>
+<li>Zgodność nasza z wszechświatem. Mamy te same 3 części, jesteśmy kompatybilni z wszechświatem.   </li>
+</ul>
+</li>
+<li>No, ale Serafin miał 6 skrzydeł. Każdy etap dzieli się więc na 2 sposoby.   <ul>
+<li>Klucz: "Przez zwierciadło i w zwierciadle". O co chodzi?   <ul>
+<li>Bóg jest Alfą i Omegą.   </li>
+<li>Alfa: Początek stworzenia: arche, stwórca. To, co zostało już uczynione.   </li>
+<li>Omega: cel stworzenia. To, co Bóg robi, działa.   </li>
+</ul>
+</li>
+<li>(ten klucz nie jest stosowany w pełni konsekwentnie)   </li>
+</ul>
+</li>
+<li>(musimy przebiec przez ten tekst, a nie przeżuwać (meditatio), szkoda)   </li>
+</ul>
+<blockquote>
+<p>"Jedność doświadczenia filozoficznego" <a class="inline-tag" href="/notes/obs.html/tags/Etienne_Gilson/index.html">Etienne_Gilson</a>   </p>
+</blockquote>
+<ul>
+<li>
+<ol>
+<li>Bóg twórca porządku świata.   </li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Po śmierci Franciszka ideał szybko sięgnął bruku. Można nie mieć nic własnego, ale bardzo dobrze sobie żyć. Franciszek odkrył i imitował radykalne ubóstwo. W tym okresie Cesarz najechał Włochy. We Fiore żyli uczniowie <a class="inline-tag" href="/notes/obs.html/tags/Joachim_z_Fiore/index.html">Joachim_z_Fiore</a> (przełom historiozofii, przełożył Chrystusa na środek historii), który przewidywał nadchodzącą epokę ducha i nowy typ zakonów (zostały po nim fascynujące rysunki). Zwiewali oni przed Cesarzem, dopiero Franciszkanie ich przyjęli. Opowiedzieli im o naukach Joachima, Franciszkanie powiedzieli: to o nas. Zrozumieli, że mają zadanie historyczne, dla świata, poczuli się jak rewolucjoniści. To oni nazwali się potem spirytuałami. Jeden z nich, Jan z Parmy był nawet generałem Franciszkanów. Jego uczeń, Gerard z Borgo San Donnino poszedł na uniwersytet i napisał "Wieczną Ewangelię" -- nadinterpretacja Joachima -- skoro jest rozwój historiozofii po Chrystusie, to można dokonać periodyzacji: Ojca, Syna i Ducha. Ojciec <span class="arithmatex">\(\rightarrow\)</span> Syn: przejście z synagogi do kościoła. Syn <span class="arithmatex">\(\rightarrow\)</span> Duch: już nie będzie kościoła, nastąpi nowy sposób przeżywania, nie będzie hierarchii, będzie monastycyzm. Będzie nowe objawienie, a tym są pisma Joachima z Fiore. Herezja. Spalili "Wieczną Ewangelię", Gerarda zamknęli. Spirytuałowie zaczęli pachnieć bardzo źle, Bonawenturę zrobili generałem, żeby ich spacyfikował. Jednak ku końcu życia zaczął ich godzić. Przeczytał tego Joachima i zaczął go rozumieć i przejmować, wpisywał go w nową ortodoksję. Napisał na koniec "Collationes in Hexaemeron" (najgenialniejsze dzieło średniowiecza), dodał do swojej myśli historiozofię. Później jednak Spirytuałów spacyfikowano, o "Collectiones" zapomniano (aż do <a class="inline-tag" href="/notes/obs.html/tags/Hegel/index.html">Hegel</a>'a). <a class="inline-tag" href="/notes/obs.html/tags/Joseph_Ratzinger/index.html">Joseph_Ratzinger</a> napisał habilitację o Bonawenturze i Joachimie z Fiore (mało znane)   </p>
+</blockquote>
+<h2 id="20-05-2023">20.05.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Bonawentura/index.html">Bonawentura</a>    </p>
+<p>Drabina: 3 etapy po 2 stopnie.   </p>
+<ul>
+<li>1, 2: poza nami   </li>
+<li>3, 4: w nas   </li>
+<li>
+<p>5, 6: nad nami   </p>
+</li>
+<li>
+<p>Poza nami (1 stopień): opisuje całą filozofię przyrody, nie zatrzymuje się na niczym dłużej.   </p>
+<ul>
+<li>We wszystkich tych aspektach pojawiają się trzy fundamentalne sposoby istnienia Boga poza nami:   <ul>
+<li>moc -- przyczyna sprawcza. Przygodność stworzenia (Ojciec)   </li>
+<li>mądrość -- przyczyna wzorcza. Inteligibilność, racjonalność stworzenia (Syn, Logos)   </li>
+<li>dobroć -- przyczyna celowa. Skierowanie ku dobru (Duch)   </li>
+</ul>
+</li>
+<li>Człowiek nie widząc we wszechświecie stwórcy może się przerazić i widzieć chaos, nieskończony kosmos, to, że jest pyłkiem na ziemi, która też jest pyłkiem etc. (przewrót kopernikański)   </li>
+</ul>
+</li>
+<li>(2 stopień) Teoria poznania zmysłowego. Jak w nas rodzi się wrażenie, oraz radość poznania. To sugeruje nam coś na temat Boga: relację między trzema osobami. Ojciec rodzi Syna tak, jak w nas rodzi się obraz poznawczy. Z tego powstaje relacja między nimi (radość poznania), Duch Święty. (Nie jest to żaden dowód na temat trójcy. To jedynie analogia, żeby się nią radować)   </li>
+<li>W nas (3 stopień) (Rozdział 3)   <ul>
+<li>Obraz Świątyni Jerozolimskiej   <ul>
+<li>przedsionek   </li>
+<li>świątynia   </li>
+<li>miejsce święte świętych   </li>
+</ul>
+</li>
+<li>Krótkie przypomnienie tradycji Augustiańskiej człowieka jako obrazu Boga:   <ul>
+<li>pamięć -- zatrzymuje to, co zmienne i przemijające. Odblask wieczności.   </li>
+<li>intelekt -- konieczne sądy prawdziwościowe. Odblask prawdy.   </li>
+<li>wola -- ukierunkowanie się na dobro. Myśląc o dobrach nieabsolutnych musimy mieć pojęcie dobra absolutnego. Człowiek jest wiecznie nienasycony, bo nie jest maksymalnie kochany. Sam też nie umie maksymalnie kochać. Gdzie więc tego szukać?   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(4 stopień) (Rozdział 4) Aspekt dynamiczny.   <ul>
+<li>Poziom podobieństwa. W tym jak pamięć, intelekt i wola się zmieniają można dostrzec Boga.   </li>
+<li>Po Platońsku: zaczynamy w upadku. Zagłębiamy się w siebie i nic, nie widzimy Boga, nic nie działa.   </li>
+<li>Gdzie kto upadnie, tam leży.   </li>
+<li>Nasza drabina jest słaba, nie możemy się na niej mocno oprzeć.   </li>
+<li>Wchodzimy w teologię, bo potrzebujemy nowej prawdy, Chrystusa.   </li>
+</ul>
+</li>
+<li>Ponad nami (5 stopień) (Rozdział 5) Boga możemy też odkrywać ponad nami, przez światło zapalone nad naszym umysłem.   <ul>
+<li>W miejscu świętym świętych, nad ołtarzem są 2 Cherubiny. Oznaczają 2 sposoby poznania Boga ponad nami: (nie jest to jeszcze mistyka, nie poznajemy go w nim samym, cały czas jesteśmy na drabinie)   <ul>
+<li>w jego naturze -- na drodze metafizyki monoteistycznej, Jednego ( <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>, <a class="inline-tag" href="/notes/obs.html/tags/Plotyn/index.html">Plotyn</a> etc). Wieczny, niezmienny etc.   </li>
+<li>w jego relacjach osobowych (6 stopień) (jako Trójca)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(6 stopień) W relacjach osobowych (jako Trójca)   <ul>
+<li>Nowy testament   </li>
+<li>Metafizyka neoplatońska. Bóg jako dobro. Pojęcie dobra prowadzi do pojęcia emanacji. Do natury dobra należy dzielenie się.   <ul>
+<li>Plotyn: 3 hipostazy na zewnątrz, gradacja doskonałości.   </li>
+<li>Chrześcijaństwo: emanacja wewnętrzna, bez gradacji. Dobro (najlepsze) jest (najbardziej) rozlewne. Doskonała emanacja to danie się całego, bez gradacji. Oprócz tego Bóg zrobił emanację na zewnątrz, uczynił coś poza-boskiego, po to, aby to przebóstwić.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Ale to wszystko jest siedząc na drabinie. Jak wyjść ponad nasze pojęcia? <br />
+Nagle: paradoks: że jak Jeden, ale i Troisty? Nie kontempluj osobno jako jednego i troistego, lecz rozważaj łącznie jeden i troisty. Wejdź w ten paradoks (dostać zeza).   </p>
+<p>Drugi paradoks: Wcielenie. Absolut przerastający nasze pojmowanie, ponaddoskonały, staje się człowiekiem. Rozsadza to umysł. Przestajemy istnieć.   </p>
+<p>Wchodzimy po drabinie i potem wybijamy ją sobie spod nóg.</p></div>
+<div class="note-footer">
+
+</div>
+
+                                <!-- end content -->
+                        </div>
+                        <div class="container_filler">
+                        </div>
+                        
+                </div>
+        </div>
+
+        <script>
+                function handle_toggle_side_bar(e){
+                        let header;
+                        let pane; 
+                        let target = e.target
+
+                        // switch out the navbar button click for a header click
+                        if (target.id == 'left_pane_toggle_nav'){
+                                target = document.getElementById('left_pane_fold_header')
+                        }
+                        else if (target.id == 'right_pane_toggle_nav'){
+                                target = document.getElementById('right_pane_fold_header')
+                        }
+
+                        // get header and pane
+                        if (target.classList.contains('fold_header')) {
+                                header = target;
+                                pane = target.parentElement;
+                        }
+                        else {
+                                pane = target;
+                                header = target.getElementsByClassName('fold_header')[0];
+                        }
+                        toggle_side_bar(pane, header, true)
+                        e.stopPropagation();
+                }
+                function handle_toggle_side_bar_button(e){
+                        document.getElementById('menu_toggle_button').click()
+                        handle_toggle_side_bar(e);
+                }
+
+                function toggle_side_bar(pane, header, save) {
+                        let active = (pane.classList.contains('active'))
+                        if (active){
+                                disable_side_bar(pane, header, save);
+                        }
+                        else {
+                                enable_side_bar(pane, header, save);
+                        }
+                }
+                function enable_side_bar(pane, header, save){
+                        pane.classList.add('active');
+                        pane.removeEventListener('click', handle_toggle_side_bar);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, true) }
+                }
+                function disable_side_bar(pane, header, save){
+                        pane.classList.remove('active');
+                        pane.addEventListener('click', handle_toggle_side_bar);
+                        header.removeEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, false) }
+                }
+                function set_correct_header_symbol(header){
+                        let pane = header.parentElement;
+                        let symbol = [['>', '<'],['<', '>']]
+                        symbol = symbol[Number(header.classList.contains('right_pane_fold_header'))][Number(pane.classList.contains('active'))];
+                        console.log(symbol);
+                        header.innerHTML = symbol
+                        return header;
+                }
+                function panel_folding_get_panel_name(header){
+                        return ['left', 'right'][Number(header.classList.contains('right_pane_fold_header'))]
+                }
+                function save_panel_folding_state(header, active){
+                        ls_set('pane_folding_state_'+panel_folding_get_panel_name(header), Number(active));
+                }
+                function load_panel_folding_state(panel_name){
+                        val = ls_get('pane_folding_state_'+panel_name)
+                        if (!val){ return {'exists': false, 'value': null}}
+                        return {'exists': true, 'value': Boolean(Number(val))}
+                }
+                function set_pane_folding_start(left_header, right_header){
+                        // small screen = closed
+                        let right_pane_enabled = true;
+                        let left_pane_enabled = true;
+                        let w = window.visualViewport.width
+                        if (w < 1000){
+                                left_pane_enabled = false
+                        }
+                        if (w < 800){
+                                right_pane_enabled = false
+                        }
+
+                        // get saved values if present
+                        let rval = load_panel_folding_state('right')
+                        if (rval['exists']){
+                                right_pane_enabled = rval['value']
+                        }
+                        let lval = load_panel_folding_state('left')
+                        if (lval['exists']){
+                                left_pane_enabled = lval['value']
+                        }
+
+                        // default = enabled, so we only need to disable
+                        if (!left_pane_enabled){
+                                disable_side_bar(document.getElementById('left_pane'), document.getElementById('left_pane_fold_header'))
+                        }
+                        if (!right_pane_enabled){
+                                disable_side_bar(document.getElementById('right_pane'), document.getElementById('right_pane_fold_header'))
+                        }
+                }
+
+                function init_pane_folding(header){
+                        set_correct_header_symbol(header);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                }
+                
+                
+                set_pane_folding_start()
+                init_pane_folding(document.getElementById('left_pane_fold_header'));
+                init_pane_folding(document.getElementById('right_pane_fold_header'));
+
+                document.getElementById('left_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+                document.getElementById('right_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+        </script>
+
+        <script src="/notes/obs.html/static/load_dirtree_footer.js" type="text/javascript"></script>
+
+        
+
+
+
+
+</body>
+</html>
