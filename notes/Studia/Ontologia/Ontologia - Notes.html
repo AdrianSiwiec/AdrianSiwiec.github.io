@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="ontologia - notes">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/notes/favicon.ico" />
+
+                <!-- Set title -->
+                <title>Notatki</title>
+
+                <!-- Includes -->
+                
+<script src="/notes/obs.html/static/obsidian_core.js"></script>
+<script src="/notes/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/notes/obs.html/static/master.css" />
+<script src="/notes/obs.html/static/mermaid.9.0.1.min.js"></script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/notes/obs.html/static/flexsearch.bundle.js"></script>
+<script src="/notes/obs.html/static/pako.js"></script>
+<script src="/notes/obs.html/static/search.js"></script>
+<script src="/notes/obs.html/static/dirtree.js"></script>
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'ontologia - notes';
+                        const HTML_URL_PREFIX = '/notes';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        <div id="search-master-div">
+    <div id="search-slab" king_ramses="return the slaaab">
+            <div id="search-controls">
+                    <input id="search_string" placeholder="Type to search notes" type="text" />
+                    <div class="tooltip" style="display: none;">
+                        <input type="checkbox" id="hard_search" name="hard" />
+                        <span class="tooltiptext">Hard search (require exact match)</span>
+                    </div>
+                    <div id="search-results-box">
+                        <div id="search-results"></div>
+                    </div>
+                    <div id="search-instructions">
+                        <div class="prompt-instruction">
+                                <b>esc</b> to dismiss
+                        </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("search-master-div").addEventListener('click', e => {
+            if(e.target !== e.currentTarget){
+                    return
+            }
+            toggle_id('search-master-div');
+    })
+    document.getElementById("search_string").addEventListener("input", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    }); 
+    document.getElementById("hard_search").addEventListener("click", function(event) {
+            setTimeout( () =>run_search('search_string', 'hard_search'), 100 );
+    });
+
+    window.addEventListener('keydown', e => {
+        if((e.key=='Escape'||e.key=='Esc'||e.keyCode==27)){
+            toggle_id('search-master-div');
+            return false;
+        } 
+    }, true);
+
+    function click_list_link(element){
+        element.parentElement.getElementsByTagName('a')[0].click()
+    }
+</script>
+
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header">
+    <div id="header_flex" class="flex_row">
+            <a href="/notes/index.html" id="homelink" title="Clear screen and go to homepage">Notatki</a>
+            <div id="menu_toggle_button" class="navbar-button requires_js" onclick="toggle_menu()">
+                    ≡
+            </div>
+            <div id="navbar" class="navbar requires_js">
+                    
+                    <div class="icon-tray">
+                            <div id="theme-button" class="theme-button requires_js" title="Change theme" onclick="toggle_theme_popup(this)">
+    T
+</div>
+<script>
+    function toggle_theme_popup(el){
+        // make theme button show that it's active by adding the .active class
+        toggle(el);
+
+        // show the theme selector
+        toggle_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            toggle(pu);
+        }
+    }
+
+    function disable_theme_popup(){
+        disable_id('theme-button');
+
+        // show the theme selector
+        disable_id('theme-popup')
+
+        let h2 = document.getElementById('header2')
+        if (h2){
+            let pu = document.getElementById('header2').getElementsByClassName('popup')[0];
+            disable(pu);
+        }
+    }
+</script>
+                                    <div onclick="openSearch()" class="theme-button requires_js">
+            <img src = "/notes/obs.html/static/search.svg" alt="Search notes" title="Search notes" style="margin: 4px;"/>
+        </div>
+        <script>
+            function openSearch(){
+                // toggle search popup and continue with extra code if it is enabled this time
+                if (toggle_id('search-master-div')){
+                    // get input field and temporarily disable it
+                    let ss = document.getElementById('search_string');
+                    ss.value = 'Seach data initializing...';
+                    ss.readOnly = true; 
+
+                    // load search data if not yet done so
+                    setTimeout(function(){
+                        LoadSearchData()
+
+                        // clear input and put focus on it so that we can start typing immediately
+                        ss.value = '';
+                        ss.readOnly = false; 
+                        ss.focus()
+                        ss.select()
+                    }, 100);
+                }
+            }
+        </script>
+                            
+                            
+                            
+                            
+                    </div>
+                    <div style="display: flex; flex-direction:column">
+                        <div id="left_pane_toggle_nav" class="left_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                        <div id="right_pane_toggle_nav" class="right_pane_toggle_nav">Toggle Table of Contents Pane</div>
+                    </div>
+            </div>
+    </div>
+    <div class="popup" id="theme-popup">
+    <label for="cars">Theme </label>
+
+    <select name="theme" id="theme" onchange="set_theme(this.value)">
+      <option value="light">light</option>
+      <option value="obs-light" selected="selected">obsidian-light</option>
+      <option value="obs-dark">obsidian-dark</option>
+    </select> 
+</div>
+</div>
+                <div class="flex_row">
+                        <div id="left_pane" class="left_pane active">
+    <div id="left_pane_fold_header" class="left_pane_fold_header fold_header">x</div>
+    <div id="left_pane_content" class="left_pane_content">
+            
+    </div>
+</div>
+                        <div class="container">
+                                <embeddedtitle>Ontologia - Notes</embeddedtitle>
+<div class="content"><blockquote>
+<p>Last updated on 2023-06-14   </p>
+</blockquote>
+<h1 id="ontologia">Ontologia</h1>
+<div class="toc">
+<ul>
+<li><a href="#ontologia" class="anchor-link">Ontologia</a><ul>
+<li><a href="#22-10-2022" class="anchor-link">22.10.2022</a><ul>
+<li><a href="#pojecie-przedmiotu" class="anchor-link">Pojęcie przedmiotu</a><ul>
+<li><a href="#relacja-inherencji" class="anchor-link">Relacja inherencji</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#05-11-2022" class="anchor-link">05.11.2022</a></li>
+<li><a href="#19-11-2022" class="anchor-link">19.11.2022</a></li>
+<li><a href="#03-11-2022" class="anchor-link">03.11.2022</a><ul>
+<li><a href="#dociekania-filozoficzne-_obsidian_pattern_tag_ludwig_wittgenstein-a" class="anchor-link">"Dociekania Filozoficzne" {_obsidian_pattern_tag_Ludwig_Wittgenstein}'a</a></li>
+</ul>
+</li>
+<li><a href="#17-12-2022" class="anchor-link">17.12.2022</a><ul>
+<li><a href="#problem-uniwersaliow" class="anchor-link">Problem uniwersaliów</a><ul>
+<li><a href="#co-to-znaczy-powszednik" class="anchor-link">Co to znaczy "powszednik"?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#14-01-2023" class="anchor-link">14.01.2023</a><ul>
+<li><a href="#logika-ontologia-i-aksjologia" class="anchor-link">Logika, Ontologia (i Aksjologia)</a><ul>
+<li><a href="#_obsidian_pattern_tag_jan_ukasiewicz" class="anchor-link">{_obsidian_pattern_tag_Jan_Łukasiewicz}</a></li>
+<li><a href="#ontologia-a-jezyk" class="anchor-link">Ontologia a język</a></li>
+<li><a href="#_obsidian_pattern_tag_jerzy_pluta-przedstawia-to-tak" class="anchor-link">{_obsidian_pattern_tag_Jerzy_Pluta} przedstawia to tak:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#28-01-2023" class="anchor-link">28.01.2023</a><ul>
+<li><a href="#reizm-referat-kuby-sawinskiego" class="anchor-link">Reizm (referat Kuby Sławińskiego)</a></li>
+</ul>
+</li>
+<li><a href="#04-02-2023" class="anchor-link">04.02.2023</a><ul>
+<li><a href="#epikur" class="anchor-link">Epikur</a></li>
+</ul>
+</li>
+<li><a href="#04-03-2023" class="anchor-link">04.03.2023</a></li>
+<li><a href="#-platon-ludzie-wierzacy-mozemy-miec-wglad-w-prawdy-absolutne-powinnismy-wybierac-wedug-nich" class="anchor-link">- Platon, ludzie wierzący -- możemy mieć wgląd w prawdy absolutne. Powinniśmy wybierać według nich</a></li>
+<li><a href="#18-03-2023" class="anchor-link">18.03.2023</a></li>
+<li><a href="#04-01-2023" class="anchor-link">04.01.2023</a><ul>
+<li><a href="#nedza-historycyzmu" class="anchor-link">"Nędza Historycyzmu"</a><ul>
+<li><a href="#antynaturalistyczny" class="anchor-link">Antynaturalistyczny</a></li>
+<li><a href="#naturalistyczny" class="anchor-link">Naturalistyczny</a></li>
+<li><a href="#krytyka-poppera" class="anchor-link">Krytyka Poppera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#22-04-2023" class="anchor-link">22.04.2023</a></li>
+<li><a href="#06-05-2023" class="anchor-link">06.05.2023</a></li>
+<li><a href="#20-05-2023" class="anchor-link">20.05.2023</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>    </p>
+<h2 id="22-10-2022">22.10.2022</h2>
+<h3 id="pojecie-przedmiotu">Pojęcie przedmiotu</h3>
+<p>(Jedna z definicji Ontologii: Ontologia to teoria przedmiotu jako przedmiotu)   </p>
+<p>(Przedmiot jest to "to a to")   </p>
+<h4 id="relacja-inherencji">Relacja inherencji</h4>
+<p>A jest B   </p>
+<p>A (coś) jest (spójnik inherencyjny) B (własność)    </p>
+<ul>
+<li>(zwana również relacją przysługiwania)   </li>
+<li>bez tej relacji nie ma refleksji ontologicznej   </li>
+<li>relacja ta jest:   <ul>
+<li>asymetryczna (dla każdego A,B: jeśli (A jest B) to nie (B jest A))   </li>
+<li>przeciwzwrotna (dla każdego A: nie (A jest A))   </li>
+<li>nie jest przechodnia   </li>
+<li>dziedzina: zbiór przedmiotów   </li>
+<li>przeciwdziedzina: zbiór cech   </li>
+</ul>
+</li>
+<li>mamy więc trzy: <br />
+            - przedmiot <br />
+            - relacja inherencji <br />
+            - cechy   <ul>
+<li>wszystkie z nich są pojęciami pierwotnymi w ontologii (definicja jednego potrzebuje dwóch pozostałych)   </li>
+<li>nie mamy co do nich definicji klasycznych (tzn. z rodzajem i różnicą gatunkową)   </li>
+</ul>
+</li>
+<li>
+<p>Mamy więc jakby trzy "kategorie" bytów <br />
+    a. przedmioty nie będące cechami   </p>
+<ul>
+<li>np. każda rzecz fizyczna jako indywiduum   </li>
+<li>
+<p>np. konkretna osoba (Adam Mickiewicz) <br />
+b. przedmioty, które są zarazem cechami   </p>
+</li>
+<li>
+<p>np. N.N. jest lekarzem. Lekarz jest zawodem. <br />
+c. cechy nie będące przedmiotami   </p>
+</li>
+<li>
+<p>(patrz niżej)   </p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Pytanie: czy są cechy nie będące przedmiotami   </p>
+<ul>
+<li>jeśli nie, to: "przedmiot" staje się pojęciem transcendentnym (tzn. obejmuje wszystko)   </li>
+<li>jeśli powiemy: "A jest cechą, która nie jest przedmiotem", to zdaje się, że to pokazaliśmy   <ul>
+<li>ale, można powiedzieć, że to nie jest prawdziwa cecha, więc A nie jest prawdziwym przedmiotem (chyba?)   </li>
+</ul>
+</li>
+<li>ogólnie: nie wiadomo; systemy ontologii powinny odpowiadać na to pytanie   </li>
+</ul>
+<p>Można myśleć o cechach jako o klasie abstrakcji   </p>
+<p>Inna definicja przedmiotu: "Przedmiot jest to coś, co jest tożsame same z sobą". (A=A)   </p>
+<p>Problem niczego:   </p>
+<ul>
+<li>intuicja: o niczym nic nie chcemy orzekać.   <ul>
+<li>ale: można powiedzieć na przykład: "Nic jest puste" (?)   </li>
+</ul>
+</li>
+<li>możliwe rozwiązanie: nic to nie jest nazwa.   <ul>
+<li>ale: czym w takim razie jest?   </li>
+</ul>
+</li>
+</ul>
+<h2 id="05-11-2022">05.11.2022</h2>
+<p>"Przedmiot" -- rozumiemy uniwersalnie (skrajnie) bezwzględnie wszystko.   </p>
+<p>Wnioski analityczne:   </p>
+<ul>
+<li>wszystko jest przedmiotem   </li>
+<li>jest tym co jakoś jest: "przedmiot jest X" (=byt)   </li>
+</ul>
+<p>Różnica między:    </p>
+<ul>
+<li>"X jest bytem"   <ul>
+<li>(wg. Dr. Pluty)   </li>
+<li>Istnieje dynamikbyciu, energia, moc    <ul>
+<li>( <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a> -- Jeżeli w charakterystyce przedmiotu nie ma czegoś co przesądza o tym, że będzie zaraz dalej, to musi działać jakaś siła podtrzymująca)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>"X jest przedmiotem"   <ul>
+<li>substancjalizowany, trwały   </li>
+</ul>
+</li>
+</ul>
+<p>Nazwy generalne   </p>
+<ul>
+<li>zasada odwrotnej proporcjonalności: bogactwo nazwy vs zakres nazwy. Im nazwa jest węższa zakresowo, tym jest bogatsza w treść. I na odwrót.   <ul>
+<li>(Zakres, czyli konotacja -- zestaw cech charakterystycznych, które tworzą pojęcie nazwy)   </li>
+</ul>
+</li>
+</ul>
+<p>Np:   </p>
+<ul>
+<li>człowiek vs student   </li>
+<li>"student" ma węższy zakres (ściśle), więc nazwa student jest bogatsza w treść (więcej informacji)   </li>
+<li>"jest" &gt; człowiek &gt; student &gt; student filozofii &gt; nazwy indywidualne (własne)   <ul>
+<li>desygnatem nazwy indywiduwalnej jest jeden byt, nie ma podzbiorów, (prawie) nieskończona treść, konotacja zerowa   </li>
+</ul>
+</li>
+<li>Rodzina nazywa noworodka "Jan"   <ul>
+<li>Gdyby "Jan" funkcjonowała jako nazwa generalna to ta decyzja zostałaby podjęta po obserwacji dziecka i decyzji, że ma cechy "Janowatości"   </li>
+<li>A gdy to nazwa indywidualna, to decyzja nie jest o "janowatości" (semiotycy powiedzą, że to etykieta -- brak konotacji)   </li>
+<li>ALE zasada odwrotnej proporcjonalności -- "Janów" jest na tyle, że nie da się ich wyliczyć/wyłonić, więc konotacja jest nieskończona   </li>
+</ul>
+</li>
+</ul>
+<p>Nie ma dobrej teorii nazw, literatury nie ma prawie.   </p>
+<ul>
+<li>"Nazywanie a konieczność" <a class="inline-tag" href="/notes/obs.html/tags/Saul_Kriepke/index.html">Saul_Kriepke</a>    </li>
+</ul>
+<p>Nazwy:   </p>
+<ul>
+<li>ogólne (krzesło) -- wiele desygnatów   </li>
+<li>jednostkowe (Adrian Pocheć) -- jeden desygnat   </li>
+<li>puste (pegaz) -- brak desygnatów   </li>
+</ul>
+<p>generalne (jednostkowe?):   </p>
+<ul>
+<li>indywiduwalne -- imię własne   </li>
+<li>jednostkowe -- "jednoręki student filozofii w Polsce" (być może jeden)   </li>
+</ul>
+<p>Zbiór rzutników w sali 108 UW jest zbiorem jednoelementowym (jest jeden)   </p>
+<ul>
+<li>jaka jest różnica między rzutnikiem jako rzutnikiem, a zbiorem rzutników w sali 108 UW?   </li>
+<li>Teoria mnogości:   <ul>
+<li><span class="arithmatex">\(A = \{A\}\)</span> -- nieuzasadnione, ale się tak przyjmuje, bo wygodnie, ale jest to kolosalna różnica (dla Pluty, będzie o tym potem)   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Leibniz/index.html">Leibniz</a>:   </p>
+<ul>
+<li>Świat to monady, składa się z monad, które nie oddziałowują na siebie, są poza czasem i przestrzenią, widzą świat dookoła siebie, są zaprogramowane przez twórcę i realizują jego program.    </li>
+<li>Ludzie nie mają pełnego spojrzenia: "czynność X powoduje Y" -- związek przyczynowo-skutkowy   <ul>
+<li>Metafizycznie nie ma związku przyczynowo-skutkowego, tylko jest współgranie zjawisk osobnych. Ale mówi się o nich, bo są pragmatycznie użyteczne.   </li>
+<li>(Plucie nie podoba się taki krok myślowy)   </li>
+</ul>
+</li>
+</ul>
+<p>Mówimy o linii prostej, ale nie ma linii prostych fizycznie. Ale pragmatycznie traktujemy jakby było wiadomo, że nie jest linią prostą absolutnie.   </p>
+<p>X ma treść zerową, ale ma cechę: "jest" -- jedność   </p>
+<p>Fenomenolodzy:   </p>
+<ul>
+<li>Zasada odwrotnej proporcjonalności nie musi dotyczyć skrajności   </li>
+<li>klasy abstrakcji -- relacja równościowa wszystkich elementów w zbiorze, wyodrębmia to liczbę abstrakcji   </li>
+<li>czy można popatrzeć na przedmiot jako nie na klasę abstrakcji (zadanie)   </li>
+<li>"Przedmiot" -- co jest desygnatem, jeżeli X traktujemy jako nazwę własną?   </li>
+</ul>
+<p>Spinoza -- całość bytu jako Natura/Bóg   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>   </p>
+<ul>
+<li>"1 jest bytem jednostkowym, a nie klasą abstrakcji"   </li>
+<li>jego systemy stanowią próbę alternatywnego języka nauki wobec teorii mnogości i niewyjaśnionego statusu ontycznego zbiorów.   </li>
+<li>Proponował zbutować nowy język nauki:   <ul>
+<li>proto logika (algebra logiki)   </li>
+<li>ontologia   </li>
+<li>mereologia (teoria zbiorów kolektywnych)   </li>
+</ul>
+</li>
+<li>np. Zbiór krzeseł w sali 108   <ul>
+<li>zbiór dystrybutywny vs   <ul>
+<li>wielość krzeseł w czasie i przestrzeni. Czym jest, czy istnieje, kiedy istnieje. Najluźniejszy rodzaj całości   </li>
+</ul>
+</li>
+<li>zbiór kolektywny (mereologia)   <ul>
+<li>kolektywne krzesło, które jest agregatem wszystkich krzeseł, jest twarde, jest też fizycznie i w czasie, sklada się z części. Całość to to samo co składowe.   </li>
+</ul>
+</li>
+<li>Co jak wyrzucimy krzesło przez okno?   <ul>
+<li>tego teoria mnogości nie wyjaśnia   </li>
+<li>Indywidualne krzesło się pali, rdzewieje, a zbiór nie   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Leśniewski był logikiem formalnym, ale podkreślał, że jest metafizykiem, a logiki używał do filozofowania   </li>
+<li>Konsekwencje jego systemu są niejasne   </li>
+<li>Przyjaźnił się z <a class="inline-tag" href="/notes/obs.html/tags/Tadeusz_Kotarbiński/index.html">Tadeusz_Kotarbiński</a>'m, który rozwijał ontologię reizmu, prowadził wojny antyplatońskie, aby w nauce wyrzucać Platonizm   </li>
+<li>Wg. Pluty   <ul>
+<li>burzliwe dyskusje -- w logice widzi on teorię nie neutralnie ontologiczną, a teorię przedmiotów, ale mówiącą o czymś nieprzedmiotowym (sprzeczność) (większość się oburzy)   </li>
+<li>Logiki nie są metafizycznie obojętne, ale naładowane podmiotami nie-Parmenidowskimi   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a>: pewne regiony problematyki metafizyki były ignorowane przez wieki   </li>
+<li>Standardowo: matematyki i logika są neutralne ontologicznie, więc nie ma co rozważać   </li>
+<li>(jeżeli wszystko jest przedmiotem to niczego nie ma. Nic jest więc czym? <em>Nie jest</em> brakiem przedmiotu? Sprzeczność?)   </li>
+</ul>
+</li>
+<li>Leśniewski: Metafizyka -- brak granic w konstruowaniu bytów ontycznych, w ostateczności będzie musiał być rygor logiczny.   <ul>
+<li>Jego język miał dać rygor wprowadzania/wyprowadzania pojęć   </li>
+<li>Logika formalna -&gt; ontologia   </li>
+</ul>
+</li>
+</ul>
+<h2 id="19-11-2022">19.11.2022</h2>
+<p>Referaty (po max 2 osoby na temat)   </p>
+<ul>
+<li>28.01.2023 -- Reizm (konkretyzm) Kotarbińskiego, Materializm   </li>
+<li>04.02.2023 -- Epikureizm (Demokryt)   </li>
+<li>Ewentyzm Punktowy (Augustynek) (Ontologia ewentystyczna) (<strong>Moje z Tymkiem</strong>)   </li>
+<li>Teoria 3-go świata Poppera (ontologia późnego Poppera)   </li>
+<li>Determinizm -- na podstawie "Wszechświat otwarty" Poppera   </li>
+<li>Historycyzm -- na podstawie "Nędza Historycyzmu" Poppera (ontologia bytów nauk historycznych)   </li>
+<li>Spinoza -- substancja   </li>
+<li>Leibniz -- "Monadologia"   </li>
+</ul>
+<p>Nieklasyczne, nowożytne rozumienie istnienia (na przykładzie światła). <br />
+(Na podstawie: Wojciech Sady - "Co to znaczy, że coś istnieje?", <a href="/notes/not_created.html" class="nonexistent-link">Wojciech Sady - Co to znaczy, że coś istnieje.pdf</a>)   </p>
+<ul>
+<li>Mechanika Newtona narzuciła swój mechanistyczny opis świata.   </li>
+<li>W nim trzeba było podać opis zdarzeń świetlnych. Pojawiły się dwie konkurencyjne: falowa vs korpuskularna postać światła   </li>
+<li>Model korpuskularny zwyciężył w XVIIIw. Wg. niego (z tego okresu) ciałka świetlne są kręcącymi się wielościanami foremnymi (wprowadzenie periodyczności -- komplikacja starej teorii (powtarzający się motyw)).   </li>
+<li>Później: powtórne odkrycie falowej natury światła.   <ul>
+<li>A więc potrzebny jest ośrodek tych fal -- eter światłonośny.   </li>
+<li>Jakie są mechaniczne własności eteru? (Tak, żeby działało w mechanice Newtona)   </li>
+<li>Wymyślane były różne teorie, żadna nie była satysfakcjonująca.   </li>
+</ul>
+</li>
+<li>Hipoteza Eteru nigdy nie dała satysfakcjonującego wyjaśnienia fizycznego   <ul>
+<li>Ostatecznie koncepcja ta upadła po <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a>'ie   </li>
+<li><strong>Eteru nie ma</strong>   </li>
+</ul>
+</li>
+</ul>
+<p>Ontologicznie:   </p>
+<ul>
+<li>Co znaczy, że fizyk mówi, że coś jest/czegoś nie ma?   <ul>
+<li>Fizyk koncepcje ontologiczne bierze jako zastane.   <ul>
+<li>Gdy <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a> "filozofował", nie robił tego jako fizyk   </li>
+</ul>
+</li>
+<li>Metodami fizyki nie uzasadni się fizyki   </li>
+</ul>
+</li>
+<li>Jak fizycy mogli się zajmować czymś, co nie istnieje? (np. Eterem)   <ul>
+<li>Skoro w sumie fizyka ma być najbliżej twardej rzeczywistości   </li>
+</ul>
+</li>
+<li>W szkole fizyk uczy się wyjściowych, standardowych modeli. Nie może (w szkole) nie zgadzać się z tymi modelami   <ul>
+<li>Aby powiedzieć coś nowego w fizyce, musisz rozwiązać <em>w zastanym modelu</em> jakiś nowy problem   </li>
+</ul>
+</li>
+<li>Wydawałoby się, że istnienie nie powinno być zależne od przyjętego modelu   <ul>
+<li>Inaczej istnienie jest zależne od podmiotu poznającego   </li>
+<li>Istnienie dla fizyka oznacza: należące do jego modelu bazowego   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Tadeusz_Czeżowski/index.html">Tadeusz_Czeżowski</a> 1953 "O metodzie opisu analitycznego"   </p>
+<ul>
+<li>Nowe paradygmaty (w nauce) pojawiają się na drodze Opisu Analitycznego   </li>
+<li>Co to jest Opis Analityczny?   <ul>
+<li>Podmiot wybiera przedmiot (typowy, reprezentatywny), opisuje go twierdzeniami ogólnymi, o charakterze apodyktycznym -- są to pewniki, a zarazem performatywy definicyjne (i opis empiryczny)   </li>
+<li>Ta definicja analityczna jest równa realnej. Są to twierdzenia egzystencjalne.   </li>
+<li>Przykład: <a class="inline-tag" href="/notes/obs.html/tags/Galileusz/index.html">Galileusz</a> wprowadził pojęcie ruchu jednostajnie przyspieszonego, gdzie <code>s = at²</code>    <ul>
+<li>Jego eksperymenty nie były bardzo dokładne. Wzór (definicja) był idealizacją, jest to dzieło umysłu   </li>
+<li>W modelu jest coś więcej niż rzeczywistość. Model porządkuje rzeczywistość.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Krok opisu analitycznego występuje w najbardziej twórczej części fizyki   <ul>
+<li>Czy ruch jednostajnie przyspieszony istnieje? (imo: Trochę jak idee Platona)   </li>
+<li>Tworzenie definicji jest "aktem ontologicznego zaangażowania"   </li>
+</ul>
+</li>
+</ul>
+<p>Teoria naukowa "składa się" z (aby podać definicję jakiejś teorii naukowej, trzeba podać):   </p>
+<ul>
+<li>Język   </li>
+<li>Terminy Pierwotne   <ul>
+<li>Oraz Reguły Definicyjne   </li>
+</ul>
+</li>
+<li>Aksjomaty   <ul>
+<li>Oraz Reguły Inferencji   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Kazimierz_Ajdukiewicz/index.html">Kazimierz_Ajdukiewicz</a>'a fazy rozwoju nauki   </p>
+<ul>
+<li>
+<ol>
+<li>Intuicyjna, przedrefleksyjna   </li>
+<li>Język, terminy pierwotne i aksjomaty są zdroworozsądkowe   </li>
+<li>(e.g. geometria przed <a class="inline-tag" href="/notes/obs.html/tags/Euclid/index.html">Euclid</a>'esem)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Aksjomatyczna, intuicyjna   </li>
+<li>Wyszczególnienie, formalizacja Terminów Pierwotnych i Aksjomatów.   <ul>
+<li>Sens terminów pierwotnych zgodny z rzeczywistością   </li>
+<li>Aksjomaty oczywiste   </li>
+</ul>
+</li>
+<li>(e.g. geometria <a class="inline-tag" href="/notes/obs.html/tags/Euclid/index.html">Euclid</a>'esa)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Dedukcyjna aksjomatyczna   </li>
+<li>Terminy Pierwotne nie muszą być z języka oczywistego   </li>
+<li>Aksjomaty to performatywy, zdania nieoczywiste (niekoniecznie oczywiste) dla zdrowego rozsądku   </li>
+<li>(e.g. Geometrie nieeklidesowe)   </li>
+</ol>
+</li>
+<li>Jaka jest motywacja rozwoju nauki z wcześniejszej fazy do późniejszej?   <ul>
+<li>Intuicje się nie sprawdzają -- nie są dostatecznie dokładne   <ul>
+<li>Np. 1--&gt;2 odkrycie odcinków niewspółmiernych (1 i sqrt(2) w kwadracie)   </li>
+<li>Np. 2--&gt;3 odkrycie geometrii nieeklidesowych, zakwestionowanie piątego aksjomatu Euklidesa (intuicyjnie oczywistego)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Nowa przestrzeń Ontologiczna -- trzeci typ rozwoju naukowego   </p>
+<ul>
+<li>Co jest uniwersum (Ontologicznym) typu trzeciego?   </li>
+<li>Definicje przez postulaty   <ul>
+<li>e.g. "Niech będzie x, taki że <code>2x + 6 = 0</code>"   </li>
+<li>tak samo np. w fizyce jest zdefiniowyny Atom   </li>
+</ul>
+</li>
+<li>Uniwersum (uniwersa) składa się ze <strong>zmiennych, które spełniają aksjomaty</strong>   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a>: <strong>Istnieć = należeć do uniwersum, które przebiega zmienne z danej teorii.</strong>   <ul>
+<li>Później są intuicje wyższego rzędu.    <ul>
+<li>Np.: lepsze są języki prostsze (fizyka vs fenomenologia)   </li>
+<li>Np.: <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a>: elegancja dowodu   </li>
+</ul>
+</li>
+<li>Jak, gdzie i kiedy dyskutuje się te kryteria intuicji wyższego rzędu?   <ul>
+<li><strong>Tu</strong> jest miejsce dla filozofii.   </li>
+</ul>
+</li>
+<li>Kryteria wyboru Uniwersum nie jest wewnątrz tego Uniwersum   <ul>
+<li>Nie są <strong>wyrażalne</strong> w tym Uniwersum.   </li>
+</ul>
+</li>
+<li>Akt wyboru uniwersum to tzw. "Ontological Commitment ( <a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a> ))"   <ul>
+<li>"To jest oczywiste" <br />
+Droga przez te trzy fazy, do intuicji wyższego rzędu i kryteriów uniwersum przypomina (jest?) <strong>Drugimi Narodzinami</strong>   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Zadanie filozofów: uświadomienie nieuświadomionego. Podnoszenie poziomu hegemonikonu   </p>
+</li>
+<li>Czy o tym pisali <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>, <a class="inline-tag" href="/notes/obs.html/tags/Edmund_Husserl/index.html">Edmund_Husserl</a>, <a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a> ?   </li>
+</ul>
+<p>Tworzenie nauki jest podobne do Statku Neurath'a: Mieszkamy na statku, który nie może zawijać do portu. Musimy go naprawiać i ulepszać. Oczywiste jest, że nie możemy naprawiać go w całości, musimy to robić odpowiednio małymi krokami.   </p>
+<p>Warto więc podróżować, uczyć się języków -- jest to jak nakładanie innych okularów ontologicznych.   </p>
+<p>To jest takie smutne i relatywne. Czy nie ma nic absolutnego?   </p>
+<ul>
+<li>Świetne pytanie filozoficzne:   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a> - Nie ma   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a> - Jest   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Edmund_Husserl/index.html">Edmund_Husserl</a> - Jest (?)   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a> - "List do księżniczki Elżbiety"   <ul>
+<li>"Czyste myślenie" (myślenie bez założeń) możliwe jest niedługo, oraz raz, może dwa razy w życiu.   <ul>
+<li>Wtedy są przebłyski prawdy absolutnej.   </li>
+<li>Wtedy wymyślił swoje "Cogito ego sum"   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Georgij_Gurdżijew/index.html">Georgij_Gurdżijew</a> - mistyk, stworzył swoją ontologię   </p>
+<ul>
+<li>Pytanie: Czy człowiek może się zmienić?   <ul>
+<li>Jak jest nieświadomy -- nie   </li>
+<li>Jak świadomy -- nie może zmienić swojej esencji (esencji swojego myślenia)   </li>
+<li>Czy może zmienić esencję?   <ul>
+<li>Kosztem ogromnego, świadomego cierpienia   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Εν αρχη ην ο λογος.   </p>
+<h2 id="03-11-2022">03.11.2022</h2>
+<blockquote>
+<p>Mariusz Grygianiec "Identyczność i trwanie"   </p>
+</blockquote>
+<p>Gry językowe <a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>'a jako uściślenie kryterium istnienia <a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a>'a.   </p>
+<p>Kryterium Quine'a: Istnieć to należeć do dziedziny, którą przebiegają zmienne danej teorii (czyli należeć do Uniwersum danej teorii).   </p>
+<ul>
+<li>Wyznaczenie uniwersum nie jest możliwe wewnątrz danej teorii   <ul>
+<li>Klasycznie, podobne powie <a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>: Istnienie nie jest własnością (cechą) przedmiotu   </li>
+</ul>
+</li>
+<li>Przyjęcie danego Uniwersum to decyzja holistyczna (przyjmuje się całe uniwersum na raz)   </li>
+</ul>
+<p>Czyli istnienie jest zależne od kwestii językowych. Strasznie dziwne. <em>Czym</em> ten język jest? Jaka jest relacja język-ontologia? (jest to nieklasyczne podejście do Ontologii)   </p>
+<h3 id="dociekania-filozoficzne-_obsidian_pattern_tag_ludwig_wittgenstein-a">"Dociekania Filozoficzne" <a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>'a</h3>
+<p>Cel: wyjaśnienie, czym jest znaczenie słów   </p>
+<ul>
+<li>czyli zastąpić młodego Wittgensteina:   <ul>
+<li>Młody: zdanie wyraża, emanuje abstrakcyjny obraz. Prawda to zgodność tego obrazu z rzeczywistością   </li>
+</ul>
+</li>
+<li>Znaczenie słów jest całkowicie wyznaczone przez ich rolę w grach językowych -- i nie inaczej   </li>
+<li>Gra językowa to całość praktyk, działań gdzie używanie słów jest uwikłane w te działania   </li>
+</ul>
+<p>Dlaczego "gry"?   </p>
+<ul>
+<li>Reguły języka to jakby reguły gry   </li>
+<li>wypowiedzieć coś to jakby wykonać ruch   </li>
+<li>wyodrębniona warstwa zdarzeń i warstwa reguł   </li>
+<li>gra to <em>pewien sposób życia</em>   </li>
+<li>Przykłady:   <ul>
+<li>rozkazywanie i działanie według rozkazu   </li>
+<li>opisywać   </li>
+<li>zdawać sprawę z zajścia   </li>
+<li>odgrywać w teatrze   </li>
+<li>uprawiać matematykę   </li>
+</ul>
+</li>
+</ul>
+<p>Język jest immanentną częścią świata (w przeciwieństwie do <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>, <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>, <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>). <br />
+Język nie jest sprawą indywidualną. (Wittgenstein wręcz redukuje "ja" do ruchów gry językowej)   </p>
+<p>Są zdania:   </p>
+<ul>
+<li>empiryczne   </li>
+<li>normujące -- mówiące o regułach gry   </li>
+</ul>
+<p>Uznanie uniwersum dyskursu u Quine'a (Ontological commitment) to akt performatywny -- akt woli = wybór gry językowej u Wittgensteina. Wybiera się <strong>całą</strong> grę językową, całe uniwersum   </p>
+<p>Większość gier językowych jest uczonych w dzieciństwie   </p>
+<ul>
+<li>nie na zasadzie argumentacji, na zasadzie przykładu   </li>
+<li>tak samo gdy <em>staje się</em> (uczy się, by być) naukowcem   </li>
+</ul>
+<p>Gra językowa jest mocno związana z obrazem świata. Wybór gry językowej to ontological commitment.   </p>
+<p>Realnie istnieć to znaczy należeć do reguł gry językowej (być składnikiem tej gry)   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>: gdy przyjmuję definicję, w tym momencie powstaje we mnie warunek prawdziwości pewnych zdań.   </p>
+<ul>
+<li><strong>Co to /|\ za zdanie?</strong> Czy to fakt świata? Fakt ontologiczny? <br />
+Są to punkty zejścia ontologii i języka.   </li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Georg_Henrik_von_Wright/index.html">Georg_Henrik_von_Wright</a> zebrał notatki <a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>'a mniej techniczne. Wydane jako "Kultura i wartości" (Culture and values, pobrałem w Calibre)   </p>
+<ul>
+<li>Cechą aktu wiary jest to, że to jest radykalnie inna czynność niż dowód empiryczny   <ul>
+<li>dowód aktu wiary szkodziłby mu   </li>
+</ul>
+</li>
+</ul>
+<p>To jak to jest z ostateczną realnością? (Według Pluty)   </p>
+<ul>
+<li>program immanentystyczny chyba jest nie do zrealizowania   </li>
+</ul>
+<p>Jak rozwiązać problem immanencji języka?   </p>
+<ul>
+<li>Na przykład tak: Język ma to samo źródło ontologiczne co wszystko co jest -- (Bóg)   <ul>
+<li>Dlaczego Kartezjusz mówił, że prawdziwe jest to, co jest oczywiste? Przecież był rozsądny   <ul>
+<li>Przedmioty, liczby (ideały), i możliwości naszego poznania pochodzą z tego samego źródła   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>/|\ Srogie rzeczy   </p>
+</blockquote>
+<p>Wittgenstein nie ma podmiotu, podmiot tam zanika.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Arthur_Schopenhauer/index.html">Arthur_Schopenhauer</a>: to co nas indywidualizuje jest na poziomie fenomenów. Ontologiczna wola nie ma indywidualności.   </p>
+<ul>
+<li>vs indywidualizm: np <a class="inline-tag" href="/notes/obs.html/tags/Karol_Wojtyła/index.html">Karol_Wojtyła</a>, <a class="inline-tag" href="/notes/obs.html/tags/Kierkegaard/index.html">Kierkegaard</a> (egzystencjalizm)   </li>
+</ul>
+<h2 id="17-12-2022">17.12.2022</h2>
+<h3 id="problem-uniwersaliow">Problem uniwersaliów</h3>
+<p>Wykład zainspirowany artykułem <a class="inline-tag" href="/notes/obs.html/tags/Jacek_Jadacki/index.html">Jacek_Jadacki</a>'ego z 1984: "O co chodzi w sporze o uniwersalia?" (Być może: <a href="/notes/not_created.html" class="nonexistent-link">Jadacki-Universals-1.pdf</a> i <a href="/notes/not_created.html" class="nonexistent-link">Jadacki-Forms-of-objects.pdf</a> ?)   </p>
+<p>Problem uniwersaliów sformułował pięknie <a class="inline-tag" href="/notes/obs.html/tags/Porfiriusz/index.html">Porfiriusz</a>: "Czy rodzaje i gatunki istnieją w przyrodzie, czy tylko w umyśle?"   </p>
+<p>Powszednik: desygnuje np. "kot" w supozycji formalnej.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Jacek_Jadacki/index.html">Jacek_Jadacki</a>: jeden z problemów w tym sporze to pomieszanie języków.   </p>
+<p>Są 4 duże możliwe stanowiska:   </p>
+<ul>
+<li>Realistyczne   <ul>
+<li>Realizm skrajny <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>    </li>
+<li>Realizm umiarkowany <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>    </li>
+</ul>
+</li>
+<li>Nominalistyczne   <ul>
+<li>Nominalizm skrajny <a class="inline-tag" href="/notes/obs.html/tags/Tadeusz_Kotarbiński/index.html">Tadeusz_Kotarbiński</a>    </li>
+<li>Nominalizm umiarkowany   </li>
+</ul>
+</li>
+</ul>
+<h4 id="co-to-znaczy-powszednik">Co to znaczy "powszednik"?</h4>
+<p>"<span class="arithmatex">\(U\)</span> jest powszednikiem w stosunku do jednostek <span class="arithmatex">\(I = (I_1, I_2, ..., I_n)\)</span>, gdy <span class="arithmatex">\(U\)</span> jest przedmiotem ustanowionym przez wszystkie i tylko własności <span class="arithmatex">\(A = (A_1, ..., A_k)\)</span> wspólne dla jednostek <span class="arithmatex">\(I\)</span>."   </p>
+<p><span class="arithmatex">\(I\)</span> w tej definicji jest: samoistne, samodzielne, czasoprzestrzenne.   </p>
+<p>Pojawia się pytanie: co w tej definicji oznacza: "być ustanowionym przez"?   </p>
+<p>Możliwe odpowiedzi: <br />
+| Interpretacja "być ustanowionym" | Interpretacja "powszednik"            | <br />
+| -------------------------------- | ------------------------------------- | <br />
+| posiadać                         | istota (natura)                       | <br />
+| mieć przypisane                  | wzorzec (archetyp)                    | <br />
+| mieć domniemane                  | pojęcie (koncepcja) (charakterystyka) | <br />
+| bycie tożsamym                   | swoistość (forma)                     | <br />
+| być wyznaczonym przez            | zbiór (klasa)                         |   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> pokazał, że rozumienie jako "bycie tożsamym" (ściśle) jest sprzeczne (w polemice Borowski-Leśniewski)   </p>
+<p>Co znaczy "rozumieć dane wyrażenie"? (W szczególności: rozumieć powszednik)   </p>
+<table>
+<thead>
+<tr>
+<th>Rodzaj bytu</th>
+<th>odnosi się</th>
+<th>klasa domniemana</th>
+<th>przysłówek (kiedy jest dobrze)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>przedmiot (jakie przedmioty są wyznaczone przez to wyrażenie?)</td>
+<td>odpowiednik</td>
+<td>zakres</td>
+<td>jasno</td>
+</tr>
+<tr>
+<td>przeżycie (jakie przeżycia można wyrazić tym wyrażeniem?)</td>
+<td>odsyłacz</td>
+<td>zawartość</td>
+<td>naocznie</td>
+</tr>
+<tr>
+<td>własność (jakie własności konotuje dane wyrażenie?)</td>
+<td>własność</td>
+<td>treść</td>
+<td>wyraźnie</td>
+</tr>
+</tbody>
+</table>
+<p>(Rozumienia 1 i 3 miał na myśli <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>, gdy mówił, że wiedza pewna jest "jasna" i "wyraźna", rozumieniem 2 zajmuje się fenomenologia)   </p>
+<p>Dalej, Grupy przedmiotów ze względu na sposób użycia:   </p>
+<table>
+<thead>
+<tr>
+<th>Grupy przedmiotów</th>
+<th>Rodzaje istnienia (bytu)</th>
+<th>Proces poznawczy (epistemologia)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indywidua - samoistne, samodzielne, czasoprzestrzenne</td>
+<td>realny (rzeczywisty)</td>
+<td>postrzeżenie, percepcja</td>
+</tr>
+<tr>
+<td>rodzaje (idee) - samoistne, samodzielne, nie-czasoprzestrzenne</td>
+<td>doskonały (absolutny)</td>
+<td>wgląd, ideacja</td>
+</tr>
+<tr>
+<td>własności (abstrakty) - samoistne, nie-samodzielne</td>
+<td>zjawiskowy (fenomenalny)</td>
+<td>abstrahowanie, odkrywanie</td>
+</tr>
+<tr>
+<td>konstrukty (przedstawienia) - nie-samoistne, nie-samodzielne</td>
+<td>myślny (intencjonalny)</td>
+<td>wyobrażalność, fantazja</td>
+</tr>
+</tbody>
+</table>
+<p>W tej siatce możliwe są odpowiedzi:   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Tadeusz_Kotarbiński/index.html">Tadeusz_Kotarbiński</a>: istnieją tylko rzeczy (ciała) (1 z tabelki tuż nad)   <ul>
+<li>Oczywiście pytanie: co to są rzeczy? <a class="inline-tag" href="/notes/obs.html/tags/Zdzisław_Augustynek/index.html">Zdzisław_Augustynek</a> na przykład powie, że to jest coś ciągłego czasoprzestrzennego   </li>
+</ul>
+</li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Zdzisław_Augustynek/index.html">Zdzisław_Augustynek</a>: tylko zdarzenia istnieją (czy to nie jest poza tą tabelką tuż nad? -- nie. To będą indywidua)   </li>
+</ul>
+<p>"Wcześniej czy później zderzamy się z ontologicznym statusem języka" - Pluta   </p>
+<p>Wybranie stanowiska ontycznego ma duży wpływ na nasz język (i vice versa)   </p>
+<p>To wszystko (co dziś było) to wskazówka metodologiczna:   </p>
+<ul>
+<li>opisać fragment języka konieczny do podjęcia, dyskusji danego problemu   </li>
+<li>jest to narzędzie to refleksji stawiania nowych pytań   </li>
+<li>można potraktować to jako trampolinę, aby polecieć wyżej, przekroczyć granice   <ul>
+<li>np. powiedzieliśmy, że <span class="arithmatex">\(I\)</span> są "samoistne". Co to znaczy samoistne? (już tu są założenia ontologiczne) A może indywidua można potraktować inaczej?   </li>
+</ul>
+</li>
+<li>szukać ukrytych założeń   <ul>
+<li>np. obiektywny -- niezależny od jaźni. Gdzie tu jest miejsce na podmiot. Nie ma, potrzeba nowego podejścia   </li>
+<li>np. <a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a>: "fundamentalna ontologia", od Platona zapomina się w filozofii o czymś ważnym   </li>
+</ul>
+</li>
+</ul>
+<h2 id="14-01-2023">14.01.2023</h2>
+<h3 id="logika-ontologia-i-aksjologia">Logika, Ontologia (i Aksjologia)</h3>
+<p>Inspiracja:   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Jan_Łukasiewicz/index.html">Jan_Łukasiewicz</a> "O zasadzie sprzeczności u Arystotelesa"   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> (zainspirowany powyższym):   <ul>
+<li>"Próba dowodu ontologicznej zasady sprzeczności"   </li>
+<li>"Krytyka logicznej zasady wyłączonego środka"   </li>
+<li>(Oba mam w Calibre)   </li>
+</ul>
+</li>
+<li>Autorskie <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>  (jak się okaże: "Logika, Metoda, Obiektywizm")   </li>
+</ul>
+<p>Czym są prawa logiki?   </p>
+<ul>
+<li>np. <span class="arithmatex">\(p \lor \lnot p\)</span> , <span class="arithmatex">\(\lnot(p \land \lnot p)\)</span>, <span class="arithmatex">\(p \implies p\)</span>    </li>
+<li>Wszystkie zdania rachunku zdań, które mają formę praw logiki (jak np. te u góry) są prawdziwe, ale <em>formalnie prawdziwe</em>   <ul>
+<li>Jeśli Żywiec jest stolicą Polski to Żywiec jest stolicą polski -- nic nam to nie mówi o świecie   </li>
+</ul>
+</li>
+<li>Są to prawa gramatyki. Dzięki nim istnieje funkcja opisowa języka -- <a class="inline-tag" href="/notes/obs.html/tags/Roman_Suszko/index.html">Roman_Suszko</a>   <ul>
+<li>Jest to jakby zasada gramatyki języka naturalnego   </li>
+</ul>
+</li>
+<li>Jak to więc jest między zasadami logiki i ontologią?   </li>
+</ul>
+<h4 id="_obsidian_pattern_tag_jan_ukasiewicz"><a class="inline-tag" href="/notes/obs.html/tags/Jan_Łukasiewicz/index.html">Jan_Łukasiewicz</a></h4>
+<p>Zasada sprzeczności ma 3 sformułowania   </p>
+<ul>
+<li><span class="arithmatex">\(\lnot(p \land \lnot p)\)</span> -- logiczna   </li>
+<li>"nie może coś jednocześnie istnieć i nie istnieć" -- ontologiczna   </li>
+<li>"nie można jednocześnie mieć dwóch sprzecznych przekonań" -- psychologiczna   </li>
+</ul>
+<p>Wg. <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a> jest to jedna z najważniejszych zasad.   </p>
+<p>Skąd bierze się gwarancja prawdziwości praw logiki?   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a> powie: "bo to jest oczywiste" ("Jawi się jasno i wyraźnie", ta jego intuicja)   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Jan_Łukasiewicz/index.html">Jan_Łukasiewicz</a> się nie zgadza i rozważa dalej   <ul>
+<li>Z definicji prawdy? Prawda to gdy jest tak jak mówię. Ale być może istnieje jakiś przedmiot mający w sobie sprzeczność (np. mający i nie mający jakiejś cechy)   <ul>
+<li>Wtedy musiałbym zbadać rzeczywistość, <em>ergo</em> w zasadzie sprzeczności jest coś syntetycznego.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Być może jest to sąd syntetyczny a priori? ( <a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>)   <ul>
+<li>Skąd pochodzą formy umysłu?   </li>
+</ul>
+</li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> (inspirowany Łukasiewiczem) powie, że Transcendentalny (forma umysłu) to tyle, ile wypływający z samej istoty języka   </li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Jan_Łukasiewicz/index.html">Jan_Łukasiewicz</a> te wszystkie drogi wyklucza.   </p>
+<p>Trzeba uznać, że przedmioty sprzeczne nie są przedmiotami. Że cokolwiek jest przedmiotem, nie ma w sobie sprzeczności. (Zakładamy, że to jest <em>definicja</em> przedmiotu)   </p>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/William_Blake/index.html">William_Blake</a> -- ciekawa filozofia nieklasyczna.   </p>
+</blockquote>
+<p>Później dowodzi, że nie można wyprowadzić (ani obalić) zasady niesprzeczności z doświadczenia (tak samo jak np. zasady przyczynowości)   </p>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Spinoza/index.html">Spinoza</a> na starość zajmował się gramatyką Hebrajską (w większości (?) niewydane)   </p>
+</blockquote>
+<p>Skoro nie mamy dowodu, dlaczego ta zasada jest dla nas tak cenna?   </p>
+<p>Nie jest to wartość logiczna, lecz praktyczno-etyczna. <br />
+O co w powyższym zdaniu chodzi? A co by było, gdyby nie było tej zasady?   </p>
+<ul>
+<li>jest to np. sposób omijania nieścisłości z opisów zdarzeń z przeszłości   </li>
+</ul>
+<p>Jest to (to powiązanie rdzenia logiki z Etyką) zaskakujące zwłaszcza w naszej epoce późnego modernizmu, gdzie bardzo mocno rozdziela się sądy wartościujące od logicznych i naukowych.   </p>
+<h4 id="ontologia-a-jezyk">Ontologia a język</h4>
+<p>Łukasiewicz zakładał, że przedmioty są niesprzeczne. <br />
+Był to <em>akt wolicjonalny</em>.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> próbuje o wiele bardziej gruntownie.   </p>
+<p>Ale on też ugruntowuje prawa logiczne w języku <br />
+Przyjmuje on tzw. "konwencje językowe". Np. co to jest zdanie.   </p>
+<ul>
+<li>nie ma to nic wspólnego z tzw konwencjonalizmem <a class="inline-tag" href="/notes/obs.html/tags/Henri_Poincaré/index.html">Henri_Poincaré</a>'go (bo takie konwencjonalizmy są puste naukowo)   </li>
+<li>Te jego konwencje są <em>niezbędne</em> do rozumienia logiki językowej. (Kryterium użyteczności)   </li>
+</ul>
+<p><em>Jak możemy się porozumieć</em> (Chociażby czytając Leśniewskiego)?   </p>
+<ul>
+<li>Pragmatycznie empatyzujemy z jego intencjami i oceniamy ogólną użyteczność tego co mówi.   </li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> budował język nauki w oparciu o zbiory nie dystrybutywne (jak <a class="inline-tag" href="/notes/obs.html/tags/Bertrand_Russel/index.html">Bertrand_Russel</a>) a kolektywne. Zalety:   </p>
+<ul>
+<li>miał kompletną logikę   </li>
+<li>nie prowadził do antynomii, np. antynomii zbiorów   </li>
+</ul>
+<p>( <a class="inline-tag" href="/notes/obs.html/tags/Andrzej_Grzegorczyk/index.html">Andrzej_Grzegorczyk</a> np. uważał, że nie jest to lepsze od systemu <a class="inline-tag" href="/notes/obs.html/tags/Bertrand_Russel/index.html">Bertrand_Russel</a>'a)   </p>
+<p>( <a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> uważał się za filozofa. W swoim systemie miał mocne założenia metafizyczne, ontologiczne.)   </p>
+<p>Gdzie jest ostateczny punkt uzasadnienia jego (meta?) konwencji?   </p>
+<ul>
+<li>jest to podobieństwo zasadniczej etyki autora i czytelnika   <ul>
+<li>zasadniczo chodzi nam o prawdę, użyteczność   </li>
+<li>wspólnota aksjologiczna   </li>
+</ul>
+</li>
+</ul>
+<p>Jak czytamy stany wewnętrzne innej osoby?   </p>
+<ul>
+<li>Wnioskowanie z analogii   </li>
+<li>Poznając twórczość autora poznaję jego postawę aksjologiczną meta-metafizyczną, jego intencje.   </li>
+</ul>
+<p>Podsumowując: <strong>Są mocne powiązania między Ontologią, Językiem (logiką) i Etyką</strong>.   </p>
+<h4 id="_obsidian_pattern_tag_jerzy_pluta-przedstawia-to-tak"><a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a> przedstawia to tak:</h4>
+<ul>
+<li>jest Uniwersum aktów intencjonalnych (samoświadomych) danego podmiotu   </li>
+<li>funkcja celu tych aktów: f(wejście (to, co zastane), pożądane wyjście, własna ocena (etyczna))   </li>
+<li>z funkcji celu wynika algebra Boole'a, z której wynika logika klasyczna   </li>
+</ul>
+<p>Logika klasyczna to teoria pewnego podmiotu aksjologicznego.   </p>
+<p>Prognoza (<strong>wow!</strong>):   </p>
+<ul>
+<li>jeśli spotkamy obcych, to porozumiemy się z nimi tylko, gdy będziemy mieli jakąś wspólną podstawę aksjologiczną (np. oni też walczą o przeżycie, albo też się rozmnażają i opiekują młodymi, etc.)   </li>
+</ul>
+<p>Myśli <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a> rozwinięte są w "Logika, Metoda, Obiektywizm" (kupiłem, będę czytał.)   </p>
+<h2 id="28-01-2023">28.01.2023</h2>
+<h3 id="reizm-referat-kuby-sawinskiego">Reizm (referat Kuby Sławińskiego)</h3>
+<p>Punkt wyjścia: nauczyciel akademicki, który chce sprawić, aby wszyscy dobrze i <em>precyzyjnie</em> zrozumieli znaczenie słów.   </p>
+<p>Teza Reistyczna: "Istnieją tylko osoby lub rzeczy" i tylko osoby lub rzeczy są przedmiotami.   </p>
+<p>Z wypowiedzi ostatecznych (zwłaszcza definiujących) należy wyeliminować wszystkie nazwy, które nie są konkretne (nazwy jednostkowe lub ogólne rzeczy istniejących)   </p>
+<p>Pytanie: kiedy nazwa pusta jest poprawna? <br />
+Przykład: Chimera   </p>
+<ul>
+<li>definicja: "Z przodu lew, w środku koza, z tyłu wąż"   </li>
+<li>schemat definicji: "Z przodu X, w środku Y, z tyłu Z"   </li>
+<li>Istnieje takie podstawienie X, Y, Z, że nazwa ta nie jest pusta, jest to więc dobra definicja.   </li>
+</ul>
+<p>Złe nazwy puste:   </p>
+<ul>
+<li>np: gładkość, dobro (?), inflacja (?)   </li>
+</ul>
+<p>Możliwe stanowiska wewnątrz Reizmu:   </p>
+<ul>
+<li>somatyzm - istnieją tylko przedmioty   </li>
+<li>dualizm - istnieją przedmioty i rzeczy   </li>
+<li>monizm spirytualistyczny - istnieją tylko osoby (jako obiekty psychiczne)   </li>
+</ul>
+<p>Cel: uwolnienie filozofii of nazw pozornych (pustych niekonkretnych) <br />
+Można wyróżnić nazwy (poprawne (e.g. chimera)) i onomatoidy (pseudo-nazwy)   </p>
+<p>8 faz rozwoju reizmu (historycznie, dla kontekstu np. co jest celem)   </p>
+<ul>
+<li>
+<ol>
+<li>Odrzuca istnienie cech. Bo to nazwy pozorne i niekonkretne.   </li>
+<li>Nie: Białość jest cechą śniegu   </li>
+<li>Ale: Śnieg jest biały   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Odrzuca istnienie stosunków i stanów rzeczy (zamiast tego korzystanie z predykatów)   </li>
+<li>Nie: Jan pozostaje w stosunku starszeństwa (to jest jakby podmiot zdania) do Piotra   </li>
+<li>Ale: Jan jest starszy od Piotra   </li>
+<li>Zdanie nie desygnuje stanu rzeczy, lecz stwierdza (jakiś predykat)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a> jako podstawa   </li>
+<li>"A jest B" oznacza: A jest tym samym obiektem co B.   <ul>
+<li>(A jak działa: "Śnieg jest biały"?)   </li>
+</ul>
+</li>
+<li>Leśniewski pokazał, że definicja: "Przedmiot ogólny posiada wszystkie i tylko cechy przedmiotów szczegółowych" jest sprzeczna, nie ma przy takiej definicji przedmiotów ogólnych.   <ul>
+<li>Np:    <ul>
+<li>są konie kare i białe   </li>
+<li>zgodnie z definicją "koń" w ogóle nie jest ani kary, ani nie-kary, (ani biały)   </li>
+<li>z prawa wyłączonego środka "koń" w ogóle jest sprzeczny   </li>
+<li>A koń, jaki jest, każdy widzi   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(Z systemów Leśniewskiego nie wynika Reizm. Są one o wiele szersze (możliwie szerokie))   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Reizm radykalny - odrzucenie istnienia obrazów mentalnych (np. wspomnień)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>3 stanowiska   </li>
+</ol>
+</li>
+<li>(6. 7. 8. nie rozumiałem, nie notowałem)   </li>
+</ul>
+<hr />
+<p>Część Pluty   </p>
+<p>"Wszystko jest rzeczą" jest tautologią ( <a class="inline-tag" href="/notes/obs.html/tags/Kazimierz_Ajdukiewicz/index.html">Kazimierz_Ajdukiewicz</a>). Więc jest zdaniem, które nic nie mówi. <br />
+Więc to zdanie jakby zakłada, że jest coś, co nie jest "wszystkim", bo warto to zdanie wymówić. (meta-ontologia?) <br />
+<a class="inline-tag" href="/notes/obs.html/tags/Parmenides/index.html">Parmenides</a> "Wszystko, co istnieje jest prawdą. O fałszu nie warto mówić" <br />
+Pluta ma więcej przemyśleń na ten temat.   </p>
+<p>"Do natury filozofa należy przekraczanie" <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>    </p>
+<p>Program redukcji materialistycznej jest stary jak sama filozofia (i w pewnym sensie definiuje filozofię)   </p>
+<ul>
+<li>np. "Wszystko jest wodą"   </li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Friedrich_Albert_Lange/index.html">Friedrich_Albert_Lange</a> - "History of Materialism and Critique of its Present Significance"   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a> bardzo lubił, przez wiele lat chciał napisać książkę o <a class="inline-tag" href="/notes/obs.html/tags/Democritus/index.html">Democritus</a>, prawdziwym materialiście (nadczłowieku?)   </li>
+</ul>
+<p>Reizm vs Materializm. Materia w XXIw.   </p>
+<p>Co to jest materia? Jak można to definiować? <br />
+Np: "Materia to coś, z czego zrobione jest wszystko co nas otacza. To, co jest wspólnego stołowi, drzewu, prochu po spaleniu"   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>: czasoprzestrzenne, najmniejsze części (te bryły foremne) <br />
+<a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>: hylemorfizm:   </p>
+<ul>
+<li>Krzesło to:   <ul>
+<li>forma krzesła   </li>
+<li>materia   <ul>
+<li>stal. To jest:   <ul>
+<li>forma   </li>
+<li>materia (sfery ferromagnetyczne)   <ul>
+<li>forma   </li>
+<li>materia   <ul>
+<li>...   <ul>
+<li>Materia.   </li>
+<li>Nośnik wszystkich własności, co nie ma żadnych własności.   </li>
+<li>"Coś, o czym nie można nic orzekać"   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Powiedzieliśmy (gdzie indziej), że wszystko co jest, jest jakieś <br />
+<span class="arithmatex">\(ob A \iff \exists B : A \text{ jest } B\)</span> <br />
+Czyli by wychodziło, że materia nie jest przedmiotem (?, sprzeczność?) <br />
+"I to jest ciekawy moment" -- <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>    </p>
+<p>Wszelkie hipotezy precyzujące czym jest "atom", "substancje" są samo-obalające, przestają być materialne ( <a class="inline-tag" href="/notes/obs.html/tags/Roger_Joseph_Boscovich/index.html">Roger_Joseph_Boscovich</a> -- atom to "gęstka" energii), przestają być użyteczne.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>: Rozważanie o wosku. Co jest istotą wosku? "Materią świata jest rozciągłość" (geometryczna) (a'la: materią świata jest woda)   </p>
+<p>Monistyczny materializm jest trudny do utrzymania. A czy <em>ja</em> jestem faktem materialnym? Jak wyjaśnić stany świadomości?   </p>
+<p>Podmiotowość (inteligencja?) jest zawsze <strong>meta</strong> (żaden monizm nie jest wyjaśniający).   </p>
+<p>Kartezjusz dlatego z taką radością pokazuje jak bardzo mechanistyczny jest człowiek, aby tym <strong>dobitniej</strong> pokazać co w człowieku jest niematerialne.   </p>
+<p>Z definicji <a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>'ego definicje opierają się na przedmiotach o imionach własnych (Adrian Siwiec, ten stołek, etc). Jak powstają imiona własne? <em>Poprzez akty performatywne</em>.   </p>
+<ul>
+<li>Co zasługuje na imię własne? Jak to się ma do istnienia?   </li>
+<li>Jak nazywanie ma się do ontologii? <a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a>, <a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>, ...   <ul>
+<li>Gwiazda poranna, gwiazda wieczorna   </li>
+</ul>
+</li>
+</ul>
+<p>Jak mógł powstać język?   </p>
+<h2 id="04-02-2023">04.02.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Leucippus/index.html">Leucippus</a>: próżnia to "nie-ten-byt", jakby inny rodzaj bytu.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Democritus/index.html">Democritus</a>: monizm (jedna substancja) deterministyczny   </p>
+<h3 id="epikur">Epikur</h3>
+<p>(referat) <br />
+<a class="inline-tag" href="/notes/obs.html/tags/Epicurus/index.html">Epicurus</a>: głównie filozofia polityczna (politicon, czyli etyka, jak żyć dobrze). Ale była ona bardzo solidnie powiązana z jego metafizyką:   </p>
+<ul>
+<li>atomy mają ciężar   </li>
+<li>unikał determinizmu: atomy lecą trochę łukiem, a niekoniecznie po linii prostej   </li>
+<li>relacja ciało-dusza: Dusza jest materialna. Atomy duszy są mniejsze, lżejsze i szybciej latają.   </li>
+</ul>
+<p>Fizyka kwantowa vs klasyczny atomizm   </p>
+<ul>
+<li>"atomy" są teraz zniszczalne. Kwarki?   </li>
+<li>Nie są lokalizowalne (tak wprost) w przestrzeni (zasada nieoznaczoności)   </li>
+</ul>
+<p>Podstawowe zasady systemu Epikura:   </p>
+<ul>
+<li>największym szczęściem jest brak cierpienia ( <a class="inline-tag" href="/notes/obs.html/tags/Buddha/index.html">Buddha</a>?)   </li>
+<li>problem: strach przed śmiercią   <ul>
+<li>nie ma co się bać śmierci, bo jak przychodzi śmierć to nas nie ma   </li>
+</ul>
+</li>
+<li>epistemologia: atomy wpadają do oka   </li>
+<li>(problem śmierci, epistemologia ładnie się łączą z jego ontologią atomistyczną)   </li>
+</ul>
+<p>( Część <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>'y) <br />
+Zostało z Epikura 4 listy. Mają znakomity styl bardzo konkretnego wywodu, ścisłego logicznie. Jego system był gotowy i zamknięty, nie wymagał rozwoju, a jedynie ćwiczenia i praktyki (Przeciwnie do np. Buddy)   </p>
+<p>Prawdziwy system musi być dogmatyczny, bo tylko dogmaty dają rozwiązania. ( <a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>, definicje performatywne)   </p>
+<ul>
+<li>Stworzył szkołę, która była społecznie niezaangażowana   <ul>
+<li>Gdy Epikur żył, żył jeszcze Arystoteles, a Aleksander Wielki podbijał w najlepsze. Po jego śmierci panowały wojny, w Atenach zabroniono nauczać filozofii. Więc jego wycofanie społeczne było całkiem racjonalną strategią   </li>
+<li>Świat w tamtych czasach zrobił się ogromny. Nastąpił kryzys tożsamości, nie można już było się identyfikować ze swoim Polis   </li>
+</ul>
+</li>
+<li>Epikureista (par excellence), a wyglądał jak asceta   </li>
+<li>Obrazoburczy i agresywny w stosunku do innych szkół   </li>
+</ul>
+<p>Skoro system Epikura jest tak spójny, warto spojrzeć na jego linie motywów, wywodów   </p>
+<ul>
+<li>Wszelka działalność intelektualna ma służyć dobru człowieka (konkretnego, mnie)   <ul>
+<li>Całe życie jest cierpieniem. Żyć = cierpieć (W sumie Budda)   </li>
+<li>Czy dzisiaj się łączy naukę z Etyką?   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a>: "z faktów nie wynikają powinności"   </li>
+<li>Epikur tak nie uważał: filozofować to ulepszać swoje życie   </li>
+</ul>
+</li>
+<li>A co jest złego w moim życiu? Cierpimy   <ul>
+<li>Przykład: Chcę coś przyjemnego, np rozważam i widzę wybór:   <ul>
+<li>teraz przyjemnie, potem cierpienie   </li>
+<li>teraz nic, potem brak cierpienia   </li>
+<li>Mocno zintelektualizowany sposób myślenia   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cierpimy fizycznie i psychicznie   <ul>
+<li>cierpienie psychiczne jest bardziej rozciągnięte w czasie i przestrzeni   </li>
+<li>cel filozofii: poznawanie tego cierpienia   </li>
+</ul>
+</li>
+<li>Przez co najbardziej cierpimy?   <ul>
+<li>Podział potrzeb na <span class="arithmatex">\((nie)konieczne \times (nie)naturalne\)</span>    </li>
+</ul>
+</li>
+<li>Cierpienia psychiczne to przede wszystkim strach:   <ul>
+<li>Śmierć: Ale gdy śmierć przyjdzie mnie już nie będzie   </li>
+<li>Cierpienie: Ostre lub łagodne. Łagodne OK, ostre krótkie   </li>
+<li>Bogowie: Jego atomistyka demitologizuje świat. Bogowie nie zawracają sobie nami głowy.   <ul>
+<li>(Rozważał problem, że Bóg nie może być i wszechwiedzący, i dobry i wszechmocny)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ale: w takim razie wychodzi, że kamień jest ideałem, bo jest nieskończenie spokojny.   <ul>
+<li>Gdy człowieka nie szarpią bóle i niepokoje, to człowiek może być równy Bogom. Ale gdy człowiek tak sobie ustawił swoją egzystencję, wtedy otwiera się na potężne źródła inspiracji i energii (wyższego rzędu?) (Plutyzm)   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Cyrenaicy -- czysta przyjemność zmysłowa.   </p>
+<ul>
+<li>trzecie pokolenie cyrenaików stwierdziło, że najlepiej popełnić samobójstwo, by uniknąć cierpienia.   <ul>
+<li>( <a class="inline-tag" href="/notes/obs.html/tags/Kierkegaard/index.html">Kierkegaard</a> "Albo, albo" -- też o tym)   </li>
+</ul>
+</li>
+</ul>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Ignacy_Loyola/index.html">Ignacy_Loyola</a> po nawróceniu był bardzo intensywnym ascetą, głodował etc., zepsuł sobie żołądek. Napisał ćwiczenia duchowe: nie wolno przesadzać w "napinaniu się". Jedz tyle, ile wczoraj postanowiłeś. <br />
+Loyola tu świetnie dogadałby się z Epikurem.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Democritus/index.html">Democritus</a>: Filozof rozwiązuje swoje problemy, ale i samo myślenie jest przyjemne i doskonalące.   </p>
+<p>Epikurejczyk: osiąga spokój (Loyoli, Demokryta, Epikura). To mu daje wyższą satysfakcję.   </p>
+<p>Gapienie się w okno w Autobusie jest takim początkiem.   </p>
+<hr />
+<p>Ontologia:   </p>
+<ul>
+<li>nic nie powstaje z niczego, nic nie znika   </li>
+<li>pewna jednorodność: to czego nie widać, a jest, jest podobne do tego co widać   </li>
+<li>Latają atomy (Demokryt). Epikur: gdyby był pełen determinizm to nie byłoby miejsca na wolność. Są więc odchylenia atomów   <ul>
+<li>to jest postulat, aksjomat   </li>
+<li>zazębienie kwestii etycznych z ontologicznymi   </li>
+</ul>
+</li>
+</ul>
+<p>"List do Herodota" <br />
+Kryteria poznania:   </p>
+<ul>
+<li>
+<ol>
+<li>Czyste poznawanie (nieomylne)   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Prolepsis - spodziewanie się percepcji. Prawdą będzie jeśli 1. to pobudzi, <em>lub</em> nie jest zaprzeczone przez ogół poznań 1.   </li>
+<li>Jest to jakby uśrednienie wielu percepcji   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Przyjemność lub przykrość jako źródła poznania   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Percepcje umysłu. Jest jeszcze subtelniejszy zmysł niż standardowe 5 zmysłów. Jest on trudny do wykorzystania do dyskursu naukowego, bo jego odczucia są mało powtarzalne, subtelniejsze. Ale mają dużą rolę w percepcji np. subtelnych, odległych Bogów, wyższych stanów estetycznych, natchnień (jakiś element Platonizmu)   </li>
+</ol>
+</li>
+</ul>
+<p>Epikur nie był ateistą, mimo że był bardzo ostrym "naukowcem". Bardzo mocno czcił bogów.   </p>
+<p>Duch Gnostycki/Islamski/Platoński: istnieje zupełnie inny świat, nasz świat jest zły, gorszy, chce się z niego wydostać <br />
+Epikur: nasz świat jest <em>wszystkim</em>. W nim są bogowie i wszystko inne. Jesteśmy harmonijną częścią świata.   </p>
+<p>Czy są inne możliwości?   </p>
+<ul>
+<li>Platonizm: Zeus bijący piorunami z zewnątrz. Apollo zabijający strzałą z zewnątrz   </li>
+<li>Epikureizm: Żeńskie boginie: Geia, bóstwa rodzące   </li>
+<li>Trzecia opcja: Z Tracji (Litwy? (Plutyzm?)) Dionizos   <ul>
+<li>Pół roku żyje tu, pół roku tu. Jest połączeniem dwóch   </li>
+<li>Filozoficznie: Arystoteles i Hylemorfizm   </li>
+<li>Jezus   </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Wśród Herculaneum papyri (biblioteka, która była zasypana przez Wezuwiusza) być może znajdują się jeszcze nieodkryte dzieła Epikura? Warto żyć długo!   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Pierre_Hadot/index.html">Pierre_Hadot</a>: "Filozofia jako ćwiczenie duchowe" - Pluta poleca <br />
+"Plotinus or the Simplicity of Vision" też wygląda super   </p>
+</blockquote>
+<h2 id="04-03-2023">04.03.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a>    </p>
+<p>Kontekst: Popper przez dziesiątki lat zajmował się epistemologią, epistemologizacją, falsyfikacjonizmem, logiką odkrycia naukowego. Jednocześnie epistemologizował i de-psychologizował.   </p>
+<blockquote>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Edmund_Husserl/index.html">Edmund_Husserl</a> dużo walczył z psychologizacją   </p>
+</blockquote>
+<p>Nagle Popper wyszedł z koncepcją 3-go świata, nawrót do ontologii.   </p>
+<p>Popper znany też jest z liberalnej myśli społecznej:   </p>
+<ul>
+<li>społeczeństwo otwarte ("era" epistemologiczna)   </li>
+<li>krytyka <a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>'na i jego myśli społecznej   </li>
+<li>jednocześnie krucjata przeciwko faszyzmowi   </li>
+</ul>
+<p>Ogólnie, zaliczany jest do filozofii analitycznej.   </p>
+<p>Starszy Popper ma bardzo ciekawe prace o filozofii starożytnej.   </p>
+<p>Sam uważał, że jego filozofia to kontynuacja filozozfii <a class="inline-tag" href="/notes/obs.html/tags/Immanuel_Kant/index.html">Immanuel_Kant</a>'a.   </p>
+<hr />
+<p>Pluralizm ontologiczny (vs monizm lub dualizm)   </p>
+<ul>
+<li>1 świat - rzeczy nieożywione   </li>
+<li>2 świat - świat mentalny   </li>
+<li>3 świat - świat produktów ludzkiego myślenia   <ul>
+<li>matematyczny   </li>
+<li>naukowy   </li>
+<li>sztuka   </li>
+<li>etc.   </li>
+</ul>
+</li>
+</ul>
+<p>Eksperyment myślowy: <br />
+Następuje zniszczenie cywilizacji, narzędzi, budynków etc.   </p>
+<ul>
+<li>1° nie niszczą się biblioteki   </li>
+<li>2° biblioteki też ulegają zniszczeniu.   </li>
+</ul>
+<p>W 1° odbudujemy świat dużo szybciej niż w 2°. <em>Wiedza</em> ludzka by nie zginęła. Co to w zasadzie znaczy?   </p>
+<ul>
+<li>psychologicznie, czyli "to co ja wiem", ale też to, co "wie" moje ciało (np. mechanizmy działania oka (ewolucyjne dziedzictwo)). Jak umrę to to zniknie. To należy do 2-go świata.   </li>
+<li>wiedza w sensie obiektywnym.   <ul>
+<li>Przykład: co mamy na myśli mówiąc: "znam Hamleta"?   <ul>
+<li>nie chodzi o rzeczy materialne (nie z 1 świata)   </li>
+<li>nie są to stany mojej psychiki (2gi świat) (mogę robić pomyłki, a nie ma to wpływu na Hamleta)   </li>
+<li>zatem "istota" Hamleta jest czymś innym, nie z 1 i 2 świata   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Jak 3-ci świat może realnie istnieć? <br />
+Definicja istnienia Poppera: <br />
+<strong>Realne rzeczy (istniejące realnie) to te, które mogą oddziaływać z rzeczami fizycznymi</strong>.   </p>
+<p>Obiekty 3-go świata poprzez świat 2 (poprzez psychiki ludzi) oddziałują na świat 1.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>: idee są z 3-go świata, ale jednocześnie mają "wielką siłę", można się niemi zachwycać etc. Jest to właśnie to oddziaływanie przez świat 2-gi.   </p>
+<p>3-ci świat nie tylko jest realny, jest także autonomiczny. Nie jest do końca pod kontrolą jego twórców.   </p>
+<ul>
+<li>np. Ludzkość stworzyła liczby do liczenia. Później w nich odkryto (!) własność liczb pierwszych i całą teorię liczb. Na pewno teoria liczb nie była w zamierzeniu ludzi którzy tworzyli liczby do liczenia.   </li>
+</ul>
+<p>Obiektywny to inaczej autonomiczny. Więc trzeci świat jest obiektywny.   </p>
+<p>Świat idei Platona jest wieczny i niezmienny. 3-ci świat Poppera jest zmienny. I może zawierać fałsz.   </p>
+<p>Jak powstają obiekty 3-go świata? <br />
+Człowiek tworzy pojęcie (np. liczby), które okazuje się, ma <strong>niezaplanowane</strong> konsekwencje (np. problem liczb pierwszych (też obiekt 3-go świata)), który z powrotem nas stymuluje (sprzężenie zwrotne).   </p>
+<p>Obiekty 3-go świata to naturalny wytwór człowieka (tak jak pajęczyna to naturalny wytwór pająka).   </p>
+<p>Emergencja 3-go świata: Zwierzęta chodzą jedną drogą do wodopoju (bo tak jest im najłatwiej). Powstaje ścieżka. Ludzie liczą. Powstają liczby (pierwsze, niewymierne).   </p>
+<blockquote>
+<p>Algebra -- operowanie obiektami, których <strong>nie znamy</strong>, badanie ich właściwości, relacji etc. <br />
+(WOW) <br />
+(W kontekście cywilizacji arabskiej i potem zachodniej która stworzyła algebrę)   </p>
+</blockquote>
+<p>Kiedy idea staje się elementem 3-go świata? (kiedy zaczyna istnieć w 3-cim świecie?) Wtedy, gdy jest przekazana innym ludziom.   </p>
+<ul>
+<li>Bardzo ciekawy moment® -- kluczowa rola języka w powstawaniu 3-go świata.   </li>
+</ul>
+<p>Jak powstają takie obiekty 3-go świata jak: prawda? prawa logiki? dobro?   </p>
+<blockquote>
+<p>Jest rozmowa na YT (po niemiecku) z Popperem gdy był już stary. Mówił: Kant -- idee regulatywne: bez pełnej egzemplifikacji, ale konieczne dla form umysłu.   </p>
+</blockquote>
+<p>Kant na pytanie: "Czy mogą być inne formy umysłu?" by powiedział: to jest pytanie błędne, błędne przyłożenie kategorii. Formy umysłu są (takie jakie są) koniecznie dla poznania.   </p>
+<p>Ciekawe pytanie: Czy w 3-cim świecie języka powstają nowe emergentne rzeczy? (tak jak w matematyce powstają)   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Kazimierz_Ajdukiewicz/index.html">Kazimierz_Ajdukiewicz</a> o zegarach:   </p>
+<ul>
+<li>nasze kalendarze (czyli mierzenie czasu) opiera się na obrotach ziemi wokół słońca (powiedzmy). Przy pomocy tego wzorca czasu porównujemy zegary. Okazuje się że coś jest nie tak. Są 2 możliwości:   <ul>
+<li>zegary są zepsute   </li>
+<li>świat obraca się nie tak jak myśleliśmy (zmiana paradygmatu)   </li>
+</ul>
+</li>
+</ul>
+<p>Czy możliwa jest zmiana paradygmatu? Zmiana paradygmatu prawdy, logiki?   </p>
+<p>Dlaczego emergencja prawdy z języka jest odpowiedzią niezadowalającą:   </p>
+<ul>
+<li>Pluta: bo nauka mówi że entropia rośnie   </li>
+</ul>
+<p>Przeciw Popperowi: a dlaczego lepiej jest istnieć, niż nie istnieć?   </p>
+<ul>
+<li>"Po co?" -- pytanie nielegalne w nowożytności, na które np. <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a> umiałby odpowiedzieć.   </li>
+</ul>
+<blockquote>
+<p>Planeta małp: gdzie jesteśmy na skali rozwoju?   </p>
+</blockquote>
+<p>Eksperyment myślowy: mam zeszyt z notatkami. <br />
+Czy jak wyginą wszyscy ludzie, czy to nadal będą notatki? <br />
+Popper: tak długo jak jest możliwość (niezerowa możliwość) to to są notatki. <br />
+Co to jest? <br />
+Propensity -- <strong>obiektywne prawdopodobieństwo</strong>. (teoria rozwijana w "A World of Propensities" pod koniec jego życia. Tworzył aksjomatykę obiektywnego prawdopodobieństwa (<strong>wow!</strong>)) <br />
+Entropia   </p>
+<hr />
+<p>Pluta:   </p>
+<div class="mermaid">
+flowchart TD
+
+A{"osioł"}
+
+A --> B
+A --> C
+
+B[siano]
+C[siano]
+</div>
+
+<p>Jest osioł w równej odległości od dwóch snopów siana. Oba snopy siana w jego ocenie są równie kuszące, nie ma powodu żeby wybrać któryś z nich nad drugi. Osioł nie może się zdecydować do którego podejść pierwsze i umiera z głodu.   </p>
+<p>Co tu jest ciekawego? <br />
+Powiedzmy, że naukowe podejście (czysty intelekt) powoduje jego śmierć głodową, bo nie może się zdecydować. <br />
+Byłoby dla niego dobrze, gdyby miał jakieś argumenty aksjologiczne, które skłoniłyby go do jednego ze snopów. Gdyby miał jakieś dogmaty, w które wierzy bez uzasadnienia (bo z definicji muszą być poza jego intelektem)   </p>
+<div class="mermaid">
+flowchart TD
+X[dogmat]
+A{"osioł"}
+
+A --> B
+A --> C
+
+B[siano]
+C[siano]
+</div>
+
+<p>Teraz intelekt osła to nasz intelekt i naukowość. Snopy z sianem to możliwe rozwiązania nierozwiązywalnych problemów (absolut, etyka, etc). Najgorzej jest osłu stać w miejscu.   </p>
+<p>A czego się trzymać? Jakie dogmaty przyjąć? (Btw, to jest właśnie ten moment, który <a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a> nazwałby momentem ontologicznego zaangażowania)   </p>
+<h2 id="-platon-ludzie-wierzacy-mozemy-miec-wglad-w-prawdy-absolutne-powinnismy-wybierac-wedug-nich">- Platon, ludzie wierzący -- możemy mieć wgląd w prawdy absolutne. Powinniśmy wybierać według nich</h2>
+<p>Moment wyboru dogmatu (ontologiczne zaangażowanie) to powstanie najtrwalszych elementów 3-go świata. (?)   </p>
+<p>Postmodernizm/nihilizm (wszystko jedno) zabija wielkie narracje (czyli pytania ostateczne: "Po co?" i "Dlaczego?")   </p>
+<p>Relacje Augustynka -- to postulaty dogmatyczne. Augustynek jakby zakładał czas "t" inny. Jaki to jest czas? Skąd się bierze jego nieodwracalność? <br />
+Jego ukrytym założeniem, jego dogmatem jest założenie wielkiej narracji (zachodniej, która zakłada monoteistycznego Boga stwórcę etc) <br />
+<span class="arithmatex">\(A = A\)</span> -- co to ma znaczyć? <br />
+<span class="arithmatex">\(A_{t_0} = A_{t_1}\)</span> -- istota aksjomatu niesprzeczności w ontologii   </p>
+<blockquote>
+<p>Pluta bardzo poleca "Prawda a Logika" Stuchlińskiego (mam w Calibre, wygląda znakomicie) -- świetne wprowadzenie do <a class="inline-tag" href="/notes/obs.html/tags/Stanisław_Leśniewski/index.html">Stanisław_Leśniewski</a>'ego i jego definicji prawdy   </p>
+</blockquote>
+<h2 id="18-03-2023">18.03.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a>    </p>
+<p>Popper definiuje 3 rodzaje determinizmu:   </p>
+<ul>
+<li>religijny: Jest Bóg wszechwiedzący i wszechmocny   </li>
+<li>naukowy: jak religijny, ale zamiast "Bóg" jest "nauka"   </li>
+<li>metafizyczny: Wszechświat jest zdeterminowany, jest jak taśma filmowa. Niedowodliwe i nieobalalne.   </li>
+</ul>
+<p>Popper walczy z determinizmem naukowym, w wąskim rozumieniu. Aby mówić o takim determinizmie, musimy poczynić założenia:   </p>
+<ul>
+<li>
+<ol>
+<li>z przyczyn za pomocą praw wyjaśniamy skutki   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>wszystko ma swoją przyczynę   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>zdolność do przewidywania dowolnie dokładnie, przy założeniu odpowiednio dokładnego stanu początkowego   </li>
+</ol>
+</li>
+</ul>
+<p>Zasada wyjaśnialności: Z 1, 2, 3: Na podstawie treści przewidywania, którego mamy dokonać, potrafimy wyliczyć wymagany stopień ścisłości wiedzy o warunkach początkowych.   </p>
+<p>Argumenty za determinizmem:   </p>
+<ul>
+<li>Argument z badań nad zachowaniem: Badania nad organizmami są podobne do badań nad planetami czy zegarami. Przesłanki:   <ul>
+<li>zdrowy rozsądek: często przewidujemy zachowania ludzi   </li>
+<li>w miarę poznawania są one lepsze   </li>
+<li>nie ma powodów by twierdzić, że ten proces się zakończy   </li>
+</ul>
+</li>
+</ul>
+<p>Popper: weźmy mojego kota wskakującego na biurko:   </p>
+<ul>
+<li>mogę to jakoś przewidywać czasami   </li>
+<li>jest to dzięki doświadczeniu   </li>
+<li>przewidując, znam jego cel, lub nawyki   </li>
+<li>więc: przewiduję <strong>pewne</strong> zachowania   </li>
+<li>nigdy nie przewidzę wszystkich szczegółów, nie ma teorii przewidywania zachowania kota   </li>
+<li>nie widać dlaczego kiedykolwiek miałaby być teoria która wyjaśniałaby zachowanie kota <em>z dowolną precyzją</em>   </li>
+<li>nie wiemy jakie warunki początkowe są istotne   <ul>
+<li>kontrargument: nasze badania się rozwiną i będzie wiadomo   <ul>
+<li>ale: badania badają tylko fizjologię   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Aby działał argument z fizjologii potrzebujemy 2 założenia:   </p>
+<ul>
+<li>wiemy jak stosować fizjologię do zachowania,   </li>
+<li>znamy warunki początkowe konieczne do rozprężenia mięśnia (przykład fizjologii)   </li>
+</ul>
+<p>Ale:   </p>
+<ul>
+<li>muszę umieć mierzyć naprężenia jego mięśni. Zależą one od ładunków elektrycznych etc. Trzeba umieć je mierzyć z dowolnym stopniem ścisłości   <ul>
+<li><strong>Ale</strong>: to jest zjawisko masowe. Zjawiska masowe nie są ściśle mierzalne (termodynamika, elektrostatyka etc nie są deterministyczne)   </li>
+<li>a mózg jest wrażliwy na zjawiska masowe   </li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>Demon Laplace'a: ukryte założenia:   </p>
+<ul>
+<li>demon jest wyidealizowanym uczonym (nie Bogiem)   </li>
+<li>demon zna warunki początkowe i jego teorie są deterministyczne   </li>
+<li>demon jest elementem świata   </li>
+</ul>
+<hr />
+<p>Pluta: <br />
+Rola eksperymentu myślowego we wnioskowaniu:   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Laplace/index.html">Laplace</a>   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Plato/index.html">Plato</a>    </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Dostojewski/index.html">Dostojewski</a>  <a class="inline-tag" href="/notes/obs.html/tags/Kierkegaard/index.html">Kierkegaard</a>    </li>
+</ul>
+<p>Umieszczenie demona wewnątrz świata to bardzo współczesny zabieg (od Spinozy)   </p>
+<p>Popper: nie prawda, że są 2 typy zjawisk: zegary i chmury (masowe) <br />
+Zegary są tak na prawdę chmurami (jak działają zapadki? termodynamika)   </p>
+<p>Słabość Poppera: nauka stara się dać obiektywny opis rzeczywistości (np. <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a> ). Popper i Laplace zakładają, że podmiot jest immanentny. <br />
+Np. Einstein: "obserwator zmienia rzeczywistość" to błąd metodologiczny.   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Jan_Łukasiewicz/index.html">Jan_Łukasiewicz</a> : W nauce chodzi o prawdę, ale nie tylko. Prawd jest nieskończenie wiele (głupich faktów). Jakie mogą być więc inne wartości?   </p>
+<ul>
+<li>elegancja, piękno ( <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a> )   </li>
+<li>samodoskonalenie, etyka (Pitagorejczycy)   </li>
+</ul>
+<p>Einstein wiedział o argumencie Poppera i się z nim zgadzał, ale nadal wierzył w determinizm metafizyczny. <br />
+Wierzył -- przyjęcie niedowodliwego i nieobalalnego aksjomatu.   </p>
+<p>Z STR przeciw determinizmowi: <br />
+<img alt="" src="Pasted%20image%2020230425201326.png" /> <br />
+(Wydarzenie spoza stożka świetlnego demona nie wpływa na jego wiedzę o rzeczywistości, a wpływa na jego przyszłość. Więc demon nie przewidzieć wszystkiego w swoim stożku światła. W sumie to może przewidzieć bardzo mało)   </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Parmenides/index.html">Parmenides</a> : jeśli spojrzeć na rzeczywistość transcendentnie, to jest ona niezmienna, nic na nią nie wpływa.   </p>
+<p>Einsteina czasoprzestrzeń to przestrzeń 4D z tensorowym niezmiennikiem. Poznać bryłę czegoś to poznać idealnie to coś. <br />
+Perspektywa Parmenidesa -&gt; Relatywizacja. <br />
+(To wszystko już było u Greków. Nawet Zeus mógł być ukarany przez Nemesis, Moirę) <br />
+Czy ta bryła to Noumen Kanta? <br />
+( <a class="inline-tag" href="/notes/obs.html/tags/Arthur_Schopenhauer/index.html">Arthur_Schopenhauer</a> : Noumen to wola, wola jest nieprzewidywalna)   </p>
+<hr />
+<p>Przyczyna. <br />
+<span class="arithmatex">\(A -- B\)</span> <br />
+Kiedy <span class="arithmatex">\(A\)</span> jest przyczyną <span class="arithmatex">\(B\)</span>? <br />
+Gdy ich korelacja jest <em>konieczna</em>. <span class="arithmatex">\(A \Rightarrow B\)</span> (zawsze i wszędzie (Hume: to jest nieuprawnione)) <br />
+Czyli mówiąc o przyczynowości zakładamy podmiot transcendentny. (Albo Kant (?!))   </p>
+<hr />
+<p><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>  wyszedł ponad problem Ateny-Jerozolima-Kant. <br />
+Jeśli prawo przyczynowości jest koniecznie moim fenomenem, to Bóg to ułożył poprzez swoją obecność w mojej myśli, przez działanie swojej woli. Aby coś działało, musi być nieustannie podtrzymywane przez Boga.   </p>
+<p>W medytacjach Kartezjusz potrzebuje, by Bóg nie mógł kłamać. Tylko przez to możliwa jest nauka.  <br />
+Bóg nie może kłamać, bo Bóg jest dobry. <br />
+Powiązanie z nauki z aksjologią. <br />
+(I to jest strasznie ciekawe) <br />
+<a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a> w swojej książce o tym pisze.   </p>
+<p>Związki przyczynowo-skutkowe są konsekwencją istnienia podmiotu transcendentnego, który jest:   </p>
+<ul>
+<li>immanentny (działa w świecie)   </li>
+<li>obserwuje   </li>
+<li>jesteśmy do niego jakoś podobni.   </li>
+</ul>
+<p><strong>Logika jako formalna teoria podmiotów</strong>.   </p>
+<hr />
+<p>Spinoza: <em>"Za byt substancjalny rozumiem to a to"</em>. <br />
+To jest <strong>performatyw</strong>, akt, wybór, decyzja.   </p>
+<p>My, ludzie XXw zbyt psychologizujemy. Wiarę też traktujemy jako uczucie. <br />
+To przesada.   </p>
+<hr />
+<p>Są 3 kompletne systemy Chrześcijaństwa:   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Tomasz_z_Akwinu/index.html">Tomasz_z_Akwinu</a>     </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Św_Augustyn/index.html">Św_Augustyn</a>    </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Anzelm_z_Canterbury/index.html">Anzelm_z_Canterbury</a>    <ul>
+<li>Pluta: słabo znany, może jest podobny do Kartezjusza   </li>
+</ul>
+</li>
+</ul>
+<h2 id="04-01-2023">04.01.2023</h2>
+<p>Krytyka historycyzmu <a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a>'a   </p>
+<p>Historycyzm to kontynuacja Popperowskiej wizji świata w naukach społecznych.   </p>
+<p>Determinizm metafizyczny: wszechogarniająca relacja kauzalna, świat jest jak taśma filmowa. <br />
+Np. <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a> uznając porażkę determinizmu naukowego, nadal był deterministą metafizycznym.   </p>
+<p>Jakie mogą być argumenty za determinizmem metafizycznym?   </p>
+<ul>
+<li>"Bóg nie gra w kości" -- jak człowiek, nawet taki jak <a class="inline-tag" href="/notes/obs.html/tags/Albert_Einstein/index.html">Albert_Einstein</a> może twierdzić, czy Bóg gra/nie gra w kości? Co go do tego upoważnia?   <ul>
+<li>Cecha Zachodniego myślenia: ludzie są jakoś podobni do Boga.   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Boole/index.html">Boole</a>: Niemądrze jest zakładać, że Bóg jest ograniczony logiką. Ograniczanie Boga to absurd, z wyjątkiem kwestii moralnych (!!!) -- to jest wspólne z ludźmi.   </li>
+<li>Podobmie <a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>: od czapy wplata tezę, że Bóg nie może kłamać. Wplot etyki w ontologię świata.   </li>
+<li>Einstein być może podobnie w tej wypowiedzi myślał o Bogu.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Pojęcie Boga w aspekcie ontologicznym. Czy można mówić o determinizmie metafizycznym bez Boga?   </p>
+<ul>
+<li>Ontologia buddyjska -- obiektywny obraz świata bez absolutu. Trochę jak ewentyzm punktowy (Dharma), tylko to realnie istnieje.  Wszystko inne to fikcja pod wybuchami Dharmy. Tak samo nie istnieje jaźń. Opisuję Dharmę jako pierwotne wprowadzając relację przyczynowości, jako pierwotną (!)   </li>
+</ul>
+<p>Być może nie można się pozbyć Boga (absolutu) i przyczynowości?   </p>
+<p>Jak przybliżać tę absolutną instancję?   </p>
+<ul>
+<li>europejski umysł godzi (stara się) perspektywę Aten i Jerozolimy.   <ul>
+<li>Ateny: żelazne prawa kosmosu (determinizm metafizyczny) (nawet Zeus boi się Nemesis) (Być może Amor Dei Intellectualis <a class="inline-tag" href="/notes/obs.html/tags/Spinoza/index.html">Spinoza</a>'y to idealne poznanie determinizmu?)   </li>
+<li>Jerozolima: źródło, byt doskonały jest całkowicie wolny i wszechpotężny, nie kieruje się prawami. ( <a class="inline-tag" href="/notes/obs.html/tags/Boole/index.html">Boole</a> wcześniej -- w oczywisty sposób niedeterministyczne)   </li>
+</ul>
+</li>
+</ul>
+<p>Popper: świat skłonności, propensity, zobiektywizowane prawdopodobieństwo.   </p>
+<p>Napięcie Europy: próbuje łączyć Grecję i Jerozolimę.   </p>
+<blockquote>
+<p>Lew Szestow -- "Ateny i Jerozolima"   </p>
+</blockquote>
+<p>Byt doskonały może być całkowicie transcendentny od świata, apofatyczny (np. w Islamie) (np. koniec traktatu <a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>'a) (Być może jest tu miejsce na nieprzedmiotową ontologię)   </p>
+<blockquote>
+<p>Apofatyka i teorie nieobliczalności?   </p>
+</blockquote>
+<p>Europa próbuje zaszywać przepaść.   </p>
+<blockquote>
+<p>Etyka u <a class="inline-tag" href="/notes/obs.html/tags/Jerzy_Pluta/index.html">Jerzy_Pluta</a>'y, miłość u <a class="inline-tag" href="/notes/obs.html/tags/Bernard_z_Clairvaux/index.html">Bernard_z_Clairvaux</a>. Dzień zasypywania przepaści ontycznej.   </p>
+</blockquote>
+<p>Przyjmijmy hipotezę Boga absolutu. Są 2 opcje:   </p>
+<ul>
+<li>Jest całkowicie transcendentalny: wikłamy się w apofatykę lub milkniemy   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>, <a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a>, Scholastyka -- próby powiedzenia czegoś.   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a> (od <a class="inline-tag" href="/notes/obs.html/tags/Anzelm_z_Canterbury/index.html">Anzelm_z_Canterbury</a>'a) Pytanie: czy Bóg mógłby sprawić, że <span class="arithmatex">\(2 + 2 \neq 4\)</span>?   <ul>
+<li>Teraz już nie. Bóg nieustannie aktualizuje, że <span class="arithmatex">\(2+2=4\)</span>. Ale Bóg nie kłamie. Kartezjusz (po swoim procesie totalnego wątpienia i całej swojej drodze) ma prawo wymagać, aby Bóg nie kłamał.   <ul>
+<li>Połączenie Jerozolimy i Aten.   </li>
+<li>(Wow, to samo co u <a class="inline-tag" href="/notes/obs.html/tags/Tichy/index.html">Tichy</a>'ego)   </li>
+</ul>
+</li>
+<li>Na tym polegała filozofia i praktyka duchowa u starożytnych. Wiedzieć i być to to samo.   </li>
+</ul>
+</li>
+<li>Bóg dał człowiekowi wolną wolę, w tym człowiek jest podobny do Boga. Stworzył byt tak mocny jak on, stworzył jakby kamień, którego nie może podnieść.   </li>
+</ul>
+</li>
+<li>Jest immanentny, w świecie. Np. <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>.   <ul>
+<li>Często wychodzi panteizm, np. <a class="inline-tag" href="/notes/obs.html/tags/Spinoza/index.html">Spinoza</a> (nie jest to tam tak łatwo)   </li>
+<li>np. <a class="inline-tag" href="/notes/obs.html/tags/Arthur_Schopenhauer/index.html">Arthur_Schopenhauer</a>    </li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="nedza-historycyzmu">"Nędza Historycyzmu"</h3>
+<p>Historycyzm zakłada, że głównym celem nauk społecznych jest formułowanie prognoz historycznych poprzez wykrywanie rytmów, schematów, trendów w historii.   </p>
+<p>Zakłada on pewną wersję determinizmu.   </p>
+<blockquote>
+<p>Na marginesie: Coraz więcej naszego świata jest dziełem społeczeństwa (gdzie są jeszcze prawdziwe lasy?) (Przekaz proroków monoteistycznych: "otrząśnijcie się ludzie z kokona społeczeństwa, spójrzcie na świat taki, jaki on jest")   </p>
+</blockquote>
+<p>2 wersje historycyzmu. Pytanie: czy metody nauk szczegółowych stosują się do historycyzmu?   </p>
+<ul>
+<li>naturalistyczny: tak   </li>
+<li>antynaturalistyczny: nie   </li>
+</ul>
+<h4 id="antynaturalistyczny">Antynaturalistyczny</h4>
+<ul>
+<li>Prawa historycyzmu są (np. ekonomii) zrelatywizowane do epok, ograniczona jest więc możliwość uogólnień.   </li>
+<li>Odwoływanie się do praw często ma charakter apologetyczny   </li>
+<li>Nie można stosować eksperymentów, bo nie można odtwarzać warunków początkowych, oraz w świecie społecznym ludzie pamiętają podobne przypadki   </li>
+<li>Mechanizmy są bardzo skomplikowane.   </li>
+<li>Zaistnienie prognozy zmienia to, co jest prognozowane   </li>
+<li>Holizm   </li>
+<li>Nie tylko twarde fakty, trzeba myśleć też np. o "duchu epoki"   </li>
+</ul>
+<p>Metody:   </p>
+<ul>
+<li>wyszukiwanie przyczyn i celów   </li>
+<li>sens w całościowym kontekście   </li>
+<li>dominujący trend w epoce (np. globalizacja)   </li>
+<li>jest esencjalistyczny -- ludzie cały czas pytają: czym jest?   <ul>
+<li>Popper: jest to myślenie wynikające z Platonizmu, myślenie o istocie.   </li>
+</ul>
+</li>
+</ul>
+<p>Antynaturalista: tego wszystkiego nie chwytają metody nauk szczegółowych.   </p>
+<h4 id="naturalistyczny">Naturalistyczny</h4>
+<ul>
+<li>Nauki społeczne chcą być empiryczne: prognozy bazować i sprawdzać na obserwacjach.   </li>
+<li>Historycyzm jak astronomia (bez eksperymentów)   </li>
+<li>Zadowala się brakiem szczegółowości, ale za to ma rozmach. Szuka też praw zmian przejść między epokami.   </li>
+</ul>
+<h4 id="krytyka-poppera">Krytyka Poppera</h4>
+<ul>
+<li>mówienie o holizmie, usprawiedliwienie nieprecyzyjności to grube nieporozumienie. Mówienie o całościach nie ma rozróżnienia 2 rodzajów całości:   <ul>
+<li>dany przedmiot -- niezgłębione do końca, całość jako totalność   </li>
+<li>złożony obiekt, pytam o czynnik scalający   </li>
+<li>Zwolennicy holizmu mylą te 2 sposoby. Pretendują do totalnej wiedzy, a znają tylko częściowo. Tylko holizm drugiego rodzaju jest naukowy.   </li>
+</ul>
+</li>
+<li>konsekwencje trzymania się historycyzmu:   <ul>
+<li>historycysta proponuje predykcje o dużej skali i namawia do nich ludzi (np. Marks), bo tylko takie działanie (zgodne) ma sens. Będzie zmuszać lub motywować ludzi do zmiany.   </li>
+<li>duża skala projektu pociąga za sobą małą precyzję, wymaga więc improwizacji, historycysta grzęźnie więc w drobnostkach. Przeczy to też metodzie naukowej (musi odcinać pewne informacje)   </li>
+</ul>
+</li>
+</ul>
+<p>Czy to oznacza, że predykcje w naukach społecznych nie są możliwe?   </p>
+<ul>
+<li>są pod pewnymi warunkami. Nie można mówić o dużych, uniwersalnych prawach społecznych.   </li>
+<li>dobrą metodą predykcji jest inżynieria cząstkowa (agile)   <ul>
+<li>Są 2 rodzaje predykcji:   <ul>
+<li>proroctwa: np. "Rosja się rozpadnie za 2 lata"   </li>
+<li>inżynieria cząstkowa: np. "Jeżeli mój schron ma przetrzymać wiatr 200km/h, musi on mieć taką a taką konstrukcję"   </li>
+</ul>
+</li>
+<li>Proroctwa są nienaukowe, możliwa jest jedynie inżynieria cząstkowa   </li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<ol>
+<li>Bieg historii zależy od rozwoju wiedzy   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Nie da się przewidzieć rozwoju wiedzy   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Nie można przewidzieć przyszłości   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Nie jest możliwy historycyzm predykcyjny   </li>
+</ol>
+</li>
+</ul>
+<p>Można przewidywać oczywiście pewne rzeczy na pewne sposoby, ale nie z rozmachem.   </p>
+<p>Popper Newtonem nauk społecznych.   </p>
+<hr />
+<p>A jak <a class="inline-tag" href="/notes/obs.html/tags/Karl_Popper/index.html">Karl_Popper</a> odpowiedziałby na pytanie: "Co to znaczy istnieć?"   </p>
+<ul>
+<li>Trochę jak <a class="inline-tag" href="/notes/obs.html/tags/Quine/index.html">Quine</a>    </li>
+<li>za Churchillem (sic!): istnieć to być przewidywalnym naukowo. Istnieje to, czego założenie wyjaśnia problemy.   </li>
+</ul>
+<h2 id="22-04-2023">22.04.2023</h2>
+<p>Na czym polega "nowe myślenie" <a class="inline-tag" href="/notes/obs.html/tags/Martin_Heidegger/index.html">Martin_Heidegger</a>'a?   </p>
+<ul>
+<li>Nowa troskliwość języka (lub w stosunku do języka). Czyli pielęgnować zastane znaczenia słów, które ulegają nieustannej erozji.   </li>
+<li>(Inaczej niż wcześniej sądził)   </li>
+</ul>
+<p>( <a class="inline-tag" href="/notes/obs.html/tags/Tischner/index.html">Tischner</a>'a artykuł o Heideggerze. Pokazuje jak Heidegger wykorzystuje myślenie św. Pawła)   </p>
+<p>Czym są zastane znaczenia?   </p>
+<ul>
+<li>Pluta: Słowo Boże. Sens słowa bożego wietrzeje z czasem. Lub coś nieumocowanego w tradycji, lecz w ontologicznej naturze słowa.   </li>
+</ul>
+<p>Co by to znaczyło? (jeśliby to przyjąć)   </p>
+<blockquote>
+<p>Jaynes "Bicameral mind"   </p>
+</blockquote>
+<p>Pluta: Bicameral mind ma bardzo silny związek z językiem i powstał dzięki językowi (a dobrych teorii powstania języka nie ma). Prorocy monoteizmu (transcendentnego boga) byli pierwszymi z takich.   </p>
+<p>Dziecko dopiero w wieku ok. 3 lat mówi "ja". Może wtedy odkrywa własny podmiot. Tak, jak ludzkość go odkrywała. <br />
+Może Heideggerowi chodziło o coś podobnego, o kolejny etap.   </p>
+<p>(Heidegger uważał <a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>'go ukoronowaniem zachodniej filozofii)   </p>
+<p>Heidegger: Dasein istnieje najlepiej, gdy człowiek mówi. Mowa jest ontologią człowieka. W mowie ujawnia się bycie bytu.   </p>
+<p>Heidegger parę lat poświęcił na fenomenologiczne czytanie <a class="inline-tag" href="/notes/obs.html/tags/Aristotle/index.html">Aristotle</a>'sa. Wyszło mu, że rasową ontologią jest jego retoryka.   </p>
+<p>Język to nie (tylko) narzędzie komunikacji. Jest jeszcze poezja. Ma na myśli z greki "pojetika", wytwarzanie. Czyli funkcja wytwórcza. Czyli Nietzche: Człowiek wytwarza. Arystoteles: na szczycie hierarchii jest nuus poetikos. Instancja czyni performatywy. (Scholastycy morza atramentu wylali o tym, być może chodzi właśnie o Heideggera i jego funkcję poetycką).   </p>
+<h2 id="06-05-2023">06.05.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Arthur_Schopenhauer/index.html">Arthur_Schopenhauer</a>    </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Rene_Descartes/index.html">Rene_Descartes</a>'a "O człowieku": Im więcej człowiek rozumie swoją część mechaniczną, tym bardziej będzie wiedział co w nim jest niemechanicznego.   </p>
+<p>Sztuka jako jedna z postaci wyzwolenia się z niewoli woli.   </p>
+<p>Ontologia Schopenhauera:   </p>
+<ul>
+<li>To, co my nazywamy ontologią jest przedstawieniem. Dane są fenomeny, coś zrelatywizowane do nas.   </li>
+<li>Jedynie "Rzecz sama w sobie" jest absolutna   </li>
+<li>Każde przedstawienie jest rozszczepione na podmiot/przedmiot. (Schopenhauer krytykuje tu <a class="inline-tag" href="/notes/obs.html/tags/Kant/index.html">Kant</a>'a, bo używa on terminów przyczynowo-skutkowych). U niego jedynymi formami są czas i przestrzeń (przyczynowość sprowadza się tak na prawdę do czasoprzestrzeni). Formy umysłu (czas, przestrzeń, przyczynowość) są dane <em>naocznie</em>. Odpada więc rozumowanie <a class="inline-tag" href="/notes/obs.html/tags/David_Hume/index.html">David_Hume</a>'a.   </li>
+</ul>
+<p>Schopenhauer jest niezwykle konsekwentny i rewolucyjny w opisie świata jako przedstawienia.  <br />
+Nie można go czytać szybko. <br />
+Jakby konsekwencją przedmiotowości jest spójność przyczynowo-skutkowa.   </p>
+<p>Są przedstawienia:   </p>
+<ul>
+<li>fizyczne -- oddziaływanie, przyczynowość   </li>
+<li>idealne -- poznanie   </li>
+<li>uprzedmiotowienie podmiotu -- istnienie   </li>
+</ul>
+<p>Utożsamienie Noumenu z wolą: wbrew Kantowi coś o noumenie można powiedzieć i jest on nam dany. <br />
+Mamy ogół przedmiotów. Jeden z nich jest mi dany dualnie: jako zjawisko i od wewnątrz. Jest to moje ciało. <br />
+Moje ciało w moich działaniach (czasem) jest posłuszne mojej woli. Ta moja wola jest mi dana naocznie, absolutnie bezpośrednio. Jest to cud. Jest jedno zdarzenie transcendentalne, całkowicie niewytłumaczalne: wola. Chce ona poznać samą siebie.   </p>
+<p>Wola nie jest zdeterminowana. <br />
+Powiedzieć, że Noumen to wola to już uprzedmiotowienie, ale najmniejsze jakie jest możliwe. Przyglądanie się fenomenowi woli przybliża nas do poznania noumenu.   </p>
+<p>Czyli wszystko w ostateczności jest manifestacją woli. Wola nie poddaje się zasadzie racji. Jest jednym, ale bez elementów, ani nie jest uogólnieniem.   </p>
+<p>Łącząc ontologię z 4 zasadami racji:   </p>
+<ul>
+<li>... (?)   </li>
+<li>Człowiek ma jeszcze przyczynowość motywów. Oprócz fizyki i bodźców (intelekt) człowiek ma jeszcze rozum. Konstruuje pojęcia, czyli przedstawienia oparte na przedstawieniach (wiele pięter). Dlatego repertuar jego reakcji się rozszerza i pojawia się myśl abstrakcyjna. Ludzie jako obiekty poznania są całkowicie zdeterminowani swoimi motywami.   </li>
+</ul>
+<p>Jak w takim razie wygląda wolność ludzka? <br />
+Ten charakter, system motywacji był kiedyś kiedyś przez nas wybrany. Ja (jako przedmiot) jestem zdeterminowany przez motywy, ale metafizycznie mój charakter ejst wytworem transcendentalnej mojej woli.   </p>
+<p>Wola walczy sama z sobą. Jeden przejaw woli niszczy inny przejaw woli. Pytanie: wola na poziomie fenomenów, w zasadzie racji, jest zniewolona. Czy można się uwolnić?   </p>
+<p>Skoro wola jest jednością, człowiek zbliżając się do jedności, wyzbywając się przyczyn i skutków, etc, oddalając się od swojej konkretności zbliża się do noumenalnej woli.   </p>
+<p>Wolność to bezinteresowność, bezczasowość etc. Szczytem estetyki jest "sublime". Wysoka skała, kłębiące się morze etc. a ty bezosobowo kontemplujesz, bez strachu, wbrew instynktom -- to jest rzecz wzniosła, sublime.   </p>
+<p>Albo: nie będę powodowany głodem. Oddzielę się od konieczności (asceza)   </p>
+<p>Dochodzimy do granicy: psychologicznie święty zmierza do trudno osiągalnego, ale szczęścia. To powrót do kategorii motywacji, więc chyba <em>nie o to chodzi</em>! Popadam w sprzeczność. Ale inaczej to przestanę być w stanie cośkolwiek o tym powiedzieć. Tu Schopenhauer się zatrzymuje i w tym widać jego kunszt.   </p>
+<p>Mając doświadczenie własnej dualności (ciała), przez analogię mogę zrozumieć wszystko inne. I to nie tylko <em>in abstracto</em>, ale <strong>naocznie</strong>. Przez analogię, przez nienaoczną kontemplację dochodzimy do naocznej kontemplacji (np. czym jest grawitacja), od wewnątrz widzieć wszystko inne.   </p>
+<p>(U <a class="inline-tag" href="/notes/obs.html/tags/Spinoza/index.html">Spinoza</a>'y koroną poznania jest Intelektualna Miłość Boga. Intelektualne poznanie zamienia się w intuicyjne, w zachwyt, zachwyt nawet przed np. losem, który mnie niszczy. Cały świat można tak intuicyjnie zrozumieć z perspektywy wieczności.)   </p>
+<p>Wpływ Schopenhauera:   </p>
+<ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Bergson/index.html">Bergson</a>: Naoczność (intuicjonizm)   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Nietzche/index.html">Nietzche</a>: Wola mocy. Wola jest nakierowana na wzrost swojej potencji. (Widział on też w Schopenhauerze wyrafinowaną formę religijności)   </li>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Ludwig_Wittgenstein/index.html">Ludwig_Wittgenstein</a>    </li>
+</ul>
+<p>Schopenhauer napisał "Willen in der Natur":   </p>
+<ul>
+<li>znajduje w nauce potwierdzenie swojej metafizyki   </li>
+<li>mówi o naturalnej magii (sic!)   <ul>
+<li>Mówi: jeśli ja mam rację, to między fenomenami może być porozumienie poza czasoprzestrzenią (przez Noumen), jakby pod stołem. Przykłady   <ul>
+<li>prof. Bralczyk: "Jak dobrze przemawiać?": Żeby mówca myślał to, co mówi. Wtedy słowo "magicznie" trafia do słuchacza   </li>
+<li>Hitler: tak na prawdę nikt nie wyjaśnia siły oratorskiej Hitlera. Schopenhauer byłby tu pomocny bo:   <ul>
+<li>Hitler zabrał na I wojnę Schopenhauera ("Świat jako wola i przedstawienie")   </li>
+<li>Hitler uważał, że jednostka jest niczym, podmiotem historii są narody -- są to uprzedmiotowione idee. Np. idea narodu niemieckiego. W jego sztuce retorycznej <em>przez analogię</em> utożsamiał się z duchem narodu niemieckiego. Dodając do tego Bralczyka, można wyjaśnić siłę oratorską hitlera.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Tomasz Mann lubił Schopenhauera <br />
+<a class="inline-tag" href="/notes/obs.html/tags/Gombrowicz/index.html">Gombrowicz</a>'a "Kurs filozofii w sześć godzin i kwadrans". Bardzo szanował Schopenhauera.   </p>
+<p>Pluta bardzo ceni Schopenhauera i namawia do czytania.   </p>
+</blockquote>
+<h2 id="20-05-2023">20.05.2023</h2>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Spinoza/index.html">Spinoza</a>    </p>
+<p><a class="inline-tag" href="/notes/obs.html/tags/Bertrand_Russel/index.html">Bertrand_Russel</a>: Nikt z wielkich filozofów nie zasługuje na więcej miłości i szacunku niż Spinoza.   </p>
+<p>Spinoza chciał duchowość (i Boga) umieścić w realnym świecie galopującego postępu naukowego.   </p>
+<p>Co:   </p>
+<ul>
+<li>
+<p>Monizm radykalny. Rezygnuje z wszelkiego rodzaju dualizmów:   </p>
+<ul>
+<li>e.g. rozum to ciało   </li>
+<li>każdy objaw to jedna i ta sama substancja <br />
+Jak:   </li>
+</ul>
+</li>
+<li>
+<p>Porządek geometryczny.   </p>
+<ul>
+<li>Potraktować metodę matematyczną na poważnie   </li>
+<li>to najlepsza metoda przekazywania   </li>
+<li>porządek (metoda) wywodu wpisuje się w sam wywód   </li>
+</ul>
+</li>
+</ul>
+<p>O tłumaczeniu:   </p>
+<ul>
+<li>Myślicki: substancja to istota, modi to objaw   </li>
+<li>Kołakowski: lepiej, ale np. zamiast rozumu jest dusza   </li>
+</ul>
+<p>Wizja metafizyczna. Co jest? Substancja, atrybuty, modi.   </p>
+<p>Substancja: różne byty istnieją. Co jest im wspólne? Jakaś podstawa bytu -- to właśnie substancja.   </p>
+<p>Jak się ma do tego język? W języku jest zawsze pewna dychotomia, pewna relacja czegoś do czegoś <em>innego</em>. Bez tego język nie działa. Nie możemy więc mówić o substancji. <br />
+To, co Spinoza chce zrobić językiem to nakierować, wskazać kierunek.   </p>
+<p>Pluta: Spinoza mówi: "Przez substancję rozumiem...".   </p>
+<ul>
+<li>Definicje Leśniewskiego: Warunki naukowości tego, co mówię. Sam swoim zachowaniem stwarzam warunki prawdziwości, <strong>angażuję się ontologicznie</strong>.   </li>
+</ul>
+<p>Filozofia Spinozy jest całością, trzeba go czytać wiele razy.   </p>
+<p>Cechy substancji:   </p>
+<ul>
+<li>causa sui -- przyczyna samej siebie. Istnieje sama w sobie, jest źródłem bytu.   <ul>
+<li>(rozwiązanie sceptycznego regresu w nieskończoność)   </li>
+</ul>
+</li>
+<li>istnieje koniecznie   <ul>
+<li>(Pluta: furgotanie. Istnienie jest kręceniem się w kółko substancji)   </li>
+</ul>
+</li>
+<li>nieskończoność -- ma nieskończenie wiele atrybutów, tylko dwa są dostępne człowiekowi (transcendencja i immanencja Boga)   </li>
+<li>niepodzielność (zróżnicowanie to pochodna poznania)   </li>
+</ul>
+<p>Jak poznajemy substancję? Wszystko co o niej wiemy, wiemy przez 2 atrybuty: myślenie i rozciągłość.   </p>
+<p>Czym są te 2 atrybuty? (Ontologicznie)   </p>
+<ul>
+<li>ciało i jego idea jest jednym i tym samym   </li>
+<li>Skąd w ogóle podział na atrybuty?   <ul>
+<li>interpretacja: atrybuty są w podmiocie poznającym ( <a class="inline-tag" href="/notes/obs.html/tags/Kant/index.html">Kant</a> )   </li>
+<li>interpretacja: atrybuty są obiektywnie w świecie. Podział na możliwości i aktualności. Substancja jest jedna <em>in actu</em>, w podmiocie jest <em>in potentia</em>.   <ul>
+<li><a class="inline-tag" href="/notes/obs.html/tags/Leszek_Kołakowski/index.html">Leszek_Kołakowski</a> : nominalistycznie: nie istnieje białość koniowa, tylko biały koń   </li>
+</ul>
+</li>
+<li>interpretacja Pluty: okrąg. Mam jego ideę (substancja):   <ul>
+<li>może on być dany językiem geometrii euklidesowej (jakby atrybut "geometrii klasycznej")   </li>
+<li>Kartezjusz: układ współrzędnych   </li>
+<li>Czym jest realnie/fenomenologicznie substancja okręgu? Ciekawe pytanie   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Modi:   </p>
+<ul>
+<li>to oto krzesło, ta oto myśl.   </li>
+<li>substancja z perspektywy atrybutu myślenia <span class="arithmatex">\(\rightarrow\)</span> nieskończony intelekt <span class="arithmatex">\(\rightarrow\)</span> idee -- modi   </li>
+<li>substancja z perspektywy atrybutu rozciągłości (natura naturans) <span class="arithmatex">\(\rightarrow\)</span> świat rozciągły (natura naturata) <span class="arithmatex">\(\rightarrow\)</span> modi -- rzeczy   </li>
+</ul>
+<p>Epistemologia. Są 3 stopnie poznania:   </p>
+<ul>
+<li>
+<ol>
+<li>ze słyszenia, na wiarę, indukcja   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>dedukcja   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>intuicja, ogląd całościowy, bezpośredni. Zapośredniczenie dedukcji się znosi. Podmiot scala się z przedmiotem. <br />
+<strong>Etyka!</strong>   </li>
+</ol>
+</li>
+</ul>
+<hr />
+<p>Determinizm i etyka: człowiek, który to studiuje jest człowiekiem szczęśliwym. <br />
+Z drugiej strony mówi o wolności. Jak to jest? Poznanie zbliża nas do Boga (Pluta: czegoś tu brakuje)   </p>
+<hr />
+<p>Pluta: <br />
+Ukoronowaniem poznania jest etyka. <br />
+Poznanie 3-go rodzaju jest intuicyjne, ale:   </p>
+<ul>
+<li>wskazówką jest rozpatrywać rzeczy w formie wieczności. Spojrzeć na ogół doświadczenia z perspektywy Bożej.   <ul>
+<li>Sposób jego myślenia jest konstruktywistyczny (konstrukcja jest nieskończona, i konieczna do poznania 3-go) Ogarniam całość, ale za 10 lat mam większą konstrukcję, więc będę miał inną syntezę ogólności. Stopniowo zbliżasz się do statusu Boskiego.   </li>
+<li>I nasze rozumienie, i to, co rozumiemy (substancję-Boga) pochodzi od substancji-Boga.   </li>
+</ul>
+</li>
+<li>Intelektualna miłość Boga.   <ul>
+<li>Miłość: uczucie, bierne   </li>
+<li>Intelekt: aktywne   </li>
+</ul>
+</li>
+<li>Patrzenie na wszystko z perspektywy wieczności   </li>
+<li>"To Bóg miłuje sam siebie"   </li>
+</ul>
+<p>"Czym jest okrąg?"   </p>
+<ul>
+<li>nie tylko jakaś postać, albo wzór.   </li>
+<li>czym jest <em>to coś</em>, czego postaciami są jego atrybuty? Okrąg to substancja.   </li>
+<li><strong>"Weź narysuj okrąg to zrozumiesz". Nie zrozumiesz tańca nie tańcząc</strong>   </li>
+<li>Rozumieć jasno i wyraźnie to rozumieć swoje własne akty woli. Apercypujesz swoje rysowanie okręgu. Ja wiem, że patrzę na krzesło, bo apercypuję swoją ideę krzesła i to, że patrzę na krzesło.   </li>
+<li>I teraz: mieć ideę przedmiotu, to wytworzyć jego ekwiwalent w sobie. Poznanie intelektualne to jest aktywność.   <ul>
+<li>Przez zrozumienie stajesz się aktywnym czynnikiem w świecie. Moc.   </li>
+<li>Aby z kimś się porozumieć o idei okręgu, będę go zachęcał do rysowania.   </li>
+</ul>
+</li>
+<li>Teraz wracamy do definicji początkowych   <ul>
+<li>"Przez przyczynę samej siebie rozumiem...", <strong>czyli</strong> wytwarzam w sobie ideę, tworzę coś w samym sobie, to fakt ontologiczny.   </li>
+<li>Przez 10 minut będę miał tak, że <span class="arithmatex">\(2+2\neq 4\)</span>. Absurdalne zadanie. Dlaczego? Rozumiejąc tabliczkę mnożenia zmieniłem się.   </li>
+<li>To samo tutaj. Rozumiejąc staje się jakiś fakt. Co to za fakt?   </li>
+<li>Sceptycyzm Kartezjański: demon chce, abym myślał, że <span class="arithmatex">\(2 &lt; 3\)</span>, a tak nie jest. Ale to ja myślę i wykonuję akt.   <ul>
+<li>Mając ideę Boga, niekłamiącego dopiero mogę mieć oczywistość matematyczną. Bez Boga nic więcej niż własne istnienie nie pokażemy. <strong>Warto więc go założyć</strong>.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tak samo Spinoza. Załóżmy, że jest substancja.   <ul>
+<li>To założenie jest wytworzeniem apercepcyjnej idei, stał się akt ontologiczny (jak tabliczka mnożenia). Myśląc o substancji, tworzy substancję (zakładając Boga nie muszę już wątpić w matematykę).   </li>
+<li>Mając ideę substancji Spinozy, mam gwarancję dojścia do prawd absolutnych. Ale jego system jest kroczący. Za 10 lat będę miał inne pojęcie całości.   <ul>
+<li>W młodzieńczej pracy Spinoza pisał, że chciałby mieć absolutnie ostre narzędzie poznania. Ale jak je uzyskać? Etapami. Poprzednim narzędziem uzyskuję coraz lepsze narzędzie.   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Założyliśmy substancję. A czy ona realnie istnieje?   <ul>
+<li>Kartezjusz: jeżeli tak, to ma przyczynę samego siebie i prawdy matematyczne.   <ul>
+<li>A skąd wiemy, że istnieje?   </li>
+<li>Bóg stworzył wszystko, ale i mnie z moimi zdolnościami poznania.   </li>
+<li>Mamy ideę Boga. Czy ona ma odpowiednik? Tj. czy istnieje?   <ul>
+<li>
+<ol>
+<li>Istnienie Boga poznaje się przez samo rozważanie jego natury   </li>
+<li>Mam ideę Boga. Myśląc o tej idei, o jej treści, dostrzegam że ona musi istnieć ( <a class="inline-tag" href="/notes/obs.html/tags/Anzelm_z_Canterbury/index.html">Anzelm_z_Canterbury</a> )   </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Istnienie Boga dowodzi się a posteriori w oparciu o fakt, że idea jego jest w nas obecna.   </li>
+<li>Przeżywanie idei Boga jest faktem ontologicznym (tak jak to krzesło)   </li>
+<li>(Na marginesie (fantazjowanie): Wątek z Hitlerem: siła przekonywania retorów. Podstawowe porozumienie się rozmówców. "On na prawdę przeżywa to, co mówi" (np. o artystach) -- to zdarzenie tak promieniuje (psychologicznie))   </li>
+<li>Kartezjusz dzieli się swoimi myślami a posteriori. My wyciągamy wnioski sami. (Różnica między filozofowaniem a nauką) (Bardzo ważny element filozofowania)   </li>
+</ol>
+</li>
+<li>Istnienie Boga dowodzi się także na tej podstawie, że istniejemy my sami, którzy <strong>mamy</strong> ideę Boga. (mieć ideę to przeżywać)   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spinoza:</li>
+</ul>
+</li>
+</ul>
+<script>
+                    function initializeMermaid() {
+                        mermaid.initialize({startOnLoad:true})
+                    }
+
+                    if (document.readyState === "complete" || document.readyState === "interactive") {
+                        setTimeout(initializeMermaid, 1);
+                    } else {
+                        document.addEventListener("DOMContentLoaded", initializeMermaid);
+                    }
+            </script></div>
+<div class="note-footer">
+
+</div>
+
+                                <!-- end content -->
+                        </div>
+                        <div class="container_filler">
+                        </div>
+                        
+                </div>
+        </div>
+
+        <script>
+                function handle_toggle_side_bar(e){
+                        let header;
+                        let pane; 
+                        let target = e.target
+
+                        // switch out the navbar button click for a header click
+                        if (target.id == 'left_pane_toggle_nav'){
+                                target = document.getElementById('left_pane_fold_header')
+                        }
+                        else if (target.id == 'right_pane_toggle_nav'){
+                                target = document.getElementById('right_pane_fold_header')
+                        }
+
+                        // get header and pane
+                        if (target.classList.contains('fold_header')) {
+                                header = target;
+                                pane = target.parentElement;
+                        }
+                        else {
+                                pane = target;
+                                header = target.getElementsByClassName('fold_header')[0];
+                        }
+                        toggle_side_bar(pane, header, true)
+                        e.stopPropagation();
+                }
+                function handle_toggle_side_bar_button(e){
+                        document.getElementById('menu_toggle_button').click()
+                        handle_toggle_side_bar(e);
+                }
+
+                function toggle_side_bar(pane, header, save) {
+                        let active = (pane.classList.contains('active'))
+                        if (active){
+                                disable_side_bar(pane, header, save);
+                        }
+                        else {
+                                enable_side_bar(pane, header, save);
+                        }
+                }
+                function enable_side_bar(pane, header, save){
+                        pane.classList.add('active');
+                        pane.removeEventListener('click', handle_toggle_side_bar);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, true) }
+                }
+                function disable_side_bar(pane, header, save){
+                        pane.classList.remove('active');
+                        pane.addEventListener('click', handle_toggle_side_bar);
+                        header.removeEventListener('click', handle_toggle_side_bar);
+                        set_correct_header_symbol(header);
+                        if (save){ save_panel_folding_state(header, false) }
+                }
+                function set_correct_header_symbol(header){
+                        let pane = header.parentElement;
+                        let symbol = [['>', '<'],['<', '>']]
+                        symbol = symbol[Number(header.classList.contains('right_pane_fold_header'))][Number(pane.classList.contains('active'))];
+                        console.log(symbol);
+                        header.innerHTML = symbol
+                        return header;
+                }
+                function panel_folding_get_panel_name(header){
+                        return ['left', 'right'][Number(header.classList.contains('right_pane_fold_header'))]
+                }
+                function save_panel_folding_state(header, active){
+                        ls_set('pane_folding_state_'+panel_folding_get_panel_name(header), Number(active));
+                }
+                function load_panel_folding_state(panel_name){
+                        val = ls_get('pane_folding_state_'+panel_name)
+                        if (!val){ return {'exists': false, 'value': null}}
+                        return {'exists': true, 'value': Boolean(Number(val))}
+                }
+                function set_pane_folding_start(left_header, right_header){
+                        // small screen = closed
+                        let right_pane_enabled = true;
+                        let left_pane_enabled = true;
+                        let w = window.visualViewport.width
+                        if (w < 1000){
+                                left_pane_enabled = false
+                        }
+                        if (w < 800){
+                                right_pane_enabled = false
+                        }
+
+                        // get saved values if present
+                        let rval = load_panel_folding_state('right')
+                        if (rval['exists']){
+                                right_pane_enabled = rval['value']
+                        }
+                        let lval = load_panel_folding_state('left')
+                        if (lval['exists']){
+                                left_pane_enabled = lval['value']
+                        }
+
+                        // default = enabled, so we only need to disable
+                        if (!left_pane_enabled){
+                                disable_side_bar(document.getElementById('left_pane'), document.getElementById('left_pane_fold_header'))
+                        }
+                        if (!right_pane_enabled){
+                                disable_side_bar(document.getElementById('right_pane'), document.getElementById('right_pane_fold_header'))
+                        }
+                }
+
+                function init_pane_folding(header){
+                        set_correct_header_symbol(header);
+                        header.addEventListener('click', handle_toggle_side_bar);
+                }
+                
+                
+                set_pane_folding_start()
+                init_pane_folding(document.getElementById('left_pane_fold_header'));
+                init_pane_folding(document.getElementById('right_pane_fold_header'));
+
+                document.getElementById('left_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+                document.getElementById('right_pane_toggle_nav').addEventListener('click', handle_toggle_side_bar_button);
+        </script>
+
+        <script src="/notes/obs.html/static/load_dirtree_footer.js" type="text/javascript"></script>
+
+        
+
+
+
+
+</body>
+</html>
