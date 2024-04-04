@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>T* SCI</title>
+  <style>
+    .emscripten {
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      visibility: hidden;
+      /* display: block; */
+    }
+
+    textarea.emscripten {
+      font-family: monospace;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      visibility: hidden;
+    }
+
+    .myoutput {
+      font-family: monospace;
+    }
+
+    div.emscripten {
+      text-align: center;
+      visibility: hidden;
+    }
+
+    div.emscripten_border {
+      visibility: hidden;
+    }
+
+    /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+    canvas.emscripten {
+      visibility: hidden;
+    }
+
+    .spinner {
+      height: 50px;
+      width: 50px;
+      margin: 0px auto;
+      -webkit-animation: rotation .8s linear infinite;
+      -moz-animation: rotation .8s linear infinite;
+      -o-animation: rotation .8s linear infinite;
+      animation: rotation 0.8s linear infinite;
+      border-left: 10px solid rgb(0, 150, 240);
+      border-right: 10px solid rgb(0, 150, 240);
+      border-bottom: 10px solid rgb(0, 150, 240);
+      border-top: 10px solid rgb(100, 0, 200);
+      border-radius: 100%;
+      background-color: rgb(200, 100, 250);
+      visibility: hidden;
+    }
+
+    @-webkit-keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @-moz-keyframes rotation {
+      from {
+        -moz-transform: rotate(0deg);
+      }
+
+      to {
+        -moz-transform: rotate(360deg);
+      }
+    }
+
+    @-o-keyframes rotation {
+      from {
+        -o-transform: rotate(0deg);
+      }
+
+      to {
+        -o-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <textarea class="emscripten" id="output" hidden=1></textarea>
+  <h1>T* algorithm implementation</h1>
+  This is implementation of the T* SCI algorithm by Joanna Golińska-Pilarek, implemented by Adrian Siwiec.
+  <div id="welcome_page">
+
+    <br>
+    You can input your formula using the following convention:
+    <ul>
+      <li>
+        <pre style="display:inline">=</pre> for identity
+      </li>
+      <li>
+        <pre style="display:inline">-></pre> for implication
+      </li>
+      <li>
+        <pre style="display:inline">-</pre> for negation
+      </li>
+      <li>
+        <pre style="display:inline">&</pre> for conjunction
+      </li>
+      <li>
+        <pre style="display:inline">|</pre> for alternative
+      </li>
+      <li>
+        <pre style="display:inline">&lt;&gt;</pre> for equivalence
+      </li>
+      <li>
+        and a string of alpha-numeric characters for the variables (e.g.
+        <pre style="display:inline">p</pre>,
+        <pre style="display:inline">phi</pre>,
+        <pre style="display:inline">v1</pre>,
+        <pre style="display:inline">ϕ</pre>)
+      </li>
+    </ul>
+    You can input multiple formulas, separated by "<pre style="display:inline">,</pre>".
+
+    <br>
+    You will get a proof tree. The proof tree is an attempt at proving that the provided formulas, as a conjunction, are
+    necessarily false. For example a proof tree:
+    <pre>--: {¬¬(p≡q)}	(is open) applied rule ¬ to ¬¬(p≡q)
+  |--: {(p≡q)}	(is open) applied rule ≡⊤ to (p≡q)
+  | |--: {p, q, (p≡q)}	(is open)
+  | |--: {¬p, ¬q, (p≡q)}	(is ?)</pre>
+    Means that:
+    <ul>
+      <li>
+        your formula is
+        <pre style="display:inline">¬¬(p≡q)</pre>,
+      </li>
+      <li>
+        rule
+        <pre style="display:inline">¬</pre> applies to it and it produces formula
+        <pre style="display:inline">(p≡q)</pre>,
+      </li>
+      <li>
+        to which rule
+        <pre style="display:inline">≡⊤</pre> applies. It produces two sub-branches:
+        <pre style="display:inline">p, q, (p≡q)</pre> and
+        <pre style="display:inline">¬p, ¬q, (p≡q)</pre>.
+      </li>
+      <li>
+        To the branch
+        <pre style="display:inline">p, q, (p≡q)</pre> no further rules apply and it is not an axiom-branch (i.e. it is
+        not trivially false) which means that this branch can be true. It is marked by stating that this branch is open.
+      </li>
+      <li>
+        If any of the sub-branches is open, the further branches (if any) are not calculated and no rules are applied to
+        them. They are marked as "?".
+      </li>
+      <li>
+        If the branch is trivially false or all its sub-branches are closed, the branch is marked as closed.
+      </li>
+    </ul>
+    <br>
+    A couple of notes:
+    <ul>
+      <li>
+        This implementation doesn't use the rule
+        <pre style="display:inline">sym</pre>. Instead, every formula, after its parsing or creation is "normalized",
+        which means that the left side of "=" is "smaller" than the right side.
+      </li>
+      <li>
+        Sets of rules are similarly ordered and normalized (e.g. if a rule would produce
+        <pre style="display:inline">&#123;p, -p, p, p&#125;</pre>, it will produce
+        <pre style="display:inline">&#123;p, -p&#125;</pre> instead). In a similar way, the same sub-branches are
+        eliminated.
+      </li>
+      <li>
+        The current implementation is <b>very</b> unoptimized. If you input a difficult formula, the result page
+        can show no output for a prohibitively long time.
+      </li>
+    </ul>
+    <br>
+    You can click on the following examples to see their proof trees, or input your own formulas below.
+    <script>
+      function GetLink(formula) {
+        console.log("Hello from getlink!");
+        var url = window.location.href.split('?')[0];
+        return "<a href=\"" + url + "?query=" + btoa(formula) + "\"><pre style=\"display:inline\">" + formula + "</pre></a>";
+      }
+    </script>
+    <ul>
+      <li>
+        <script> document.write(GetLink("--(p=q)")); </script>
+      </li>
+      <li>
+        <script> document.write(GetLink("p=q, p, -q")); </script>
+      </li>
+      <li>
+        <script> document.write(GetLink("p<>q, p, -q")); </script>
+      </li>
+      <li>
+        <script> document.write(GetLink("-((p=-q)->((q=-r)->(p=--r)))")); </script>
+      </li>
+      <li>
+        <script> document.write(GetLink("p,p=-r,q=-s,p=(q=p),p=(s=r)")); </script>
+        (Example from Table 7 from the T* paper.)
+      </li>
+      <!-- <li>
+        <script> document.write(GetLink("-((((q = p) -> (p -> r)) = ((p -> (p <> p)) = p)) -> (((r & p) <> (p = p)) | ((p & p) | -q)))")); </script>
+        (Formula -ϕ from, "Tableau-based Decision Procedure for
+        Non-Fregean Logic of Sentential Identity", 
+        a formula "somewhat challenging" to the T SCI algorithm.)
+      </li> -->
+    </ul>
+  </div>
+  <div id="query_page">
+    <br>
+    <script>
+      function GetMainUrl() {
+        url = window.location.href.split('?')[0];
+        return "<a href=\"" + url + "\">Go to the main page.</a>";
+      }
+      document.write(GetMainUrl());
+    </script>
+    <br>
+  </div>
+  <script>
+    query = window.location.search.replace("?query=", "");
+    if (query.length != 0) {
+      var main_elem = document.getElementById("welcome_page");
+      main_elem.style.visibility = 'hidden';
+      main_elem.style.display = 'none';
+    } else {
+      var q_elem = document.getElementById("query_page");
+      q_elem.style.visibility = 'hidden';
+      q_elem.style.display = 'none';
+    }
+  </script>
+  <script>
+    document.write("<div><pre id=\"asdf\"></pre></div>");
+  </script>
+  <textarea id="textArea" cols="100"></textarea>
+  <br>
+  <input type="button" value="Submit" onclick="DoSubmit();" />
+
+  <div class="emscripten" id="status">Downloading...</div>
+  <div class="emscripten">
+    <progress value="0" max="100" id="progress" hidden=1></progress>
+  </div>
+  <div class="emscripten_border">
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1 hidden=1></canvas>
+  </div>
+
+  <script>
+    function DoSubmit() {
+      var url = window.location.href.split('?')[0];
+      window.location.assign(url + "?query=" + btoa(document.getElementById("textArea").value));
+    }
+  </script>
+
+  <script type='text/javascript'>
+    var statusElement = document.getElementById('status');
+    var progressElement = document.getElementById('progress');
+    var spinnerElement = document.getElementById('spinner');
+
+    var Module = {
+      print: (function () {
+        var element = document.getElementById('output');
+        if (element) element.value = ''; // clear browser cache
+        return (...args) => {
+          var text = args.join(' ');
+          // These replacements are necessary if you render to raw HTML
+          //text = text.replace(/&/g, "&amp;");
+          //text = text.replace(/</g, "&lt;");
+          //text = text.replace(/>/g, "&gt;");
+          //text = text.replace('\n', '<br>', 'g');
+          console.log(text);
+          if (element) {
+            element.value += text + "\n";
+            element.scrollTop = element.scrollHeight; // focus on bottom
+          }
+          var v1 = document.getElementById("asdf");
+          v1.append(text + "\n");
+        };
+      })(),
+      canvas: (() => {
+        var canvas = document.getElementById('canvas');
+
+        // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+        // application robust, you may want to override this behavior before shipping!
+        // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+        canvas.addEventListener("webglcontextlost", (e) => {
+          alert('WebGL context lost. You will need to reload the page.');
+          e.preventDefault();
+        }, false);
+
+        return canvas;
+      })(),
+      setStatus: (text) => {
+        if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+        if (text === Module.setStatus.last.text) return;
+        var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+        var now = Date.now();
+        if (m && now - Module.setStatus.last.time < 30) return; // if this is a progress update, skip it if too soon
+        Module.setStatus.last.time = now; Module.setStatus.last.text = text; if (m) {
+          text = m[1];
+          progressElement.value = parseInt(m[2]) * 100; progressElement.max = parseInt(m[4]) * 100;
+          progressElement.hidden = false; spinnerElement.hidden = false;
+        } else {
+          progressElement.value = null;
+          progressElement.max = null; progressElement.hidden = true; if (!text) spinnerElement.hidden = true;
+        }
+        statusElement.innerHTML = text;
+      }, totalDependencies: 0, monitorRunDependencies: (left) => {
+        this.totalDependencies = Math.max(this.totalDependencies, left);
+        Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' :
+          'All downloads complete.');
+      },
+      onRuntimeInitialized: function () {
+        console.log("Hello from ON INITIALIZED");
+        query = window.location.search.replace("?query=", "");
+        SolveFormulas = Module.cwrap('SolveFormulas', null, ['string']);
+        if (query.length > 0) {
+          SolveFormulas(atob(query));
+        }
+      }
+    };
+    Module.setStatus('Downloading...');
+    window.onerror = () => {
+      Module.setStatus('Exception thrown, see JavaScript console');
+      spinnerElement.style.display = 'none';
+      Module.setStatus = (text) => {
+        if (text) console.error('[post-exception status] ' + text);
+      };
+    };
+  </script>
+  <script async type="text/javascript" src="sci.js"></script>
+</body>
+
+</html>
