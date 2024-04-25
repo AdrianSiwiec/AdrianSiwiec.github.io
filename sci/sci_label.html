@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>T* SCI</title>
+  <title>Tableau SCI</title>
   <style>
     .emscripten {
       padding-right: 0;
@@ -101,8 +101,12 @@
 
 <body>
   <textarea class="emscripten" id="output" hidden=1></textarea>
-  <h1>T* algorithm implementation</h1>
-  This is implementation of the T* SCI algorithm by Joanna Golińska-Pilarek, implemented by Adrian Siwiec.
+  <h1>Tableau-based Decision Procedure implementation for SCI</h1>
+  This is implementation of the T system by Joanna Golińska-Pilarek, Taneli Huuskonen, and Michał Zawidzki from paper
+  "Tableau-based Decision Procedure for
+  Non-Fregean Logic of Sentential Identity" <a
+    href="https://doi.org/10.1007/978-3-030-79876-5_3">https://doi.org/10.1007/978-3-030-79876-5_3</a>, implemented by
+  Adrian Siwiec.
   <div id="welcome_page">
 
     <br>
@@ -138,12 +142,44 @@
     <pre style="display:inline">,</pre>".
 
     <br>
+    <br>
     You will get a proof tree. The proof tree is an attempt at proving that the provided formulas, as a conjunction, are
-    necessarily false. For example a proof tree:
-    <pre>--: {¬¬(p≡q)}	(is open) applied rule ¬ to ¬¬(p≡q)
-  |--: {(p≡q)}	(is open) applied rule ≡⊤ to (p≡q)
-  | |--: {p, q, (p≡q)}	(is open)
-  | |--: {¬p, ¬q, (p≡q)}	(is ?)</pre>
+    necessarily false.
+    <br>
+    <br>
+    The proof tree is in style of labelled Tableau provers. That means that all formulas that appear in it are given
+    labels that identify them. Labels can be of two kinds: positive and negative, here represented by positive and
+    negative numbers. A positive label means that the referenced formula is taken to be true, a negative value means
+    that the referenced formula is taken to be false.
+    <br>
+    <br>
+    Your input formula(s) will appear as the root of the tree (with positive labels). The root will be expanded, meaning
+    that all of its descendants will be deduced based on the rules of the system. New formulas will appear, along with
+    label equalities stating that the two formulas referenced by those labels are deduced to be equal and label
+    inequalities stating that the referenced formulas are not equal.
+    <br>
+    <br>
+    The tree, or a subtree is marked "closed" if all labelled formulas, taken as positive and negative, along with
+    equalities and non-equalities are necessarily false, as defined by the closure rules of the system. A subtree is
+    closed if all of its branches are closed, so to conclude that the tree is not closed ("open") it is enough to find
+    one open node that cannot be further expanded and is not necessarily false.
+    <br>
+    <br>
+    For example a proof tree:
+    <pre>
+      --: Labels: {1:¬¬(p≡q)}	Equalities:;	Non-equalities:;
+       |		Applied rule ¬+ to 1 to generate descendant;
+       |		(is open)
+       |--: Labels: {1:¬¬(p≡q), -1:¬(p≡q)}	Equalities:;	Non-equalities:;
+       | |		Applied rule ¬- to -1 to generate descendant;
+       | |		(is open)
+       | |--: Labels: {1:¬¬(p≡q), 2:(p≡q), -1:¬(p≡q)}	Equalities:;	Non-equalities:;
+       | | |		Applied rule ≡+ to 2 to generate descendants;
+       | | |		(is open)
+       | | |--: Labels: {1:¬¬(p≡q), 2:(p≡q), 3:p, 4:q, -1:¬(p≡q)}	Equalities: 3=4;	Non-equalities:;
+       | | |		(is open)
+       | | |--: Labels: {1:¬¬(p≡q), 2:(p≡q), -1:¬(p≡q), -2:p, -3:q}	Equalities: -3=-2;	Non-equalities:;
+       | | |		(is ?)</pre>
     Means that:
     <ul>
       <li>
@@ -152,84 +188,66 @@
       </li>
       <li>
         rule
-        <pre style="display:inline">¬</pre> applies to it and it produces formula
-        <pre style="display:inline">(p≡q)</pre>,
+        <pre style="display:inline">¬+</pre> applies to it and it produces formula
+        <pre style="display:inline">¬(p≡q)</pre> with label
+        <pre style="display:inline">-1</pre>.
       </li>
       <li>
         to which rule
-        <pre style="display:inline">≡⊤</pre> applies. It produces two sub-branches:
-        <pre style="display:inline">p, q, (p≡q)</pre> and
-        <pre style="display:inline">¬p, ¬q, (p≡q)</pre>.
+        <pre style="display:inline">¬-</pre> applies producing formula
+        <pre style="display:inline">2:(p≡q)</pre>.
       </li>
       <li>
-        To the branch
-        <pre style="display:inline">p, q, (p≡q)</pre> no further rules apply and it is not an axiom-branch (i.e. it is
-        not trivially false) which means that this branch can be true. It is marked by stating that this branch is open.
+        Then rule
+        <pre style="display:inline">≡+</pre> is applied to formula labelled
+        <pre style="display:inline">2</pre>, producing two subbranches.
       </li>
       <li>
-        If any of the sub-branches is open, the further branches (if any) are not calculated and no rules are applied to
-        them. They are marked as "?".
+        The first branch has two new labels
+        <pre style="display:inline">3:p</pre> and
+        <pre style="display:inline">4:q</pre> with new equality:
+        <pre style="display:inline">3=4</pre>, as follows from applying the rule
+        <pre style="display:inline">≡+</pre> to
+        <pre style="display:inline">2:(p≡q)</pre>.
       </li>
       <li>
-        If the branch is trivially false or all its sub-branches are closed, the branch is marked as closed.
+        No further rules can be applied to this branch and it is open, so the rest of the tree is not calculated and the
+        tree is marked as open.
+      </li>
+      <li>
+        To some of the branches the equality rules can be used, adding some equalities between labels. Since they're
+        always non-branching they are simply listed in the output and do not produce new subtrees.
       </li>
     </ul>
     <br>
     A couple of notes:
     <ul>
       <li>
-        This implementation doesn't use the rule
-        <pre style="display:inline">sym</pre>. Instead, every formula, after its parsing or creation is "normalized",
-        which means that the left side of "=" is "smaller" than the right side.
+        This implementation doesn't use the rules
+        <pre style="display:inline">sym</pre> and
+        <pre style="display:inline">tran</pre> explicitly. Instead, equality of labels is simply treated as symmetrical
+        and transitive implicitly.
       </li>
       <li>
-        Sets of rules are similarly ordered and normalized (e.g. if a rule would produce
-        <pre style="display:inline">&#123;p, -p, p, p&#125;</pre>, it will produce
-        <pre style="display:inline">&#123;p, -p&#125;</pre> instead). In a similar way, the sub-branches are sorted
-        and repeating ones are eliminated.
+        Formulas are normalized, meaning that every equality will have a "smaller" subformula on the left.
       </li>
       <li>
-        The performance could be improved. If you see no output for a long time, the formula you provided is too
+        The performance is quite poor. If you see no output for a long time, the formula you provided is too
         complex. Let me know and I'll improve the performance.
       </li>
       <li>The source code can be found at <a
-          href="https://github.com/AdrianSiwiec/sci">https://github.com/AdrianSiwiec/sci</a></li>
+          href="https://github.com/AdrianSiwiec/sci">https://github.com/AdrianSiwiec/sci</a> (look for "label" in the
+        code)</li>
     </ul>
     <br>
-    <br>
-    Changelog:
-    <ul>
-      <li>
-        07.04.2024 - Fixes:
-        <ul>
-          <li>
-            fixed bug in
-            <pre style="display:inline">fun</pre> rule implementation
-          </li>
-          <li> single-use rules are now single-use in a branch not globally</li>
-          <li>input can contain utf-8 symbols of
-            <pre style="display:inline">≡, ¬, →, ↔, ∧, ∨</pre> (to ease copy-pasting output)
-          </li>
-          <li>major performance improvements.</li>
-        </ul>
-      </li>
-      <li>
-        25.04.2024 - Fixed two bugs that were causing the results to be incorrectly "open" in some cases. The fix
-        changes the order of applied rules in some cases, unfortunately making formula
-        <pre style="display:inline">-ψ</pre> too difficult for the current
-        implementation.
-      </li>
-    </ul>
-    <b>NOTE: to see the improvements you might need to hard-refresh this page (ctrl+shift+r) to reload
-      the binary. </b>Otherwise you might be using the old binary (it won't work for ϕ and -ϕ below)
-    <br>
-    <br>
+
     Click
     <script>
-      var url = window.location.href.split('?')[0].replace("sci", "sci_label");
+      var url = window.location.href.split('?')[0].replace("sci_label", "sci");
       document.write("<a href=\"" + url + "\">here</a>");
     </script>
-    to see a labelled Tableau implementation -- a different algorithm solving the exact same problem.
+    to see a T* system implementation -- a different algorithm solving the exact same problem.
+
     <br>
     <br>
     You can click on the following examples to see their proof trees, or input your own formulas below.
@@ -276,11 +294,11 @@
         <script> document.write(GetLink("-((((q ≡ p) → (p → r)) ≡ ((p → (p ↔ p)) ≡ p)) → (((r ∧ p) ↔ (p ≡ p)) ∨ ((p ∧ p) ∨ ¬q)))")); </script>
         (Formula -ϕ from ibid.)
       </li>
-      <li>
+      <!-- <li>
         <script> document.write(GetLink("((((((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))→(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))↔((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))))≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))≡((q≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))→(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))→r)))→(((r∧((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))↔(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))))∨((((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))∧((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))∨¬q)))", "φ(p/φ)")); </script>
         (Formula ψ, equal to φ(p/φ) from ibid.)
       </li>
-      <!-- <li>
+      <li>
         <script> document.write(GetLink("¬((((((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))→(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))↔((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))))≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))≡((q≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))→(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))→r)))→(((r∧((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))↔(((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))≡((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))))∨((((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q)))∧((((q≡p)→(p→r))≡(p≡(p→(p↔p))))→(((r∧p)↔(p≡p))∨((p∧p)∨¬q))))∨¬q)))", "¬φ(p/φ)")); </script>
         (Formula -ψ, equal to -φ(p/φ) from ibid.) <b>Warning: </b> takes 1-2 minutes and around 2GB memory to run, might
         crash in the browser.
@@ -400,9 +418,9 @@
       onRuntimeInitialized: function () {
         console.log("Hello from ON INITIALIZED");
         query = window.location.search.replace("?query=", "");
-        SolveFormulas = Module.cwrap('SolveFormulas', null, ['string']);
+        SolveFormulasLabel = Module.cwrap('SolveFormulasLabel', null, ['string']);
         if (query.length > 0) {
-          SolveFormulas(atob(query));
+          SolveFormulasLabel(atob(query));
         }
       }
     };
@@ -415,7 +433,7 @@
       };
     };
   </script>
-  <script async type="text/javascript" src="sci.js"></script>
+  <script async type="text/javascript" src="sci_label.js"></script>
 </body>
 
 </html>
